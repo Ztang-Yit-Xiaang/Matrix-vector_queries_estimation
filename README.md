@@ -138,9 +138,9 @@ Variant using Gaussian random vectors that allows tighter variance analysis.
 
 Instead of forming \(B^3\), we define a **matrix-vector oracle**
 
-\[
+$$
 A = B^3
-\]
+$$
 
 so that
 $$Av = B(B(Bv))$$
