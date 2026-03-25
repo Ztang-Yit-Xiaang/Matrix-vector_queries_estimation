@@ -198,7 +198,7 @@ The Wiki-Vote dataset contains roughly
 
 The randomized estimators should approximate this value with small relative error.
 
-# 10. References
+# 9. References
 
 Raphael A. Meyer, Cameron Musco, Christopher Musco, and David P. Woodruff.
 **Hutch++: Optimal Stochastic Trace Estimation.**
