@@ -9,23 +9,17 @@ The project demonstrates how **randomized numerical linear algebra** can be used
 # 1. Problem Statement
 
 Many problems in numerical linear algebra require computing the **trace of a matrix**
-
-\[
-\text{tr}(A)
-\]
+$\text{tr}(A)$.
 
 However, in large-scale applications the matrix \(A\) is often **not explicitly available**.  
 Instead, we can only compute **matrix-vector products**
-
-\[
-Av
-\]
+$Av$
 
 through a function or oracle.
 
 The challenge is therefore:
 
-> Estimate \( \text{tr}(A) \) using as few matrix-vector multiplications as possible.
+> Estimate $ \text{tr}(A) $ using as few matrix-vector multiplications as possible.
 
 This problem appears in many applications such as:
 
