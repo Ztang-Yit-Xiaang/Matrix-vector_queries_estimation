@@ -19,7 +19,7 @@ through a function or oracle.
 
 The challenge is therefore:
 
-> Estimate $ \text{tr}(A) $ using as few matrix-vector multiplications as possible.
+> Estimate $\text{tr}(A)$ using as few matrix-vector multiplications as possible.
 
 This problem appears in many applications such as:
 
@@ -47,32 +47,28 @@ Triangles represent **mutual support groups**, which are an important indicator 
 
 ### Graph formulation
 
-Let
-
-\[
-B
-\]
+Let $B$
 
 be the adjacency matrix of the graph.
 
 A classical identity from graph theory states:
 
-\[
+$$
 \text{Number of triangles} = \frac{1}{6}\text{tr}(B^3)
-\]
+$$
 
 where:
 
-- \(B^3\) counts the number of **3-step paths**
+- $B^3$ counts the number of **3-step paths**
 - the trace extracts **closed walks**
 
 Each triangle contributes **6 closed walks**, hence the division by 6.
 
 Therefore the problem reduces to:
 
-> Estimate \( \text{tr}(B^3) \)
+> Estimate $\text{tr}(B^3)$
 
-without explicitly computing \(B^3\).
+without explicitly computing $B^3$.
 
 ---
 
@@ -80,17 +76,17 @@ without explicitly computing \(B^3\).
 
 ## 3.1 Hutchinson's Estimator
 
-The classical estimator uses random vectors \(g\):
+The classical estimator uses random vectors $g$:
 
-\[
+$$
 \text{tr}(A) \approx \frac{1}{m}\sum_{i=1}^{m} g_i^T A g_i
-\]
+$$
 
 This estimator requires
 
-\[
+$$
 O(1/\epsilon^2)
-\]
+$$
 
 matrix-vector queries to achieve a \((1\pm \epsilon)\) approximation.
 
@@ -105,18 +101,16 @@ Hutch++ improves Hutchinson’s estimator by combining:
 
 The estimator is
 
-\[
+$$
 \text{Hutch++}(A) =
 \text{tr}(Q^T A Q) +
 \frac{3}{m}
 \text{tr}(G^T(I - QQ^T)A(I - QQ^T)G)
-\]
+$$
 
 This reduces the query complexity to
 
-\[
-O(1/\epsilon)
-\]
+$O(1/\epsilon)$
 
 which is a **quadratic improvement** over Hutchinson's estimator.
 
@@ -149,9 +143,7 @@ A = B^3
 \]
 
 so that
-$$
-Av = B(B(Bv))
-$$
+$$Av = B(B(Bv))$$
 
 
 This avoids constructing the dense matrix \(B^3\) and allows efficient computation using sparse matrix operations.
@@ -165,15 +157,15 @@ The full workflow of the project is:
 ```
 Wiki-Vote dataset
 ↓
-Construct adjacency matrix B
+Construct adjacency matrix $B$
 ↓
-Define matrix-vector oracle A = B³
+Define matrix-vector oracle $A = B^3$
 ↓
 Run Hutch++ estimators
 ↓
-Estimate tr(A)
+Estimate $\text{tr}(A)$
 ↓
-Triangle count = tr(A) / 6
+Triangle count = $\text{tr}(A) / 6$
 ```
 
 ---
