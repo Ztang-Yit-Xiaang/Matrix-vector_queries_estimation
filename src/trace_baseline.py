@@ -573,3 +573,255 @@ def Adaptive_Hutch_pplus_Soft_RademacherResidual(oracle, m, d, b=10, rng=None, r
     return Adaptive_Hutch_pplus_Soft(
         oracle, m, d, b=b, probe_mode='rademacher', rng=rng, return_diagnostics=return_diagnostics
     )
+
+def Adaptive_Hutch_pplus_ModelAveraged(
+    oracle,
+    m,
+    d,
+    b=10,
+    min_fit_points=4,
+    temperature=0.1,
+    use_safety_shrinkage=True,
+    probe_mode='rademacher',
+    rng=None,
+    return_diagnostics=False
+):
+    """
+    Uncertainty-Aware Model-Averaged Adaptive Hutch++ Trace Estimator.
+    
+    1. Fits candidate tail models T_P(q) (Power-Law), T_E(q) (Exponential), T_S(q) (Step/Gap) to pilot Ritz values.
+    2. Computes predictive loss L_j = (1/r_0) * sum_k (ln theta_k - ln theta_hat_k^{(j)})^2.
+    3. Computes model probability weights w_j = softmax(-L_j / temperature).
+    4. Combines tail energy: T_mix(q) = w_P T_P(q) + w_E T_E(q) + w_S T_S(q).
+    5. Computes predicted risk curve R_mix(q) = 2 * T_mix(q) / (m - 2*q) and selects q_adapt = argmin R_mix(q).
+    6. (If use_safety_shrinkage=True) Computes model agreement dispersion D_q and sets two-layer confidence gamma.
+       Sets q_final = round((1 - gamma) * q_0 + gamma * q_adapt).
+    """
+    if rng is None:
+        rng = np.random.default_rng()
+
+    probe_mode = probe_mode.lower()
+    if probe_mode not in {'gaussian', 'rademacher'}:
+        raise ValueError("probe_mode must be 'gaussian' or 'rademacher'.")
+
+    queries_before = oracle.query_count
+    q_max = min(d, (m - 2) // 2)
+    q_0 = min(q_max, max(b, m // 3)) if q_max >= b else b
+    min_budget = 2 * b + 2
+
+    if m < min_budget or b > q_max:
+        q_target = q_0
+        gamma = 0.0
+        weights = {"power": 0.333, "exp": 0.333, "step": 0.334}
+        fallback_used = True
+        fallback_reason = "budget_too_small_for_pilot"
+        q_adapt = q_0
+    else:
+        fallback_used = False
+        fallback_reason = None
+        gamma = 0.0
+        q_adapt = q_0
+        weights = {"power": 0.333, "exp": 0.333, "step": 0.334}
+
+    # PHASE 1: Pilot Stage & Model Averaging
+    if not fallback_used:
+        S_0 = rng.choice([-1.0, 1.0], size=(d, b))
+        W_0 = oracle(S_0)
+        scale_0 = float(la.norm(W_0, ord='fro'))
+        
+        Q_0, r_0 = _rank_aware_qr(W_0, reference_scale=scale_0)
+        Z_0 = oracle(Q_0) if r_0 > 0 else np.empty((d, 0), dtype=W_0.dtype)
+
+        if r_0 >= min_fit_points:
+            M_0 = 0.5 * (Q_0.T @ Z_0 + Z_0.T @ Q_0)
+            ritz_vals = la.eigvalsh(M_0)[::-1]
+            theta_max = float(ritz_vals[0]) if len(ritz_vals) > 0 else 0.0
+
+            if theta_max > 0.0:
+                ritz_cutoff = 1e-12 * theta_max
+                pos_ritz = ritz_vals[ritz_vals > ritz_cutoff]
+
+                if len(pos_ritz) >= min_fit_points:
+                    j_indices = np.arange(1, len(pos_ritz) + 1, dtype=np.float64)
+                    log_j = np.log(j_indices)
+                    log_theta = np.log(pos_ritz)
+                    i_vals = np.arange(1, d + 1, dtype=np.float64)
+
+                    # Model 1: Power-Law
+                    slope_p, intercept_p = np.polyfit(log_j, log_theta, 1)
+                    c_hat = float(max(0.0, -slope_p))
+                    fit_p = intercept_p + slope_p * log_j
+                    loss_p = float(np.mean((log_theta - fit_p) ** 2))
+
+                    w_pow = i_vals ** (-2.0 * c_hat)
+                    T_cum_p = np.cumsum(w_pow[::-1])[::-1]
+                    q_p = b
+                    best_risk_p = float("inf")
+                    for q_cand in range(b, q_max + 1):
+                        l_cand = m - 2 * q_cand
+                        if l_cand > 0:
+                            risk = 2.0 * T_cum_p[q_cand - 1] / l_cand
+                            if risk < best_risk_p:
+                                best_risk_p = risk
+                                q_p = q_cand
+
+                    # Model 2: Exponential
+                    slope_e, intercept_e = np.polyfit(j_indices, log_theta, 1)
+                    alpha_hat = float(max(1e-5, -slope_e))
+                    fit_e = intercept_e + slope_e * j_indices
+                    loss_e = float(np.mean((log_theta - fit_e) ** 2))
+
+                    w_exp = np.exp(-2.0 * alpha_hat * i_vals)
+                    T_cum_e = np.cumsum(w_exp[::-1])[::-1]
+                    q_e = b
+                    best_risk_e = float("inf")
+                    for q_cand in range(b, q_max + 1):
+                        l_cand = m - 2 * q_cand
+                        if l_cand > 0:
+                            risk = 2.0 * T_cum_e[q_cand - 1] / l_cand
+                            if risk < best_risk_e:
+                                best_risk_e = risk
+                                q_e = q_cand
+
+                    # Model 3: Step/Gap Model
+                    ratios = pos_ritz[:-1] / (pos_ritz[1:] + 1e-12)
+                    max_ratio = float(np.max(ratios)) if len(ratios) > 0 else 1.0
+                    r_elbow = int(np.argmax(ratios) + 1) if len(ratios) > 0 else 1
+                    loss_s = 0.05 if max_ratio > 3.0 else 2.0
+                    q_s = min(q_max, max(b, r_elbow + 2))
+
+                    tail_s_val = float((pos_ritz[r_elbow] ** 2) if r_elbow < len(pos_ritz) else pos_ritz[-1]**2)
+                    T_cum_s = np.zeros(d, dtype=np.float64)
+                    for idx_i in range(d):
+                        curr_q = idx_i + 1
+                        if curr_q < r_elbow:
+                            T_cum_s[idx_i] = (r_elbow - curr_q) * 1.0 + (d - r_elbow) * tail_s_val
+                        else:
+                            T_cum_s[idx_i] = (d - curr_q) * tail_s_val
+
+                    # Compute Softmax Weights with Calibrated Temperature
+                    losses = np.array([loss_p, loss_e, loss_s], dtype=np.float64)
+                    logits = -losses / max(1e-4, float(temperature))
+                    exp_logits = np.exp(logits - np.max(logits))
+                    w_arr = exp_logits / np.sum(exp_logits)
+
+                    w_P, w_E, w_S = float(w_arr[0]), float(w_arr[1]), float(w_arr[2])
+                    weights = {"power": w_P, "exp": w_E, "step": w_S}
+
+                    # Combine Tail Energy T_mix(q)
+                    T_mix = w_P * T_cum_p + w_E * T_cum_e + w_S * T_cum_s
+
+                    # Risk Minimization over R_mix(q)
+                    best_risk_mix = float("inf")
+                    q_adapt = b
+                    for q_cand in range(b, q_max + 1):
+                        l_cand = m - 2 * q_cand
+                        if l_cand > 0:
+                            risk_mix = 2.0 * T_mix[q_cand - 1] / l_cand
+                            if risk_mix < best_risk_mix:
+                                best_risk_mix = risk_mix
+                                q_adapt = q_cand
+
+                    # Compute Model Disagreement & Two-Layer Confidence gamma
+                    D_q = w_P * abs(q_p - q_adapt) + w_E * abs(q_e - q_adapt) + w_S * abs(q_s - q_adapt)
+                    avg_loss = w_P * loss_p + w_E * loss_e + w_S * loss_s
+                    
+                    if use_safety_shrinkage:
+                        gamma = float(np.clip(np.exp(-avg_loss) * np.exp(-D_q / 25.0), 0.0, 1.0))
+                        q_soft_float = (1.0 - gamma) * float(q_0) + gamma * float(q_adapt)
+                        q_target = int(np.clip(round(q_soft_float), b, q_max))
+                    else:
+                        gamma = 1.0
+                        q_target = q_adapt
+                else:
+                    q_target = q_0
+                    fallback_used = True
+                    fallback_reason = "insufficient_positive_ritz_values"
+        else:
+            q_target = q_0
+            fallback_used = True
+            fallback_reason = "insufficient_pilot_rank"
+
+
+    # PHASE 3: Pilot Basis Extension
+    k_extra = q_target - b
+    if k_extra > 0:
+        S_1 = rng.choice([-1.0, 1.0], size=(d, k_extra))
+        W_1 = oracle(S_1)
+        scale_1 = float(la.norm(W_1, ord='fro'))
+
+        if r_0 > 0:
+            W1_tilde = W_1 - Q_0 @ (Q_0.T @ W_1)
+            W1_tilde = W1_tilde - Q_0 @ (Q_0.T @ W1_tilde)
+        else:
+            W1_tilde = W_1
+
+        Q_1, r_1 = _rank_aware_qr(W1_tilde, reference_scale=scale_1)
+
+        if r_1 > 0 and r_0 > 0:
+            Q_1 = Q_1 - Q_0 @ (Q_0.T @ Q_1)
+            Q_1, r_1 = _rank_aware_qr(Q_1, reference_scale=1.0)
+
+        Z_1 = oracle(Q_1) if r_1 > 0 else np.empty((d, 0), dtype=W_1.dtype)
+
+        if r_0 > 0 and r_1 > 0:
+            Q = np.column_stack([Q_0, Q_1])
+            Z = np.column_stack([Z_0, Z_1])
+        elif r_0 > 0:
+            Q, Z = Q_0, Z_0
+        else:
+            Q, Z = Q_1, Z_1
+    else:
+        Q, Z = Q_0, Z_0
+        r_1 = 0
+
+    r_actual = Q.shape[1]
+
+    # PHASE 4: Exact Budget Accounting
+    ell_eff = m - q_target - r_actual
+    if ell_eff < 2:
+        raise RuntimeError(
+            f"Invalid query allocation: fewer than 2 residual probes remain. "
+            f"m={m}, q_target={q_target}, r_actual={r_actual}, ell_eff={ell_eff}"
+        )
+
+    # PHASE 5: Double Residual Projection
+    if probe_mode == 'gaussian':
+        G = rng.normal(loc=0.0, scale=1.0, size=(d, ell_eff))
+    else:
+        G = rng.choice([-1.0, 1.0], size=(d, ell_eff))
+
+    if r_actual > 0:
+        RG = G - Q @ (Q.T @ G)
+    else:
+        RG = G
+
+    ARG = oracle(RG)
+
+    queries_used = oracle.query_count - queries_before
+    if queries_used != m:
+        raise RuntimeError(
+            f"Query budget mismatch: expected {m} queries, actually used {queries_used}."
+        )
+
+    trace_low = float(np.sum(Q * Z)) if r_actual > 0 else 0.0
+    trace_res = float(np.sum(RG * ARG)) / ell_eff
+    trace_est = trace_low + trace_res
+
+    if return_diagnostics:
+        diag = {
+            "weights": weights,
+            "gamma": gamma,
+            "q_0": q_0,
+            "q_adapt": q_adapt,
+            "q_target": q_target,
+            "r_actual": r_actual,
+            "ell_eff": ell_eff,
+            "fallback_used": fallback_used,
+            "fallback_reason": fallback_reason,
+            "probe_mode": probe_mode
+        }
+        return trace_est, diag
+
+    return trace_est
+
