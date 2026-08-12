@@ -851,7 +851,8 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     b_0=8,
     delta_b=4,
     b_max=None,
-    tau_plateau=1.15,
+    tau_gap=1.5,
+    p_min=1,
     max_extrapolation_dist=40,
     probe_mode='rademacher',
     rng=None,
@@ -862,10 +863,12 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     
     1. Starts with initial pilot size b_0.
     2. Sequentially acquires delta_b pilot queries.
-    3. Multi-Condition Safe Stopping Rule:
+    3. Horizon-Resolution & Multi-Condition Safe Stopping Rule:
        - Condition A (Allocation Stable): |q_curr - q_prev| <= 1.
-       - Condition B (No Boundary Plateau Signal): theta_{b-1} / theta_b > tau_plateau.
-         Prevents "consistent ignorance" stopping inside flat spectral plateaus.
+       - Condition B (Horizon Resolution / Knee Detectability):
+         Computes log gaps g_j = log(theta_j / theta_{j+1}).
+         If peak gap g_{r_gap} >= tau_gap and post-gap count b - r_gap >= p_min,
+         the knee is already resolved with p >= p_min directions.
        - Condition C (Extrapolation Distance Safe): q_curr - b_curr <= max_extrapolation_dist.
     4. Exact budget accounting identity: q_target + r_actual + ell_eff == m.
     """
@@ -885,6 +888,9 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     q_prev = None
     stopped_early = False
     stop_reason = "max_pilot_reached"
+    max_adjacent_log_gap = 0.0
+    gap_location = 0
+    post_gap_obs = 0
 
     # Sequential Pilot Acquisition Loop
     while b_curr <= b_max:
@@ -925,6 +931,12 @@ def Adaptive_Hutch_pplus_SequentialPilot(
                     log_theta = np.log(pos_ritz)
                     i_vals = np.arange(1, d + 1, dtype=np.float64)
 
+                    # Horizon Resolution Log-Gap Analysis
+                    log_gaps = log_theta[:-1] - log_theta[1:]
+                    max_adjacent_log_gap = float(np.max(log_gaps)) if len(log_gaps) > 0 else 0.0
+                    gap_location = int(np.argmax(log_gaps) + 1) if len(log_gaps) > 0 else 0
+                    post_gap_obs = len(pos_ritz) - gap_location
+
                     # Model 1: Power-Law
                     slope_p, _ = np.polyfit(log_j, log_theta, 1)
                     c_hat = float(max(0.0, -slope_p))
@@ -948,18 +960,17 @@ def Adaptive_Hutch_pplus_SequentialPilot(
                                 best_risk = risk
                                 q_curr = q_cand
 
-                    # Boundary Plateau Check: theta_{b-1} / theta_b
-                    boundary_ratio = (pos_ritz[-2] / (pos_ritz[-1] + 1e-12)) if len(pos_ritz) >= 2 else 1.0
-                    not_in_plateau = (boundary_ratio > tau_plateau)
+                    # Horizon Resolution Rule
+                    has_resolved_knee = (max_adjacent_log_gap >= tau_gap and post_gap_obs >= p_min)
                     extrapolation_safe = (q_curr - b_curr <= max_extrapolation_dist)
                     allocation_stable = (q_prev is not None and abs(q_curr - q_prev) <= 1)
 
-                    # Multi-Condition Safe Stopping Rule
-                    if allocation_stable and not_in_plateau and extrapolation_safe:
-                        stopped_early = True
-                        stop_reason = f"safe_stop_at_b={b_curr}"
-                        q_adapt_final = q_curr
-                        break
+                    if allocation_stable and extrapolation_safe:
+                        if has_resolved_knee or (max_adjacent_log_gap < tau_gap):
+                            stopped_early = True
+                            stop_reason = f"horizon_resolved_stop_at_b={b_curr}"
+                            q_adapt_final = q_curr
+                            break
 
                     q_prev = q_curr
 
@@ -993,8 +1004,7 @@ def Adaptive_Hutch_pplus_SequentialPilot(
 
     r_actual = Q.shape[1]
 
-    # Phase 4 & 5: Residual Estimation & Budget Accounting
-    # Budget Identity: q_target + r_actual + ell_eff == m
+    # Phase 4 & 5: Residual Estimation & Exact Budget Accounting Identity: q_target + r_actual + ell_eff == m
     ell_eff = m - q_target - r_actual
     if ell_eff < 2:
         ell_eff = 2
@@ -1023,11 +1033,16 @@ def Adaptive_Hutch_pplus_SequentialPilot(
             "stop_reason": stop_reason,
             "q_target": q_target,
             "r_actual": r_actual,
-            "ell_eff": ell_eff
+            "ell_eff": ell_eff,
+            "max_adjacent_log_gap": max_adjacent_log_gap,
+            "gap_location": gap_location,
+            "post_gap_observations": post_gap_obs,
+            "extrapolation_distance": q_target - b_final
         }
         return tr_est, diag
 
     return tr_est
+
 
 
 
