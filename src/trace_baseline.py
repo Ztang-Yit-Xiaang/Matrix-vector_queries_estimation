@@ -826,6 +826,24 @@ def Adaptive_Hutch_pplus_ModelAveraged(
     return trace_est
 
 
+    if return_diagnostics:
+        diag = {
+            "weights": weights,
+            "gamma": gamma,
+            "q_0": q_0,
+            "q_adapt": q_adapt,
+            "q_target": q_target,
+            "r_actual": r_actual,
+            "ell_eff": ell_eff,
+            "fallback_used": fallback_used,
+            "fallback_reason": fallback_reason,
+            "probe_mode": probe_mode
+        }
+        return trace_est, diag
+
+    return trace_est
+
+
 def Adaptive_Hutch_pplus_SequentialPilot(
     oracle,
     m,
@@ -833,19 +851,23 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     b_0=8,
     delta_b=4,
     b_max=None,
+    tau_plateau=1.15,
+    max_extrapolation_dist=40,
     probe_mode='rademacher',
     rng=None,
     return_diagnostics=False
 ):
     """
-    Direction 1: Sequential / Adaptive Pilot Stopping Hutch++ Estimator.
+    Direction 1: Sequential / Adaptive Pilot Stopping Hutch++ Estimator (Upgraded).
     
     1. Starts with initial pilot size b_0.
-    2. Sequentially acquires delta_b pilot queries until allocation q_adapt(b) stabilizes:
-       |q_adapt(b) - q_adapt(b - delta_b)| <= 1 or b >= b_max.
-    3. Commits final pilot size b_final, extends low-rank basis to q_target = q_adapt(b_final),
-       and uses all remaining queries for residual probes ell_eff = m - 2 * q_target.
-    4. Guarantees exact query budget compliance oracle.query_count == m.
+    2. Sequentially acquires delta_b pilot queries.
+    3. Multi-Condition Safe Stopping Rule:
+       - Condition A (Allocation Stable): |q_curr - q_prev| <= 1.
+       - Condition B (No Boundary Plateau Signal): theta_{b-1} / theta_b > tau_plateau.
+         Prevents "consistent ignorance" stopping inside flat spectral plateaus.
+       - Condition C (Extrapolation Distance Safe): q_curr - b_curr <= max_extrapolation_dist.
+    4. Exact budget accounting identity: q_target + r_actual + ell_eff == m.
     """
     if rng is None:
         rng = np.random.default_rng()
@@ -926,9 +948,16 @@ def Adaptive_Hutch_pplus_SequentialPilot(
                                 best_risk = risk
                                 q_curr = q_cand
 
-                    if q_prev is not None and abs(q_curr - q_prev) <= 1:
+                    # Boundary Plateau Check: theta_{b-1} / theta_b
+                    boundary_ratio = (pos_ritz[-2] / (pos_ritz[-1] + 1e-12)) if len(pos_ritz) >= 2 else 1.0
+                    not_in_plateau = (boundary_ratio > tau_plateau)
+                    extrapolation_safe = (q_curr - b_curr <= max_extrapolation_dist)
+                    allocation_stable = (q_prev is not None and abs(q_curr - q_prev) <= 1)
+
+                    # Multi-Condition Safe Stopping Rule
+                    if allocation_stable and not_in_plateau and extrapolation_safe:
                         stopped_early = True
-                        stop_reason = f"allocation_stabilized_at_b={b_curr}"
+                        stop_reason = f"safe_stop_at_b={b_curr}"
                         q_adapt_final = q_curr
                         break
 
@@ -965,6 +994,7 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     r_actual = Q.shape[1]
 
     # Phase 4 & 5: Residual Estimation & Budget Accounting
+    # Budget Identity: q_target + r_actual + ell_eff == m
     ell_eff = m - q_target - r_actual
     if ell_eff < 2:
         ell_eff = 2
@@ -999,103 +1029,5 @@ def Adaptive_Hutch_pplus_SequentialPilot(
 
     return tr_est
 
-
-def Hutch_pplus_CrossFitting(
-    oracle,
-    m,
-    d,
-    k=None,
-    probe_mode='rademacher',
-    rng=None,
-    return_diagnostics=False
-):
-    """
-    Direction 5: Sample Reuse & Cross-Fitting Hutch++ Estimator (XTrace-Style).
-    
-    1. Generates m probe vectors G = [g_1, ..., g_m].
-    2. Computes Z = A @ G using exactly m queries.
-    3. Uses first k probes Z[:, :k] for range-finding QR basis Q.
-    4. Reuses remaining probes Z[:, k:] for residual trace estimation with double projection.
-       Zero extra queries are spent because A @ g_j was already computed in Z!
-    """
-    if rng is None:
-        rng = np.random.default_rng()
-
-    queries_before = oracle.query_count
-    if k is None:
-        k = max(2, m // 3)
-
-    l = m - k
-    if l < 2:
-        raise ValueError(f"Invalid allocation: residual probes l={l} must be >= 2.")
-
-    # Single Matrix-Vector Query Pass of size m
-    if probe_mode == 'gaussian':
-        G = rng.normal(loc=0.0, scale=1.0, size=(d, m))
-    else:
-        G = rng.choice([-1.0, 1.0], size=(d, m))
-
-    Z_all = oracle(G)  # Consumes exactly m queries!
-
-    G_1 = G[:, :k]
-    Z_1 = Z_all[:, :k]
-
-    # Range-Finding Low-Rank Basis
-    scale_1 = float(la.norm(Z_1, ord='fro'))
-    Q, r_actual = _rank_aware_qr(Z_1, reference_scale=scale_1)
-
-    # Sample Reuse Residual Probes (Cross-Fitting)
-    G_2 = G[:, k:]
-    Z_2 = Z_all[:, k:]
-
-    if r_actual > 0:
-        AQ = oracle(Q)  # Reclaims unused queries if r_actual < k
-        tr_low = float(np.sum(Q * AQ))
-        
-        # Double Residual Projection using precomputed Z_2 = A @ G_2
-        RG_2 = G_2 - Q @ (Q.T @ G_2)
-        AZ_2 = Z_2 - Q @ (Q.T @ Z_2)
-        tr_res = float(np.sum(RG_2 * AZ_2)) / l
-    else:
-        tr_low = 0.0
-        tr_res = float(np.sum(G_2 * Z_2)) / l
-
-    queries_used = oracle.query_count - queries_before
-    # Adjust query count if AQ was computed
-    if queries_used > m:
-        # Re-run strict exact budget version
-        oracle.reset_query_count()
-        queries_before = oracle.query_count
-        G_fixed = G[:, :m]
-        Z_fixed = oracle(G_fixed)
-        G_1f = G_fixed[:, :k]
-        Z_1f = Z_fixed[:, :k]
-        scale_1f = float(la.norm(Z_1f, ord='fro'))
-        Q_f, r_f = _rank_aware_qr(Z_1f, reference_scale=scale_1f)
-        
-        G_2f = G_fixed[:, k:]
-        Z_2f = Z_fixed[:, k:]
-        if r_f > 0:
-            RG_2f = G_2f - Q_f @ (Q_f.T @ G_2f)
-            AZ_2f = Z_2f - Q_f @ (Q_f.T @ Z_2f)
-            tr_low = float(np.trace(Q_f.T @ (oracle.A @ Q_f))) if hasattr(oracle, 'A') and oracle.A is not None else 0.0
-
-            tr_res = float(np.sum(RG_2f * AZ_2f)) / l
-        else:
-            tr_low = 0.0
-            tr_res = float(np.sum(G_2f * Z_2f)) / l
-
-    tr_est = tr_low + tr_res
-
-    if return_diagnostics:
-        diag = {
-            "k": k,
-            "l": l,
-            "r_actual": r_actual,
-            "queries_used": m
-        }
-        return tr_est, diag
-
-    return tr_est
 
 

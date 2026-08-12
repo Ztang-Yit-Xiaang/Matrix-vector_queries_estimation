@@ -14,8 +14,7 @@ from trace_baseline import (
     Hutch_pplus,
     Gaussian_Hutch_pplus,
     Adaptive_Hutch_pplus_ModelAveraged,
-    Adaptive_Hutch_pplus_SequentialPilot,
-    Hutch_pplus_CrossFitting
+    Adaptive_Hutch_pplus_SequentialPilot
 )
 
 def generate_powerlaw_psd(d, c, rng):
@@ -39,7 +38,7 @@ def generate_step_psd(d, r=20, eta=0.01, rng=None):
 
 def run_sequential_pilot_benchmark():
     print("==========================================================================", flush=True)
-    print("DIRECTION 1 BENCHMARK: SEQUENTIAL ADAPTIVE PILOT STOPPING", flush=True)
+    print("UPGRADED SEQUENTIAL ADAPTIVE PILOT STOPPING BENCHMARK", flush=True)
     print("==========================================================================", flush=True)
 
     d = 500
@@ -60,8 +59,7 @@ def run_sequential_pilot_benchmark():
         "Hutch++ (Standard)": lambda o, m, d, rng: Hutch_pplus(o, m, d, rng=rng),
         "Gaussian-Hutch++": lambda o, m, d, rng: Gaussian_Hutch_pplus(o, m, d, rng=rng),
         "Fixed-Pilot Model-Avg (b=10)": lambda o, m, d, rng: Adaptive_Hutch_pplus_ModelAveraged(o, m, d, b=10, rng=rng),
-        "Sequential Pilot (Ours)": lambda o, m, d, rng: Adaptive_Hutch_pplus_SequentialPilot(o, m, d, b_0=8, delta_b=4, rng=rng),
-        "Cross-Fitting Reuse (Ours)": lambda o, m, d, rng: Hutch_pplus_CrossFitting(o, m, d, k=50, rng=rng)
+        "Sequential Pilot Safe (Ours)": lambda o, m, d, rng: Adaptive_Hutch_pplus_SequentialPilot(o, m, d, b_0=8, delta_b=4, tau_plateau=1.15, rng=rng)
     }
 
     seq_rows = []
@@ -81,7 +79,7 @@ def run_sequential_pilot_benchmark():
 
                 if "Sequential" in alg_name:
                     est, diag = Adaptive_Hutch_pplus_SequentialPilot(
-                        oracle, m, d, b_0=8, delta_b=4, rng=trial_rng, return_diagnostics=True
+                        oracle, m, d, b_0=8, delta_b=4, tau_plateau=1.15, rng=trial_rng, return_diagnostics=True
                     )
                     final_b_list.append(diag["b_final"])
                 elif "Fixed-Pilot" in alg_name:
@@ -117,7 +115,7 @@ def run_sequential_pilot_benchmark():
     df_seq.to_csv(out_csv, index=False)
 
     print("\n==========================================================================", flush=True)
-    print(f"SEQUENTIAL PILOT BENCHMARK COMPLETE: SAVED TO {out_csv}", flush=True)
+    print(f"UPGRADED BENCHMARK COMPLETE: SAVED TO {out_csv}", flush=True)
     print("==========================================================================", flush=True)
 
 if __name__ == "__main__":
