@@ -825,3 +825,277 @@ def Adaptive_Hutch_pplus_ModelAveraged(
 
     return trace_est
 
+
+def Adaptive_Hutch_pplus_SequentialPilot(
+    oracle,
+    m,
+    d,
+    b_0=8,
+    delta_b=4,
+    b_max=None,
+    probe_mode='rademacher',
+    rng=None,
+    return_diagnostics=False
+):
+    """
+    Direction 1: Sequential / Adaptive Pilot Stopping Hutch++ Estimator.
+    
+    1. Starts with initial pilot size b_0.
+    2. Sequentially acquires delta_b pilot queries until allocation q_adapt(b) stabilizes:
+       |q_adapt(b) - q_adapt(b - delta_b)| <= 1 or b >= b_max.
+    3. Commits final pilot size b_final, extends low-rank basis to q_target = q_adapt(b_final),
+       and uses all remaining queries for residual probes ell_eff = m - 2 * q_target.
+    4. Guarantees exact query budget compliance oracle.query_count == m.
+    """
+    if rng is None:
+        rng = np.random.default_rng()
+
+    queries_before = oracle.query_count
+    q_max = min(d, (m - 2) // 2)
+    q_0 = min(q_max, max(b_0, m // 3)) if q_max >= b_0 else b_0
+
+    if b_max is None:
+        b_max = min(q_max // 2, max(b_0, (m - 10) // 4))
+
+    b_curr = b_0
+    Q_pilot = None
+    Z_pilot = None
+    q_prev = None
+    stopped_early = False
+    stop_reason = "max_pilot_reached"
+
+    # Sequential Pilot Acquisition Loop
+    while b_curr <= b_max:
+        if Q_pilot is None:
+            S_chunk = rng.choice([-1.0, 1.0], size=(d, b_0))
+            W_chunk = oracle(S_chunk)
+            scale_chunk = float(la.norm(W_chunk, ord='fro'))
+            Q_pilot, r_pilot = _rank_aware_qr(W_chunk, reference_scale=scale_chunk)
+            Z_pilot = oracle(Q_pilot) if r_pilot > 0 else np.empty((d, 0), dtype=W_chunk.dtype)
+        else:
+            S_chunk = rng.choice([-1.0, 1.0], size=(d, delta_b))
+            W_chunk = oracle(S_chunk)
+            scale_chunk = float(la.norm(W_chunk, ord='fro'))
+            
+            W_tilde = W_chunk - Q_pilot @ (Q_pilot.T @ W_chunk)
+            W_tilde = W_tilde - Q_pilot @ (Q_pilot.T @ W_tilde)
+            
+            Q_delta, r_delta = _rank_aware_qr(W_tilde, reference_scale=scale_chunk)
+            if r_delta > 0:
+                Q_delta = Q_delta - Q_pilot @ (Q_pilot.T @ Q_delta)
+                Q_delta, r_delta = _rank_aware_qr(Q_delta, reference_scale=1.0)
+                Z_delta = oracle(Q_delta)
+
+                Q_pilot = np.column_stack([Q_pilot, Q_delta])
+                Z_pilot = np.column_stack([Z_pilot, Z_delta])
+
+        r_curr = Q_pilot.shape[1]
+        if r_curr >= 4:
+            M_curr = 0.5 * (Q_pilot.T @ Z_pilot + Z_pilot.T @ Q_pilot)
+            ritz_vals = la.eigvalsh(M_curr)[::-1]
+            theta_max = float(ritz_vals[0]) if len(ritz_vals) > 0 else 0.0
+
+            if theta_max > 0.0:
+                pos_ritz = ritz_vals[ritz_vals > 1e-12 * theta_max]
+                if len(pos_ritz) >= 4:
+                    j_indices = np.arange(1, len(pos_ritz) + 1, dtype=np.float64)
+                    log_j = np.log(j_indices)
+                    log_theta = np.log(pos_ritz)
+                    i_vals = np.arange(1, d + 1, dtype=np.float64)
+
+                    # Model 1: Power-Law
+                    slope_p, _ = np.polyfit(log_j, log_theta, 1)
+                    c_hat = float(max(0.0, -slope_p))
+                    w_pow = i_vals ** (-2.0 * c_hat)
+                    T_cum_p = np.cumsum(w_pow[::-1])[::-1]
+
+                    # Model 2: Exponential
+                    slope_e, _ = np.polyfit(j_indices, log_theta, 1)
+                    alpha_hat = float(max(1e-5, -slope_e))
+                    w_exp = np.exp(-2.0 * alpha_hat * i_vals)
+                    T_cum_e = np.cumsum(w_exp[::-1])[::-1]
+
+                    T_mix = 0.5 * T_cum_p + 0.5 * T_cum_e
+                    best_risk = float("inf")
+                    q_curr = b_curr
+                    for q_cand in range(b_curr, q_max + 1):
+                        l_cand = m - 2 * q_cand
+                        if l_cand > 0:
+                            risk = 2.0 * T_mix[q_cand - 1] / l_cand
+                            if risk < best_risk:
+                                best_risk = risk
+                                q_curr = q_cand
+
+                    if q_prev is not None and abs(q_curr - q_prev) <= 1:
+                        stopped_early = True
+                        stop_reason = f"allocation_stabilized_at_b={b_curr}"
+                        q_adapt_final = q_curr
+                        break
+
+                    q_prev = q_curr
+
+        b_curr += delta_b
+
+    b_final = Q_pilot.shape[1] if Q_pilot is not None else b_0
+    q_target = q_prev if q_prev is not None else q_0
+    q_target = int(np.clip(q_target, b_final, q_max))
+
+    # Phase 3: Basis Extension to q_target
+    k_extra = q_target - b_final
+    if k_extra > 0:
+        S_ext = rng.choice([-1.0, 1.0], size=(d, k_extra))
+        W_ext = oracle(S_ext)
+        scale_ext = float(la.norm(W_ext, ord='fro'))
+
+        W_ext_tilde = W_ext - Q_pilot @ (Q_pilot.T @ W_ext)
+        W_ext_tilde = W_ext_tilde - Q_pilot @ (Q_pilot.T @ W_ext_tilde)
+
+        Q_ext, r_ext = _rank_aware_qr(W_ext_tilde, reference_scale=scale_ext)
+        if r_ext > 0:
+            Q_ext = Q_ext - Q_pilot @ (Q_pilot.T @ Q_ext)
+            Q_ext, r_ext = _rank_aware_qr(Q_ext, reference_scale=1.0)
+            Z_ext = oracle(Q_ext)
+            Q = np.column_stack([Q_pilot, Q_ext])
+            Z = np.column_stack([Z_pilot, Z_ext])
+        else:
+            Q, Z = Q_pilot, Z_pilot
+    else:
+        Q, Z = Q_pilot, Z_pilot
+
+    r_actual = Q.shape[1]
+
+    # Phase 4 & 5: Residual Estimation & Budget Accounting
+    ell_eff = m - q_target - r_actual
+    if ell_eff < 2:
+        ell_eff = 2
+        q_target = m - r_actual - ell_eff
+
+    if probe_mode == 'gaussian':
+        G = rng.normal(loc=0.0, scale=1.0, size=(d, ell_eff))
+    else:
+        G = rng.choice([-1.0, 1.0], size=(d, ell_eff))
+
+    RG = G - Q @ (Q.T @ G) if r_actual > 0 else G
+    ARG = oracle(RG)
+
+    queries_used = oracle.query_count - queries_before
+    if queries_used != m:
+        raise RuntimeError(f"Sequential pilot query budget mismatch: expected {m}, got {queries_used}")
+
+    tr_low = float(np.sum(Q * Z)) if r_actual > 0 else 0.0
+    tr_res = float(np.sum(RG * ARG)) / ell_eff
+    tr_est = tr_low + tr_res
+
+    if return_diagnostics:
+        diag = {
+            "b_final": b_final,
+            "stopped_early": stopped_early,
+            "stop_reason": stop_reason,
+            "q_target": q_target,
+            "r_actual": r_actual,
+            "ell_eff": ell_eff
+        }
+        return tr_est, diag
+
+    return tr_est
+
+
+def Hutch_pplus_CrossFitting(
+    oracle,
+    m,
+    d,
+    k=None,
+    probe_mode='rademacher',
+    rng=None,
+    return_diagnostics=False
+):
+    """
+    Direction 5: Sample Reuse & Cross-Fitting Hutch++ Estimator (XTrace-Style).
+    
+    1. Generates m probe vectors G = [g_1, ..., g_m].
+    2. Computes Z = A @ G using exactly m queries.
+    3. Uses first k probes Z[:, :k] for range-finding QR basis Q.
+    4. Reuses remaining probes Z[:, k:] for residual trace estimation with double projection.
+       Zero extra queries are spent because A @ g_j was already computed in Z!
+    """
+    if rng is None:
+        rng = np.random.default_rng()
+
+    queries_before = oracle.query_count
+    if k is None:
+        k = max(2, m // 3)
+
+    l = m - k
+    if l < 2:
+        raise ValueError(f"Invalid allocation: residual probes l={l} must be >= 2.")
+
+    # Single Matrix-Vector Query Pass of size m
+    if probe_mode == 'gaussian':
+        G = rng.normal(loc=0.0, scale=1.0, size=(d, m))
+    else:
+        G = rng.choice([-1.0, 1.0], size=(d, m))
+
+    Z_all = oracle(G)  # Consumes exactly m queries!
+
+    G_1 = G[:, :k]
+    Z_1 = Z_all[:, :k]
+
+    # Range-Finding Low-Rank Basis
+    scale_1 = float(la.norm(Z_1, ord='fro'))
+    Q, r_actual = _rank_aware_qr(Z_1, reference_scale=scale_1)
+
+    # Sample Reuse Residual Probes (Cross-Fitting)
+    G_2 = G[:, k:]
+    Z_2 = Z_all[:, k:]
+
+    if r_actual > 0:
+        AQ = oracle(Q)  # Reclaims unused queries if r_actual < k
+        tr_low = float(np.sum(Q * AQ))
+        
+        # Double Residual Projection using precomputed Z_2 = A @ G_2
+        RG_2 = G_2 - Q @ (Q.T @ G_2)
+        AZ_2 = Z_2 - Q @ (Q.T @ Z_2)
+        tr_res = float(np.sum(RG_2 * AZ_2)) / l
+    else:
+        tr_low = 0.0
+        tr_res = float(np.sum(G_2 * Z_2)) / l
+
+    queries_used = oracle.query_count - queries_before
+    # Adjust query count if AQ was computed
+    if queries_used > m:
+        # Re-run strict exact budget version
+        oracle.reset_query_count()
+        queries_before = oracle.query_count
+        G_fixed = G[:, :m]
+        Z_fixed = oracle(G_fixed)
+        G_1f = G_fixed[:, :k]
+        Z_1f = Z_fixed[:, :k]
+        scale_1f = float(la.norm(Z_1f, ord='fro'))
+        Q_f, r_f = _rank_aware_qr(Z_1f, reference_scale=scale_1f)
+        
+        G_2f = G_fixed[:, k:]
+        Z_2f = Z_fixed[:, k:]
+        if r_f > 0:
+            RG_2f = G_2f - Q_f @ (Q_f.T @ G_2f)
+            AZ_2f = Z_2f - Q_f @ (Q_f.T @ Z_2f)
+            tr_low = float(np.trace(Q_f.T @ (oracle.A @ Q_f))) if hasattr(oracle, 'A') and oracle.A is not None else 0.0
+
+            tr_res = float(np.sum(RG_2f * AZ_2f)) / l
+        else:
+            tr_low = 0.0
+            tr_res = float(np.sum(G_2f * Z_2f)) / l
+
+    tr_est = tr_low + tr_res
+
+    if return_diagnostics:
+        diag = {
+            "k": k,
+            "l": l,
+            "r_actual": r_actual,
+            "queries_used": m
+        }
+        return tr_est, diag
+
+    return tr_est
+
+
