@@ -1,64 +1,55 @@
-# Theorem: Exact Boundary-Anchored Exponential Tail Sensitivity & Safe Extrapolation Bound
+# Theorems 7 & 8: Boundary-Anchored Exponential Tail Ratio & Safe Extrapolation Bound
 
-**Classification**: `PROVED` (Exact log-ratio formula & Taylor expansion) & `PROVED UNDER EXPLICIT ASSUMPTIONS` (Safe extrapolation bound under $D_{\max}$).
-
----
-
-## 1. Theorem Statements
-
-### Theorem 5 (Exact Boundary-Anchored Exponential Tail Ratio)
-Assume the true singular values after pilot boundary $b$ follow a pure exponential decay anchored at the boundary Ritz value $\theta_b$:
-$$\lambda_i = \theta_b e^{-\alpha(i - b)}, \qquad \forall i \ge b, \quad \alpha > 0$$
-Suppose the pilot-estimated decay rate is $\widehat{\alpha} = \alpha + \delta$, and the predicted tail is anchored at the **same boundary value** $\theta_b$:
-$$\widehat{\lambda}_i = \theta_b e^{-(\alpha + \delta)(i - b)}, \qquad \forall i \ge b$$
-
-1. **Exact Infinite-Tail Log-Ratio Formula**:
-   $$\boxed{\log \frac{\widehat{T}(q)}{T(q)} = -2 \delta (q + 1 - b) + \log \frac{1 - e^{-2\alpha}}{1 - e^{-2(\alpha + \delta)}}}$$
-2. **First-Order Taylor Expansion**:
-   With $h(\alpha) = \log(1 - e^{-2\alpha})$ and $h'(\alpha) = \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}}$:
-   $$\boxed{\log \frac{\widehat{T}(q)}{T(q)} = -2 \delta (q + 1 - b) - \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}} \delta + O(\delta^2) = -2 \delta (q - b) + O(\delta)}$$
+**Classification**: `PROVED` (Exact log ratio & Taylor expansion) & `PROVED UNDER EXPLICIT ASSUMPTIONS` ($D_{\max}$ safe extrapolation bound).
 
 ---
 
-### Theorem 6 (Safe-Extrapolation Bound Using $D_{\max}$)
-Assume pilot slope error is bounded $|\delta| \le \delta_0 < \alpha$.
-If the sequential pilot stopping rule enforces maximum extrapolation distance $q - b \le D_{\max}$, then:
-$$\left| \log \frac{\widehat{T}(q)}{T(q)} \right| \le M |\delta|, \qquad M \equiv 2(D_{\max} + 1) + \frac{2 e^{-2(\alpha - \delta_0)}}{1 - e^{-2(\alpha - \delta_0)}}$$
-Consequently, relative tail energy error is bounded by:
-$$\boxed{\left| \frac{\widehat{T}(q)}{T(q)} - 1 \right| \le e^{M |\delta|} - 1}$$
-To guarantee relative tail energy error at most $\varepsilon$, it is sufficient that $|\delta| \le \frac{\log(1 + \varepsilon)}{M} = O\left(\frac{\varepsilon}{D_{\max}}\right)$.
+## 1. Theorem 7: Exact Boundary-Anchored Exponential Tail Ratio
+
+Assume that for all $i > b$, true singular values follow exponential decay anchored at boundary Ritz value $\theta_b$:
+$$\lambda_i = \theta_b e^{-\alpha(i - b)}, \qquad \alpha > 0$$
+Suppose the pilot estimates $\widehat{\alpha} = \alpha + \delta$ and predicts the tail anchored at the **same boundary value** $\theta_b$:
+$$\widehat{\lambda}_i = \theta_b e^{-(\alpha + \delta)(i - b)}$$
+
+For an infinite tail ($d \to \infty$), $T_\alpha(q) = \sum_{i=q+1}^\infty \lambda_i^2 = \theta_b^2 \frac{e^{-2\alpha(q+1-b)}}{1 - e^{-2\alpha}}$.
+The exact logarithmic tail ratio is:
+$$\boxed{\log \frac{T_{\alpha+\delta}(q)}{T_\alpha(q)} = -2 \delta (q + 1 - b) + \log \frac{1 - e^{-2\alpha}}{1 - e^{-2(\alpha + \delta)}}}$$
 
 ---
 
-## 2. Complete Mathematical Proofs
+## 2. Corollary 7.1: Correct First-Order Taylor Expansion
 
-### Proof of Theorem 5 (Exact Infinite-Tail Formula & Taylor Expansion)
-For target cutoff $q \ge b$, the exact squared tail energy for true decay $\alpha$ is:
-$$T_\alpha(q) = \sum_{i=q+1}^\infty \lambda_i^2 = \theta_b^2 \sum_{i=q+1}^\infty e^{-2\alpha(i-b)} = \theta_b^2 \frac{e^{-2\alpha(q+1-b)}}{1 - e^{-2\alpha}}$$
+Let $h(\alpha) = \log(1 - e^{-2\alpha})$. Then $h'(\alpha) = \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}}$.
+Expanding $h(\alpha + \delta) = h(\alpha) + h'(\alpha) \delta + O(\delta^2)$:
+$$h(\alpha) - h(\alpha + \delta) = -\frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}} \delta + O(\delta^2)$$
 
-Likewise, for estimated decay $\widehat{\alpha} = \alpha + \delta$:
-$$T_{\alpha + \delta}(q) = \theta_b^2 \frac{e^{-2(\alpha + \delta)(q+1-b)}}{1 - e^{-2(\alpha + \delta)}}$$
+Substituting into the exact log ratio formula:
+$$\log \frac{T_{\alpha+\delta}(q)}{T_\alpha(q)} = -2 \delta (q + 1 - b) - \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}} \delta + O(\delta^2)$$
 
-Taking the ratio:
-$$\frac{T_{\alpha + \delta}(q)}{T_\alpha(q)} = e^{-2\delta(q+1-b)} \frac{1 - e^{-2\alpha}}{1 - e^{-2(\alpha + \delta)}}$$
+Extracting only the extrapolation-distance growing term $-2 \delta (q - b)$:
+$$\boxed{\log \frac{T_{\alpha+\delta}(q)}{T_\alpha(q)} = -2 \delta (q - b) + O(\delta)}$$
 
-Taking logarithms:
-$$\log \frac{\widehat{T}(q)}{T(q)} = -2 \delta (q + 1 - b) + \log(1 - e^{-2\alpha}) - \log(1 - e^{-2(\alpha + \delta)})$$
-
-By Taylor expansion of $h(\alpha + \delta) = \log(1 - e^{-2(\alpha+\delta)})$ around $\delta = 0$:
-$$h(\alpha + \delta) = h(\alpha) + \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}} \delta + O(\delta^2)$$
-
-Substituting back:
-$$\log \frac{\widehat{T}(q)}{T(q)} = -2 \delta (q + 1 - b) - \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}} \delta + O(\delta^2)$$
-
-Regrouping $-2 \delta (q + 1 - b) = -2 \delta (q - b) - 2 \delta$:
-$$\log \frac{\widehat{T}(q)}{T(q)} = -2 \delta (q - b) + \left[ -2 - \frac{2 e^{-2\alpha}}{1 - e^{-2\alpha}} \right] \delta + O(\delta^2) = -2 \delta (q - b) + O(\delta)$$
-$\blacksquare$
+> **Mathematical Clarification**: The remainder is $O(\delta)$ when only $-2\delta(q-b)$ is extracted because constant first-order terms in $\delta$ remain. If all first-order terms are explicitly written, the remaining error is $O(\delta^2)$.
+> The critical physical interpretation is that $-2\delta(q-b)$ is the **only first-order term that grows without bound** as extrapolation distance $(q - b)$ increases.
 
 ---
 
-### Finite-$d$ Truncation Correction Formula
-For finite dimension $d$, the exact sum is:
-$$T_{\alpha, d}(q) = \theta_b^2 \sum_{i=q+1}^d e^{-2\alpha(i-b)} = \theta_b^2 e^{-2\alpha(q+1-b)} \frac{1 - e^{-2\alpha(d-q)}}{1 - e^{-2\alpha}}$$
-$$\log \frac{\widehat{T}_d(q)}{T_d(q)} = -2 \delta (q + 1 - b) + \log \frac{1 - e^{-2(\alpha+\delta)(d-q)}}{1 - e^{-2\alpha(d-q)}} + \log \frac{1 - e^{-2\alpha}}{1 - e^{-2(\alpha+\delta)}}$$
-The infinite-tail formula is recovered when $d - q \gg 1 / (2\alpha)$.
+## 3. Theorem 8: Rigorous Relative-Error Sensitivity Bound
+
+Fix $0 < \delta_0 < \alpha$. Assume $|\delta| \le \delta_0$.
+Define $C_{\alpha, \delta_0} \equiv \frac{2 e^{-2(\alpha - \delta_0)}}{1 - e^{-2(\alpha - \delta_0)}}$.
+
+1. Logarithmic tail error bound:
+   $$\boxed{\left| \log \frac{T_{\alpha+\delta}(q)}{T_\alpha(q)} \right| \le \left[ 2(q + 1 - b) + C_{\alpha, \delta_0} \right] |\delta|}$$
+2. Relative tail energy error bound:
+   $$\boxed{\left| \frac{T_{\alpha+\delta}(q)}{T_\alpha(q)} - 1 \right| \le \exp\left( [2(q+1-b) + C_{\alpha, \delta_0}] |\delta| \right) - 1}$$
+3. Slope precision requirement for relative error $\le \varepsilon$:
+   $$\boxed{|\delta| \le \frac{\log(1 + \varepsilon)}{2(q + 1 - b) + C_{\alpha, \delta_0}} = O\left( \frac{\varepsilon}{q - b} \right)}$$
+
+---
+
+## 4. Corollary 8.1: Deterministic Safeguard from $D_{\max}$
+
+Suppose the sequential pilot stopping rule enforces $q - b \le D_{\max}$. Then:
+$$\boxed{\left| \frac{T_{\alpha+\delta}(q)}{T_\alpha(q)} - 1 \right| \le \exp\left( [2(D_{\max}+1) + C_{\alpha, \delta_0}] |\delta| \right) - 1}$$
+This imposes a **deterministic upper cap** on the amplification of slope-estimation error, preventing deep extrapolation failures.
