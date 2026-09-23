@@ -1,0 +1,30 @@
+
+--- Testing Spectrum: Step (r*=5, eta=1e-3) (tr(A) = 5.0950) ---
+
+--- Testing Spectrum: Step (r*=15, eta=1e-2) (tr(A) = 15.8500) ---
+
+--- Testing Spectrum: PowerLaw (c=0.5 - Flat) (tr(A) = 18.5896) ---
+
+--- Testing Spectrum: PowerLaw (c=1.0 - Moderate) (tr(A) = 5.1874) ---
+
+--- Testing Spectrum: PowerLaw (c=2.0 - Steep) (tr(A) = 1.6350) ---
+
+--- Testing Spectrum: Exponential (alpha=0.08) (tr(A) = 13.0023) ---
+{
+  "stage": "haar",
+  "started": "2026-09-14T18:00:15.350151+00:00",
+  "completed": "2026-09-14T18:00:18.512915+00:00",
+  "python": "3.12.6",
+  "numpy": "2.3.4",
+  "pandas": "2.3.3",
+  "torch": "2.11.0",
+  "torch_threads": 4,
+  "rows": 1860,
+  "summary_rows": 12,
+  "seed": 2026,
+  "recovery_type": "deterministic protocol rerun; original CSV hashes unavailable",
+  "files": {
+    "haar_orientation_audit_summary.csv": "d9dd6cd6ce646a95d253ae11e4beac364d0947248429b39052a264175dd09e6f",
+    "haar_orientation_audit_trials.csv": "d29a7529956af718b46753472993707a93859860a53129c0d9513f99b846d0ca"
+  }
+}

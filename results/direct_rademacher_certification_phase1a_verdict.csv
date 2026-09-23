@@ -1,0 +1,2 @@
+verdict,primary_budget,primary_eta,primary_s,primary_epsilon,primary_pair,verdict_estimators
+QUALIFIED GO,160,1e-06,16,0.3333333333333333,primary,"[""sample_variance"", ""mom_w1"", ""mom_w2""]"

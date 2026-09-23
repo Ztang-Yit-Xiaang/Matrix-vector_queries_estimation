@@ -1,0 +1,7 @@
+s,estimator,evaluable,passed,passing_batches,primary_false_safe,false_rejection,catastrophic_detection,better_acceptance,control_false_safe,batch_stability
+16,sample_variance,True,True,4,True,True,True,True,True,True
+16,mom_w1,True,False,0,False,False,False,True,False,False
+16,mom_w2,True,False,0,False,True,True,True,False,False
+32,sample_variance,True,True,4,True,True,True,True,True,True
+32,mom_w1,True,False,0,False,True,False,True,False,False
+32,mom_w2,True,False,0,False,True,True,True,False,False

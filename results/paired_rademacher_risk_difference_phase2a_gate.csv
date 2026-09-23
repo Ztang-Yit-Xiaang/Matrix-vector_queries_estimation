@@ -1,0 +1,7 @@
+criterion,passed
+positive_equal_rank_covariance,True
+pairing_ratio_ci_upper_below_one,True
+pairing_ratio_at_most_0p80,True
+better_and_worse_paths_each_rank,True
+top5_better_nonempty_each_rank,True
+frozen_checksums_valid,True

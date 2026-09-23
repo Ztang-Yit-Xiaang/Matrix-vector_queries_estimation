@@ -1,0 +1,50 @@
+\section{Discussion and conclusion}\label{sec:discussion}
+The analysis identifies several distinctions that an adaptive
+trace-estimation policy must respect. Attempted sketch width is not accepted
+rank. Accepted rank is not dominant-subspace capture. An ideal spectral tail
+does not in general equal realized probe-specific residual energy. A useful
+empirical comparison is not a finite-sample certificate, and safe acceptance
+is not the same as a safe complete policy after information costs have been
+paid.
+
+The capture results explain two different failures. An invertible square
+signal sketch can be poorly conditioned, amplifying a small nonzero tail.
+A discrete signal sketch can also miss a direction exactly, even with
+positive oversampling and a full-rank accepted basis. The first mechanism
+helps explain tail-sensitive empirical mean curves; the second supplies an
+exact local pilot-transcript limitation. Neither implies a universal
+frequency of failure or a fixed oversampling amount that is always optimal.
+
+The certification results also require two levels of interpretation.
+Ordinary sample variance was useful under the preregistered empirical
+decision gate. Charging for certification revealed a tradeoff between
+aggregate mean-risk protection and harm on many ordinary paths. The explicit
+confidence routes considered here were too conservative at the tested
+sample sizes. This gap between empirical signal and available guarantees
+is a research question, not a license to interpret an empirical guard as
+a theorem.
+
+\paragraph{Limitations.}
+The conditional-risk bridges use finite frozen orientations and path
+populations. Their bootstrap intervals do not quantify unseen rare-event
+probabilities or orientation-universal performance. The Hessian and
+pilot-gate experiments are exploratory. The structural-prior certificate
+assumes valid prior information and does not establish that this information
+can be obtained within the same budget. Our route-specific negative results
+do not exclude other confidence constructions.
+
+\paragraph{Open problem.}
+A focused continuation is to derive an observable, budget-feasible
+one-sided upper confidence bound for the common-probe difference
+\[
+\Delta_R=\frac{\sigma_a^2}{\ell_a}-\frac{\sigma_0^2}{\ell_0}.
+\]
+Such a result should exploit paired information when justified, charge all
+committed construction and certification queries, preserve the freshness of
+final residual probes, and specify a feasible fallback. A fresh-query
+capture test or a genuine small-ball analysis is an alternative direction.
+No new allocator is proposed or implemented in this manuscript.
+
+In summary, the project changes the emphasis from predicting a favorable
+split from visible spectral features to justifying a decision using the
+residual risk that the realized estimator actually incurs.

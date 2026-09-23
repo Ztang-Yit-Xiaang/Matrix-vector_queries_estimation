@@ -1,0 +1,25 @@
+sample_size,joint_delta,method,selected_proved_method,proof_status,epsilon,nonvacuous,action_count,per_action_delta,linear_component_delta,degenerate_component_delta,fourth_moment_factor,unresolved_step
+4,0.01,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,63.50852961085884,False,2,0.005,,,81.0,
+4,0.01,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.005,0.0025,0.0025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+8,0.01,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,44.80114794447635,False,2,0.005,,,81.0,
+8,0.01,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.005,0.0025,0.0025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+16,0.01,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,31.649117944528356,False,2,0.005,,,81.0,
+16,0.01,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.005,0.0025,0.0025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+32,0.01,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,22.369694361042388,False,2,0.005,,,81.0,
+32,0.01,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.005,0.0025,0.0025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+4,0.05,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,28.401877872187722,False,2,0.025,,,81.0,
+4,0.05,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.025,0.0125,0.0125,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+8,0.05,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,20.03568245477482,False,2,0.025,,,81.0,
+8,0.05,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.025,0.0125,0.0125,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+16,0.05,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,14.153915830374764,False,2,0.025,,,81.0,
+16,0.05,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.025,0.0125,0.0125,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+32,0.05,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,10.004031445436901,False,2,0.025,,,81.0,
+32,0.05,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.025,0.0125,0.0125,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+4,0.1,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,20.08316044185609,False,2,0.05,,,81.0,
+4,0.1,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.05,0.025,0.025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+8,0.1,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,14.167366929471607,False,2,0.05,,,81.0,
+8,0.1,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.05,0.025,0.025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+16,0.1,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,10.008329864001619,False,2,0.05,,,81.0,
+16,0.1,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.05,0.025,0.025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.
+32,0.1,chebyshev_81,True,PROVED BUT BUDGET-VACUOUS,7.073918474271891,False,2,0.05,,,81.0,
+32,0.1,hoeffding_sharper_attempt,False,INCOMPLETE,,False,2,0.05,0.025,0.025,81.0,A numerical simultaneous radius requires explicit bounds for both the nondegenerate linear projection and the canonical remainder.

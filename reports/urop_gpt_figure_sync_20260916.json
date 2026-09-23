@@ -1,0 +1,86 @@
+[
+  {
+    "file": "UROP_TRACKER.md",
+    "source_sha256": "5a877e732f8fb9a52c85fd9e7bd0b4a35fe79dd92e970f6b37609f8b7c5ff0b5",
+    "vault_sha256": "5a877e732f8fb9a52c85fd9e7bd0b4a35fe79dd92e970f6b37609f8b7c5ff0b5",
+    "previous_sha256": "94ad52839c2bf7bf84c6a989b9a16088091dd912969e2c174d75931332ffcfe7",
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "memory.md",
+    "source_sha256": "12930e69fc7262cab17ae7763b48aaa58dcd1af8bca7492e5cfb835a6cad9da3",
+    "vault_sha256": "12930e69fc7262cab17ae7763b48aaa58dcd1af8bca7492e5cfb835a6cad9da3",
+    "previous_sha256": "e91e89aad318ae4d60ec58fb51208e269d18f109ca143047b71663ab90ac972a",
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "UROP_Research_Memory.md",
+    "source_sha256": "12930e69fc7262cab17ae7763b48aaa58dcd1af8bca7492e5cfb835a6cad9da3",
+    "vault_sha256": "12930e69fc7262cab17ae7763b48aaa58dcd1af8bca7492e5cfb835a6cad9da3",
+    "previous_sha256": "e91e89aad318ae4d60ec58fb51208e269d18f109ca143047b71663ab90ac972a",
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "CURRENT_STATE.md",
+    "source_sha256": "dd476b085c43691a095f9c9d5a154a0ad6d2da1653fb8c2d0352874a15b6a6a1",
+    "vault_sha256": "dd476b085c43691a095f9c9d5a154a0ad6d2da1653fb8c2d0352874a15b6a6a1",
+    "previous_sha256": "4b861f594b32934c83b0e8e11ad12e51161920bea8eac0d5cd86aec2f8f37a61",
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "urop_figure_guide_20260916.md",
+    "source_sha256": "83b9f4caa6b47cd44c3645c414743a7d8f3483a7b9655907fcaf4a04f73ba568",
+    "vault_sha256": "79787a31852e6640d9be60a63470dfaa8a82eee384d15ce5f12021fd3fab0639",
+    "previous_sha256": "c76a2a7e56dc671aa605a923ade3ffd684b305f3da8d9d28284276148ce8740e",
+    "relative_links_adjusted": true
+  },
+  {
+    "file": "urop_research_report_20260916.md",
+    "source_sha256": "266e3394c35e738c797f87e8872375555fa0cff50b3852f2e97593f9003673f1",
+    "vault_sha256": "597c78307ffef1b67175d4c6a800fd8eb13971c89467bc1a39fc64fdcf9ee7b5",
+    "previous_sha256": "70c023506446938993f9e124e67429f004b64a1f0d293374c0da6e5ba8ac613f",
+    "relative_links_adjusted": true
+  },
+  {
+    "file": "urop_gpt_polished_figures_20260916.md",
+    "source_sha256": "0087fa061e837052fd908fa8faad1803c0a3864d04e0c58c336ab69db78790a4",
+    "vault_sha256": "44f4da31405d065adafb94946973a26bdd5d54dd254054b91c2ebc69eb8c5ac2",
+    "previous_sha256": null,
+    "relative_links_adjusted": true
+  },
+  {
+    "file": "figures/urop_gpt_polished_20260916/figure3_certification_cost_gpt.png",
+    "source_sha256": "da9582ca2ba7128b234a1f63b383e5f09f65bb77e7598a2a7a5327ebe196a03f",
+    "vault_sha256": "da9582ca2ba7128b234a1f63b383e5f09f65bb77e7598a2a7a5327ebe196a03f",
+    "previous_sha256": null,
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "figures/urop_gpt_polished_20260916/figure1_capture_failure_gpt.png",
+    "source_sha256": "51823ef172299fcb30a4fe28299001fc255e8d14472d22f5c40aeecf2fd8f99a",
+    "vault_sha256": "51823ef172299fcb30a4fe28299001fc255e8d14472d22f5c40aeecf2fd8f99a",
+    "previous_sha256": null,
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "figures/urop_gpt_polished_20260916/manifest.json",
+    "source_sha256": "2d530d552940c81bcc4186003012e0b208c9b8180317a39afec9dd0edb49440c",
+    "vault_sha256": "2d530d552940c81bcc4186003012e0b208c9b8180317a39afec9dd0edb49440c",
+    "previous_sha256": null,
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "figures/urop_gpt_polished_20260916/figure2_empirical_signal_gpt.png",
+    "source_sha256": "c8b5b6e97d41364251a40f2481a30742d2bcf6e23e8a44739219e2e8bdb41a12",
+    "vault_sha256": "c8b5b6e97d41364251a40f2481a30742d2bcf6e23e8a44739219e2e8bdb41a12",
+    "previous_sha256": null,
+    "relative_links_adjusted": false
+  },
+  {
+    "file": "figures/urop_gpt_polished_20260916/prompts.md",
+    "source_sha256": "0b57dfaa5405d363f13b24c8efb7e92ddc35bb60951874386913b9461315f7c6",
+    "vault_sha256": "0b57dfaa5405d363f13b24c8efb7e92ddc35bb60951874386913b9461315f7c6",
+    "previous_sha256": null,
+    "relative_links_adjusted": false
+  }
+]

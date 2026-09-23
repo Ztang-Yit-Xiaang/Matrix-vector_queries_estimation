@@ -1,0 +1,235 @@
+% Editorially assembled from the preserved September 17 report.
+\section{Realized-risk estimation and conditional safety}\label{sec:certification}
+Condition on $\mathcal F$, fixing candidate $a$ and baseline $0$. For fresh Rademacher certification probes, put
+
+
+\begin{equation}
+X_{x,j}=g_j^\top H_xg_j,\qquad
+\sigma_x^2=\operatorname{Var}(X_{x,j}\mid\mathcal F)=2E_R(Q_x),\quad x\in\{a,0\}.
+\end{equation}
+
+
+The target is $\mathcal R_x=\sigma_x^2/\ell_x$. Estimating a fitted decay exponent is no longer necessary: one can estimate the variance of the actual residual quadratic form.
+
+
+With cached $AQ_x$, one product $Ag$ serves every action:
+
+
+\begin{equation}
+h_x=g-Q_x(Q_x^\top g),\qquad
+Ah_x=Ag-AQ_x(Q_x^\top g),\qquad X_x=h_x^\top Ah_x.
+\end{equation}
+
+
+The cache must exist before certification and be charged to construction. A batch of 32 products $Ag_j$ costs 32 certification queries, not 32 times the action count. These observations remain external evidence in Phase 1A; they are not reused as final estimator probes.
+
+
+\begin{algorithm}
+\caption{Common-probe risk diagnostic for preconstructed actions}\label{alg:diagnostic}
+\textbf{Input:} cached $Q_x,AQ_x$ for every action $x$, fixed positive $\ell_x$, and even $s\ge2$.\\
+\textbf{Output:} sample-variance risk estimates; not a confidence certificate.
+\begin{enumerate}
+\item Draw $s$ fresh coordinate-Rademacher probes $g_j$, independent of the fixed actions.
+\item Query $Ag_j$ once per probe; share each result across all actions.
+\item For each $x,j$, compute $h_{x,j}=g_j-Q_xQ_x^\top g_j$ and
+$X_{x,j}=h_{x,j}^\top[Ag_j-AQ_x(Q_x^\top g_j)]$.
+\item Return $\widehat\sigma_{x,s}^{\,2}/\ell_x$, where
+$\widehat\sigma_{x,s}^{\,2}=(s-1)^{-1}\sum_j(X_{x,j}-\bar X_x)^2$.
+\end{enumerate}
+\textbf{Cost:} exactly $s$ new oracle queries; cached products were paid during construction.
+Certification probes are not reused as final residual probes.
+\end{algorithm}
+\begin{lemma}[Exact sample-variance moments and Hoeffding decomposition]\label{thm:T7}
+Conditional on the frozen action, $X_1,\ldots,X_s$ are iid, $s\ge2$, with mean $\mu$, variance $\sigma^2$, and finite fourth central moment $\mu_4$. Define
+
+
+\begin{equation}
+\widehat\sigma_s^{\,2}=\frac1{s-1}\sum_{i=1}^s(X_i-\bar X)^2.
+\end{equation}
+
+
+Its expectation and variance are
+
+
+\begin{equation}
+\mathbb E\widehat\sigma_s^{\,2}=\sigma^2,\qquad
+\operatorname{Var}(\widehat\sigma_s^{\,2})
+=\frac1s\left[\mu_4-\frac{s-3}{s-1}\sigma^4\right].
+\end{equation}
+
+
+Here and below moments are conditional when the action is random. Its U-statistic representation and decomposition are
+
+
+\begin{equation}
+\widehat\sigma_s^{\,2}=\binom{s}{2}^{-1}\sum_{i<j}\frac{(X_i-X_j)^2}{2}
+=\frac1{s(s-1)}\sum_{i<j}(X_i-X_j)^2,
+\end{equation}
+
+
+\begin{equation}
+h_1(x)=\frac{(x-\mu)^2-\sigma^2}{2},\qquad
+h_2(x,y)=-(x-\mu)(y-\mu),
+\end{equation}
+
+
+\begin{equation}
+\widehat\sigma_s^{\,2}-\sigma^2
+=\frac2s\sum_i h_1(X_i)+\binom{s}{2}^{-1}\sum_{i<j}h_2(X_i,X_j).
+\end{equation}
+
+
+\end{lemma}
+\begin{proof}
+Set $Z_i=X_i-\mu$, $M=\sum_iZ_i^2$, and $L=\sum_iZ_i$. Then $\widehat\sigma_s^{\,2}=(M-L^2/s)/(s-1)$. Independence and centering give
+
+
+\begin{equation}
+\mathbb EM=s\sigma^2,\quad\mathbb EL^2=s\sigma^2,
+\end{equation}
+
+
+\begin{equation}
+\mathbb EM^2=s\mu_4+s(s-1)\sigma^4,
+\end{equation}
+
+
+\begin{equation}
+\mathbb EL^4=s\mu_4+3s(s-1)\sigma^4,\qquad
+\mathbb E(ML^2)=\mathbb EM^2.
+\end{equation}
+
+
+For the last identity, every cross term from $L^2-M$ contains at least one independent centered factor to its first power. Substitution proves unbiasedness and
+
+
+\begin{equation}
+\mathbb E(\widehat\sigma_s^{\,2})^2
+=\frac{\mu_4}s+\frac{s^2-2s+3}{s(s-1)}\sigma^4.
+\end{equation}
+
+
+Subtract $\sigma^4$ to obtain the variance formula.
+
+
+\textbf{Hoeffding decomposition.} The deterministic identity $\sum_{i<j}(X_i-X_j)^2=s\sum_i(X_i-\bar X)^2$ gives the U-statistic formula. For $h(x,y)=(x-y)^2/2$, computing $\mathbb E[h(x,X')]-\sigma^2$ gives $h_1$. Subtracting $\sigma^2+h_1(x)+h_1(y)$ from $h(x,y)$ gives $h_2$. Summing over pairs yields the displayed coefficients. Finally $\mathbb E[h_2(X,X')\mid X]=0$ by centering, so only the second component is canonical/degenerate in general.
+
+\end{proof}
+
+
+\textbf{Interpretation.} The linear projection is generally nonzero, although special distributions can make it vanish. A theorem for completely degenerate U-statistics cannot bound the full sample variance without also controlling this projection. If $\sigma^2=0$, then $X$ is constant almost surely and the sample variance is exactly zero; no division by $\sigma^2$ is needed.
+
+\begin{proposition}[Direct common-probe risk differences]\label{thm:T8}
+Candidate and baseline are frozen before the common iid certification probes, and their denominators are fixed and positive.
+
+
+The statistic
+
+
+\begin{equation}
+\widehat\Delta=\frac{\widehat\sigma_{a,s}^{\,2}}{\ell_a}
+-\frac{\widehat\sigma_{0,s}^{\,2}}{\ell_0}
+\end{equation}
+
+
+is unbiased for $\Delta=\sigma_a^2/\ell_a-\sigma_0^2/\ell_0$, and is itself a paired order-two U-statistic. For $Y_x=\widehat\sigma_{x,s}^{\,2}/\ell_x$,
+
+
+\begin{equation}
+\operatorname{Var}(Y_a-Y_0)=\operatorname{Var}(Y_a)+\operatorname{Var}(Y_0)-2\operatorname{Cov}(Y_a,Y_0).
+\end{equation}
+
+
+\end{proposition}
+\begin{proof}
+Apply Lemma~\ref{thm:T7} separately to each action and use linearity of expectation; independence between actions is unnecessary. Subtract their U-statistic kernels to obtain the paired representation. Expansion of the centered square gives the variance identity.
+
+\end{proof}
+
+
+\textbf{Interpretation.} Pairing reduces variance relative to independent observations with the same marginals exactly when the covariance is positive. It is not guaranteed merely by sharing probes. The mathematical independent benchmark is the sum of the two marginal variances; empirical estimates of that sum remain estimates. A cyclic shift of the same repetitions is a shifted/decorrelated comparator, not an independent sample.
+
+\begin{proposition}[Simultaneous bounds imply safe acceptance]\label{thm:T9}
+On an event $E$ of probability at least $1-\delta_{\rm joint}$, every action in a fixed finite pre-certification candidate set satisfies $L_x\le\mathcal R_x\le U_x$. The baseline belongs to the set. Selection is measurable.
+
+
+Any accepted action satisfying $U_a\le L_0$ has $\mathcal R_a\le\mathcal R_0$ on $E$. If no candidate passes and the baseline is still feasible with the same risk used in the bounds, choosing it preserves this comparison.
+
+
+\end{proposition}
+\begin{proof}
+On the single simultaneous event, the selected action obeys
+
+
+\begin{equation}
+\mathcal R_a\le U_a\le L_0\le\mathcal R_0.
+\end{equation}
+
+
+If the action is the unchanged feasible baseline, the inequality holds with equality.
+
+\end{proof}
+
+
+\textbf{Why simultaneity matters.} The action is chosen using the estimates. Separate pointwise coverage statements without a joint event do not justify substituting a selected index. A union bound over candidates or preregistered stages supplies a valid joint event if the allocated failure probabilities sum to $\delta_{\rm joint}$. That also handles a random selected stage; it does not require an optional-stopping assertion.
+
+
+\textbf{Directed variance form.} Suppose the available event states
+
+
+\begin{equation}
+\sigma_a^2\le\frac{\widehat\sigma_a^{\,2}}{1-\varepsilon_{a,-}},\qquad
+\sigma_0^2\ge\frac{\widehat\sigma_0^{\,2}}{1+\varepsilon_{0,+}},
+\end{equation}
+
+
+where $0\le\varepsilon_{a,-}<1$ and $0\le\varepsilon_{0,+}<\infty$. An accepted candidate is safe relative to the original baseline if
+
+
+\begin{equation}
+\boxed{\widehat\sigma_a^{\,2}\le
+\frac{1-\varepsilon_{a,-}}{1+\varepsilon_{0,+}}
+\frac{\ell_{\rm paid}}{\ell_0}\widehat\sigma_0^{\,2}.}
+\end{equation}
+
+
+This follows by dividing the two valid bounds by their positive denominators and chaining inequalities. Only the candidate-underestimation radius must be below one algebraically. A very large baseline-overestimation radius is weak but not undefined.
+
+
+The confidence statement bounds $\Pr(\text{accept and harmful})$ by $\delta_{\rm joint}$. It does \textbf{not} automatically bound $\Pr(\text{harmful}\mid\text{accept})$ by the same number. Conditioning on a possibly rare acceptance event changes the probability statement. Nor does accepted-action safety prove whole-policy safety when abstention has a cost.
+
+\begin{proposition}[Paid fallback is not the original baseline]\label{thm:T10}
+Original baseline construction costs $c_0$, whereas candidate-first construction costs $c_{\rm pre}$ and certification costs $s$. Both residual budgets are positive:
+
+
+\begin{equation}
+\ell_0=m-c_0,\qquad \ell_{\rm paid}=m-c_{\rm pre}-s.
+\end{equation}
+
+
+Returning to exactly the baseline basis after paying extra costs changes its risk from $\sigma_0^2/\ell_0$ to $\sigma_0^2/\ell_{\rm paid}$. For $\sigma_0^2>0$, the ratio is
+
+
+\begin{equation}
+\boxed{\frac{\mathcal R_{\rm fallback}}{\mathcal R_{\rm original}}
+=\frac{\ell_0}{\ell_{\rm paid}}.}
+\end{equation}
+
+
+A candidate with positive baseline variance improves net risk exactly when
+
+
+\begin{equation}
+\frac{\sigma_a^2}{\sigma_0^2}<\frac{\ell_{\rm paid}}{\ell_0}.
+\end{equation}
+
+
+\end{proposition}
+\begin{proof}
+Theorem~\ref{thm:T3} applies after all sunk decisions and costs are fixed. The returned basis has the same numerator, but fewer final probes whenever $c_{\rm pre}+s>c_0$. Taking the ratio proves the first identity; cross-multiplying positive denominators proves the second.
+
+\end{proof}
+
+
+If the baseline risk is zero, ratios are undefined and no nonnegative-risk candidate strictly improves it. The equality case must be handled directly. Even an oracle that selects the smaller available numerator cannot refund construction or certification. This is why Phase 1A's useful signal and Phase 1B's useful policy are different questions. Source: budget-aware proof~\cite{project2026}.
+

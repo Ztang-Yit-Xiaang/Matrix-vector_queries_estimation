@@ -1,0 +1,141 @@
+setup_index,spectrum_family,setup_name,method,delta_q_category,observations,mse,median_relative_error,mean_delta_q_raw,mean_delta_q_safe,guard_activation_rate
+0,power,power_c_0.3,Sequential Forced Baseline (q=q0),negative,200,0.12897764826854127,0.0023175334531620115,-11.35,0.0,1.0
+0,power,power_c_0.3,Sequential Unguarded (B<=q0),negative,200,0.1149386961843831,0.0020753423347306035,-11.35,-11.35,0.0
+0,power,power_c_0.3,"Sequential Symmetric Guard [-4,+4]",negative,200,0.11967495421328621,0.002033738122356246,-11.35,-1.93,0.31
+0,power,power_c_0.3,"Sequential Asymmetric Guard [0,+4]",negative,200,0.12897764826854127,0.0023175334531620115,-11.35,0.0,1.0
+1,power,power_c_0.7,Sequential Forced Baseline (q=q0),negative,200,0.005395499752209289,0.0028976324086454224,-10.14,0.0,1.0
+1,power,power_c_0.7,Sequential Unguarded (B<=q0),negative,200,0.005413771544956624,0.0026063309318604417,-10.14,-10.14,0.0
+1,power,power_c_0.7,"Sequential Symmetric Guard [-4,+4]",negative,200,0.005759704655281131,0.0024054625357815993,-10.14,-4.0,1.0
+1,power,power_c_0.7,"Sequential Asymmetric Guard [0,+4]",negative,200,0.005395499752209289,0.0028976324086454224,-10.14,0.0,1.0
+2,power,power_c_1.2,Sequential Forced Baseline (q=q0),zero,112,0.00010896980871400102,0.001834081009032977,0.0,0.0,0.0
+2,power,power_c_1.2,Sequential Forced Baseline (q=q0),negative,21,9.984526741452937e-05,0.0017057127623948077,-1.0476190476190477,0.0,1.0
+2,power,power_c_1.2,Sequential Forced Baseline (q=q0),positive,67,0.00015800288453671684,0.0020329103908541635,1.044776119402985,0.0,1.0
+2,power,power_c_1.2,Sequential Unguarded (B<=q0),zero,112,0.00010896980871400102,0.001834081009032977,0.0,0.0,0.0
+2,power,power_c_1.2,Sequential Unguarded (B<=q0),negative,21,0.00022207903969645316,0.0017230478109519869,-1.0476190476190477,-1.0476190476190477,0.0
+2,power,power_c_1.2,Sequential Unguarded (B<=q0),positive,67,0.00010307261777286943,0.0018143523186086564,1.044776119402985,1.044776119402985,0.0
+2,power,power_c_1.2,"Sequential Symmetric Guard [-4,+4]",zero,112,0.00010896980871400102,0.001834081009032977,0.0,0.0,0.0
+2,power,power_c_1.2,"Sequential Symmetric Guard [-4,+4]",negative,21,0.00022207903969645316,0.0017230478109519869,-1.0476190476190477,-1.0476190476190477,0.0
+2,power,power_c_1.2,"Sequential Symmetric Guard [-4,+4]",positive,67,0.00010307261777286943,0.0018143523186086564,1.044776119402985,1.044776119402985,0.0
+2,power,power_c_1.2,"Sequential Asymmetric Guard [0,+4]",zero,112,0.00010896980871400102,0.001834081009032977,0.0,0.0,0.0
+2,power,power_c_1.2,"Sequential Asymmetric Guard [0,+4]",negative,21,9.984526741452937e-05,0.0017057127623948077,-1.0476190476190477,0.0,1.0
+2,power,power_c_1.2,"Sequential Asymmetric Guard [0,+4]",positive,67,0.00010307261777286943,0.0018143523186086564,1.044776119402985,1.044776119402985,0.0
+3,power,power_c_1.7,Sequential Forced Baseline (q=q0),positive,200,1.8171328269845572e-06,0.0004172632922125989,6.12,0.0,1.0
+3,power,power_c_1.7,Sequential Unguarded (B<=q0),positive,200,1.9158509707081796e-06,0.00043327333648980506,6.12,6.12,0.0
+3,power,power_c_1.7,"Sequential Symmetric Guard [-4,+4]",positive,200,1.8616350753311486e-06,0.0005050881342840065,6.12,4.0,1.0
+3,power,power_c_1.7,"Sequential Asymmetric Guard [0,+4]",positive,200,1.8616350753311486e-06,0.0005050881342840065,6.12,4.0,1.0
+4,power,power_c_2.5,Sequential Forced Baseline (q=q0),positive,200,2.416787037231322e-09,2.2113554200597614e-05,12.0,0.0,1.0
+4,power,power_c_2.5,Sequential Unguarded (B<=q0),positive,200,2.03418858421625e-09,2.2290732664761893e-05,12.0,12.0,0.0
+4,power,power_c_2.5,"Sequential Symmetric Guard [-4,+4]",positive,200,2.19595679156493e-09,2.537920344747083e-05,12.0,4.0,1.0
+4,power,power_c_2.5,"Sequential Asymmetric Guard [0,+4]",positive,200,2.19595679156493e-09,2.537920344747083e-05,12.0,4.0,1.0
+5,exponential,exponential_alpha_0.02,Sequential Forced Baseline (q=q0),negative,200,0.19542741413560513,0.006478556672470997,-1.0,0.0,1.0
+5,exponential,exponential_alpha_0.02,Sequential Unguarded (B<=q0),negative,200,0.17203979838002545,0.005237281431306922,-1.0,-1.0,0.0
+5,exponential,exponential_alpha_0.02,"Sequential Symmetric Guard [-4,+4]",negative,200,0.17203979838002545,0.005237281431306922,-1.0,-1.0,0.0
+5,exponential,exponential_alpha_0.02,"Sequential Asymmetric Guard [0,+4]",negative,200,0.19542741413560513,0.006478556672470997,-1.0,0.0,1.0
+6,exponential,exponential_alpha_0.08,Sequential Forced Baseline (q=q0),positive,196,0.0001667029985982657,0.0006682472153016651,8.0,0.0,1.0
+6,exponential,exponential_alpha_0.08,Sequential Forced Baseline (q=q0),negative,4,0.00015924502518793848,0.0008837630930611194,-32.5,0.0,1.0
+6,exponential,exponential_alpha_0.08,Sequential Unguarded (B<=q0),positive,196,5.748522071608111e-05,0.00037627209182648303,8.0,8.0,0.0
+6,exponential,exponential_alpha_0.08,Sequential Unguarded (B<=q0),negative,4,0.007464507503033067,0.0075152913054620735,-32.5,-32.5,0.0
+6,exponential,exponential_alpha_0.08,"Sequential Symmetric Guard [-4,+4]",positive,196,9.201371800926077e-05,0.0004904149384504803,8.0,4.0,1.0
+6,exponential,exponential_alpha_0.08,"Sequential Symmetric Guard [-4,+4]",negative,4,0.0001988459105128397,0.0007805334847648982,-32.5,-4.0,1.0
+6,exponential,exponential_alpha_0.08,"Sequential Asymmetric Guard [0,+4]",positive,196,9.201371800926077e-05,0.0004904149384504803,8.0,4.0,1.0
+6,exponential,exponential_alpha_0.08,"Sequential Asymmetric Guard [0,+4]",negative,4,0.00015924502518793848,0.0008837630930611194,-32.5,0.0,1.0
+7,exponential,exponential_alpha_0.10,Sequential Forced Baseline (q=q0),positive,194,1.4799721606093181e-05,0.00024294563508649142,11.0,0.0,1.0
+7,exponential,exponential_alpha_0.10,Sequential Forced Baseline (q=q0),negative,6,2.9035268200077482e-05,0.0003554204294413699,-26.5,0.0,1.0
+7,exponential,exponential_alpha_0.10,Sequential Unguarded (B<=q0),positive,194,3.2042198378818486e-06,0.00012131562880360547,11.0,11.0,0.0
+7,exponential,exponential_alpha_0.10,Sequential Unguarded (B<=q0),negative,6,0.001316810665322162,0.0018831671836215935,-26.5,-26.5,0.0
+7,exponential,exponential_alpha_0.10,"Sequential Symmetric Guard [-4,+4]",positive,194,7.094683038265067e-06,0.00020078020185551924,11.0,4.0,1.0
+7,exponential,exponential_alpha_0.10,"Sequential Symmetric Guard [-4,+4]",negative,6,2.0354348279262166e-05,0.00024698402359163733,-26.5,-4.0,1.0
+7,exponential,exponential_alpha_0.10,"Sequential Asymmetric Guard [0,+4]",positive,194,7.094683038265067e-06,0.00020078020185551924,11.0,4.0,1.0
+7,exponential,exponential_alpha_0.10,"Sequential Asymmetric Guard [0,+4]",negative,6,2.9035268200077482e-05,0.0003554204294413699,-26.5,0.0,1.0
+8,exponential,exponential_alpha_0.15,Sequential Forced Baseline (q=q0),positive,191,4.541810865446703e-08,2.280771828023879e-05,13.780104712041885,0.0,1.0
+8,exponential,exponential_alpha_0.15,Sequential Forced Baseline (q=q0),negative,9,2.329187884191145e-08,1.705663094410575e-05,-14.333333333333334,0.0,1.0
+8,exponential,exponential_alpha_0.15,Sequential Unguarded (B<=q0),positive,191,2.1762343834967014e-09,4.24854883643351e-06,13.780104712041885,13.780104712041885,0.0
+8,exponential,exponential_alpha_0.15,Sequential Unguarded (B<=q0),negative,9,3.848379503660886e-06,9.071160766819612e-05,-14.333333333333334,-14.333333333333334,0.0
+8,exponential,exponential_alpha_0.15,"Sequential Symmetric Guard [-4,+4]",positive,191,1.913135645605582e-08,1.5439276516670773e-05,13.780104712041885,3.9842931937172774,0.9842931937172775
+8,exponential,exponential_alpha_0.15,"Sequential Symmetric Guard [-4,+4]",negative,9,2.3874115381028276e-07,4.1756001008609935e-05,-14.333333333333334,-3.5555555555555554,0.7777777777777778
+8,exponential,exponential_alpha_0.15,"Sequential Asymmetric Guard [0,+4]",positive,191,1.913135645605582e-08,1.5439276516670773e-05,13.780104712041885,3.9842931937172774,0.9842931937172775
+8,exponential,exponential_alpha_0.15,"Sequential Asymmetric Guard [0,+4]",negative,9,2.329187884191145e-08,1.705663094410575e-05,-14.333333333333334,0.0,1.0
+9,step,step_r_5_eta_0.001,Sequential Forced Baseline (q=q0),positive,200,1.5553184863644648e-06,0.0001590365566956048,13.0,0.0,1.0
+9,step,step_r_5_eta_0.001,Sequential Unguarded (B<=q0),positive,200,4.143821893298901e-06,0.0002435024167364862,13.0,13.0,0.0
+9,step,step_r_5_eta_0.001,"Sequential Symmetric Guard [-4,+4]",positive,200,2.8509039514969014e-06,0.00021121775751596893,13.0,4.0,1.0
+9,step,step_r_5_eta_0.001,"Sequential Asymmetric Guard [0,+4]",positive,200,2.8509039514969014e-06,0.00021121775751596893,13.0,4.0,1.0
+10,step,step_r_5_eta_0.05,Sequential Forced Baseline (q=q0),negative,200,0.005317766905614358,0.001512498861012378,-2.0,0.0,1.0
+10,step,step_r_5_eta_0.05,Sequential Unguarded (B<=q0),negative,200,0.004364951028937175,0.0016478702324441898,-2.0,-2.0,0.0
+10,step,step_r_5_eta_0.05,"Sequential Symmetric Guard [-4,+4]",negative,200,0.004364951028937175,0.0016478702324441898,-2.0,-2.0,0.0
+10,step,step_r_5_eta_0.05,"Sequential Asymmetric Guard [0,+4]",negative,200,0.005317766905614358,0.001512498861012378,-2.0,0.0,1.0
+11,step,step_r_5_eta_0.1,Sequential Forced Baseline (q=q0),negative,197,0.01833553259353195,0.0016833065793915095,-6.532994923857868,0.0,1.0
+11,step,step_r_5_eta_0.1,Sequential Forced Baseline (q=q0),zero,3,0.015072670516843323,0.0014768713547695838,0.0,0.0,0.0
+11,step,step_r_5_eta_0.1,Sequential Unguarded (B<=q0),negative,197,0.014585745055956898,0.0012736330786448057,-6.532994923857868,-6.532994923857868,0.0
+11,step,step_r_5_eta_0.1,Sequential Unguarded (B<=q0),zero,3,0.015072670516843323,0.0014768713547695838,0.0,0.0,0.0
+11,step,step_r_5_eta_0.1,"Sequential Symmetric Guard [-4,+4]",negative,197,0.015046554240030638,0.0015729977778484213,-6.532994923857868,-3.83248730964467,0.9441624365482234
+11,step,step_r_5_eta_0.1,"Sequential Symmetric Guard [-4,+4]",zero,3,0.015072670516843323,0.0014768713547695838,0.0,0.0,0.0
+11,step,step_r_5_eta_0.1,"Sequential Asymmetric Guard [0,+4]",negative,197,0.01833553259353195,0.0016833065793915095,-6.532994923857868,0.0,1.0
+11,step,step_r_5_eta_0.1,"Sequential Asymmetric Guard [0,+4]",zero,3,0.015072670516843323,0.0014768713547695838,0.0,0.0,0.0
+12,step,step_r_15_eta_0.001,Sequential Forced Baseline (q=q0),positive,200,1.5873755396381162e-06,5.6477681595113623e-05,13.0,0.0,1.0
+12,step,step_r_15_eta_0.001,Sequential Unguarded (B<=q0),positive,200,3.6001824970308614e-06,8.527530100841375e-05,13.0,13.0,0.0
+12,step,step_r_15_eta_0.001,"Sequential Symmetric Guard [-4,+4]",positive,200,2.35166334942492e-06,6.850656146072792e-05,13.0,4.0,1.0
+12,step,step_r_15_eta_0.001,"Sequential Asymmetric Guard [0,+4]",positive,200,2.35166334942492e-06,6.850656146072792e-05,13.0,4.0,1.0
+13,step,step_r_15_eta_0.05,Sequential Forced Baseline (q=q0),negative,200,0.005439107630567257,0.0012983038470704262,-1.1,0.0,1.0
+13,step,step_r_15_eta_0.05,Sequential Unguarded (B<=q0),negative,200,0.005593620332392921,0.0013455186114975674,-1.1,-1.1,0.0
+13,step,step_r_15_eta_0.05,"Sequential Symmetric Guard [-4,+4]",negative,200,0.005593620332392921,0.0013455186114975674,-1.1,-1.1,0.0
+13,step,step_r_15_eta_0.05,"Sequential Asymmetric Guard [0,+4]",negative,200,0.005439107630567257,0.0012983038470704262,-1.1,0.0,1.0
+14,step,step_r_15_eta_0.1,Sequential Forced Baseline (q=q0),positive,198,0.019235809535632923,0.0016207945733658607,8.0,0.0,1.0
+14,step,step_r_15_eta_0.1,Sequential Forced Baseline (q=q0),negative,2,0.009326168038191654,0.001482553637931065,-16.5,0.0,1.0
+14,step,step_r_15_eta_0.1,Sequential Unguarded (B<=q0),positive,198,0.036068445199090964,0.0020427537255239114,8.0,8.0,0.0
+14,step,step_r_15_eta_0.1,Sequential Unguarded (B<=q0),negative,2,0.001477559330926585,0.0005131213615371501,-16.5,-16.5,0.0
+14,step,step_r_15_eta_0.1,"Sequential Symmetric Guard [-4,+4]",positive,198,0.028366332763758894,0.0017879571500805257,8.0,4.0,1.0
+14,step,step_r_15_eta_0.1,"Sequential Symmetric Guard [-4,+4]",negative,2,0.0527742530098264,0.003580767159469476,-16.5,-4.0,1.0
+14,step,step_r_15_eta_0.1,"Sequential Asymmetric Guard [0,+4]",positive,198,0.028366332763758894,0.0017879571500805257,8.0,4.0,1.0
+14,step,step_r_15_eta_0.1,"Sequential Asymmetric Guard [0,+4]",negative,2,0.009326168038191654,0.001482553637931065,-16.5,0.0,1.0
+15,step,step_r_25_eta_0.001,Sequential Forced Baseline (q=q0),positive,200,1.8096657764459607e-06,3.819141358380338e-05,11.0,0.0,1.0
+15,step,step_r_25_eta_0.001,Sequential Unguarded (B<=q0),positive,200,3.426674483217768e-06,4.879305349530086e-05,11.0,11.0,0.0
+15,step,step_r_25_eta_0.001,"Sequential Symmetric Guard [-4,+4]",positive,200,2.019945813685311e-06,3.801527099706305e-05,11.0,4.0,1.0
+15,step,step_r_25_eta_0.001,"Sequential Asymmetric Guard [0,+4]",positive,200,2.019945813685311e-06,3.801527099706305e-05,11.0,4.0,1.0
+16,step,step_r_25_eta_0.05,Sequential Forced Baseline (q=q0),positive,200,0.006143352926295849,0.0010873084788413918,7.0,0.0,1.0
+16,step,step_r_25_eta_0.05,Sequential Unguarded (B<=q0),positive,200,0.006769757571268789,0.0012421763578836424,7.0,7.0,0.0
+16,step,step_r_25_eta_0.05,"Sequential Symmetric Guard [-4,+4]",positive,200,0.007177214262769013,0.0013275388786937383,7.0,4.0,1.0
+16,step,step_r_25_eta_0.05,"Sequential Asymmetric Guard [0,+4]",positive,200,0.007177214262769013,0.0013275388786937383,7.0,4.0,1.0
+17,step,step_r_25_eta_0.1,Sequential Forced Baseline (q=q0),positive,200,0.03236053299580787,0.0016875573090776824,3.0,0.0,1.0
+17,step,step_r_25_eta_0.1,Sequential Unguarded (B<=q0),positive,200,0.04030434860465551,0.0018251549942614874,3.0,3.0,0.0
+17,step,step_r_25_eta_0.1,"Sequential Symmetric Guard [-4,+4]",positive,200,0.04030434860465551,0.0018251549942614874,3.0,3.0,0.0
+17,step,step_r_25_eta_0.1,"Sequential Asymmetric Guard [0,+4]",positive,200,0.04030434860465551,0.0018251549942614874,3.0,3.0,0.0
+18,step,step_r_30_eta_0.001,Sequential Forced Baseline (q=q0),positive,200,1.7707109468076056e-06,2.9472212985605554e-05,11.0,0.0,1.0
+18,step,step_r_30_eta_0.001,Sequential Unguarded (B<=q0),positive,200,3.7281884761557184e-06,3.795762732523163e-05,11.0,11.0,0.0
+18,step,step_r_30_eta_0.001,"Sequential Symmetric Guard [-4,+4]",positive,200,2.3383811980943786e-06,3.782028756466319e-05,11.0,4.0,1.0
+18,step,step_r_30_eta_0.001,"Sequential Asymmetric Guard [0,+4]",positive,200,2.3383811980943786e-06,3.782028756466319e-05,11.0,4.0,1.0
+19,step,step_r_30_eta_0.05,Sequential Forced Baseline (q=q0),positive,200,0.008879208878757306,0.0011187764171713553,3.0,0.0,1.0
+19,step,step_r_30_eta_0.05,Sequential Unguarded (B<=q0),positive,200,0.009780994644270792,0.0013441774835144396,3.0,3.0,0.0
+19,step,step_r_30_eta_0.05,"Sequential Symmetric Guard [-4,+4]",positive,200,0.009780994644270792,0.0013441774835144396,3.0,3.0,0.0
+19,step,step_r_30_eta_0.05,"Sequential Asymmetric Guard [0,+4]",positive,200,0.009780994644270792,0.0013441774835144396,3.0,3.0,0.0
+20,step,step_r_30_eta_0.1,Sequential Forced Baseline (q=q0),zero,199,0.055500793713595516,0.0021408706446451693,0.0,0.0,0.0
+20,step,step_r_30_eta_0.1,Sequential Forced Baseline (q=q0),negative,1,0.08109649600575469,0.0036983696773704613,-1.0,0.0,1.0
+20,step,step_r_30_eta_0.1,Sequential Unguarded (B<=q0),zero,199,0.055500793713595516,0.0021408706446451693,0.0,0.0,0.0
+20,step,step_r_30_eta_0.1,Sequential Unguarded (B<=q0),negative,1,0.017215663119912614,0.0017040061296393994,-1.0,-1.0,0.0
+20,step,step_r_30_eta_0.1,"Sequential Symmetric Guard [-4,+4]",zero,199,0.055500793713595516,0.0021408706446451693,0.0,0.0,0.0
+20,step,step_r_30_eta_0.1,"Sequential Symmetric Guard [-4,+4]",negative,1,0.017215663119912614,0.0017040061296393994,-1.0,-1.0,0.0
+20,step,step_r_30_eta_0.1,"Sequential Asymmetric Guard [0,+4]",zero,199,0.055500793713595516,0.0021408706446451693,0.0,0.0,0.0
+20,step,step_r_30_eta_0.1,"Sequential Asymmetric Guard [0,+4]",negative,1,0.08109649600575469,0.0036983696773704613,-1.0,0.0,1.0
+21,misspecified,smooth_elbow,Sequential Forced Baseline (q=q0),negative,200,0.02750641877455191,0.0031758952707906887,-1.0,0.0,1.0
+21,misspecified,smooth_elbow,Sequential Unguarded (B<=q0),negative,200,0.02752627352860445,0.002981833872988464,-1.0,-1.0,0.0
+21,misspecified,smooth_elbow,"Sequential Symmetric Guard [-4,+4]",negative,200,0.02752627352860445,0.002981833872988464,-1.0,-1.0,0.0
+21,misspecified,smooth_elbow,"Sequential Asymmetric Guard [0,+4]",negative,200,0.02750641877455191,0.0031758952707906887,-1.0,0.0,1.0
+22,misspecified,power_exponential_mixture,Sequential Forced Baseline (q=q0),negative,122,0.00018805589745602195,0.0010556340571006998,-20.475409836065573,0.0,1.0
+22,misspecified,power_exponential_mixture,Sequential Forced Baseline (q=q0),positive,78,0.00015332821779289078,0.0011745726123691908,10.0,0.0,1.0
+22,misspecified,power_exponential_mixture,Sequential Unguarded (B<=q0),negative,122,0.0007136697404772363,0.0021247746838496326,-20.475409836065573,-20.475409836065573,0.0
+22,misspecified,power_exponential_mixture,Sequential Unguarded (B<=q0),positive,78,0.0001289977108968131,0.0007942843304820624,10.0,10.0,0.0
+22,misspecified,power_exponential_mixture,"Sequential Symmetric Guard [-4,+4]",negative,122,0.00016739093630728798,0.001029653047794859,-20.475409836065573,-4.0,1.0
+22,misspecified,power_exponential_mixture,"Sequential Symmetric Guard [-4,+4]",positive,78,9.333154955883467e-05,0.0008112156410063594,10.0,4.0,1.0
+22,misspecified,power_exponential_mixture,"Sequential Asymmetric Guard [0,+4]",negative,122,0.00018805589745602195,0.0010556340571006998,-20.475409836065573,0.0,1.0
+22,misspecified,power_exponential_mixture,"Sequential Asymmetric Guard [0,+4]",positive,78,9.333154955883467e-05,0.0008112156410063594,10.0,4.0,1.0
+23,misspecified,lognormal_shaped_decay,Sequential Forced Baseline (q=q0),negative,176,1.6023221547685266e-05,0.00044983942467127005,-3.335227272727273,0.0,1.0
+23,misspecified,lognormal_shaped_decay,Sequential Forced Baseline (q=q0),zero,8,1.3488842645187281e-05,0.000378121931860681,0.0,0.0,0.0
+23,misspecified,lognormal_shaped_decay,Sequential Forced Baseline (q=q0),positive,16,2.61267704144981e-05,0.0004653727564588929,1.0,0.0,1.0
+23,misspecified,lognormal_shaped_decay,Sequential Unguarded (B<=q0),negative,176,2.038216734287915e-05,0.000482776072779922,-3.335227272727273,-3.335227272727273,0.0
+23,misspecified,lognormal_shaped_decay,Sequential Unguarded (B<=q0),zero,8,1.3488842645187281e-05,0.000378121931860681,0.0,0.0,0.0
+23,misspecified,lognormal_shaped_decay,Sequential Unguarded (B<=q0),positive,16,1.2240410671986278e-05,0.0005369717699159862,1.0,1.0,0.0
+23,misspecified,lognormal_shaped_decay,"Sequential Symmetric Guard [-4,+4]",negative,176,1.8923963690553103e-05,0.00046461344205082016,-3.335227272727273,-2.5795454545454546,0.25
+23,misspecified,lognormal_shaped_decay,"Sequential Symmetric Guard [-4,+4]",zero,8,1.3488842645187281e-05,0.000378121931860681,0.0,0.0,0.0
+23,misspecified,lognormal_shaped_decay,"Sequential Symmetric Guard [-4,+4]",positive,16,1.2240410671986278e-05,0.0005369717699159862,1.0,1.0,0.0
+23,misspecified,lognormal_shaped_decay,"Sequential Asymmetric Guard [0,+4]",negative,176,1.6023221547685266e-05,0.00044983942467127005,-3.335227272727273,0.0,1.0
+23,misspecified,lognormal_shaped_decay,"Sequential Asymmetric Guard [0,+4]",zero,8,1.3488842645187281e-05,0.000378121931860681,0.0,0.0,0.0
+23,misspecified,lognormal_shaped_decay,"Sequential Asymmetric Guard [0,+4]",positive,16,1.2240410671986278e-05,0.0005369717699159862,1.0,1.0,0.0

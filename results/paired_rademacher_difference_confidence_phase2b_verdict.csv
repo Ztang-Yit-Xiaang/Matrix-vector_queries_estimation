@@ -1,0 +1,2 @@
+phase,verdict,primary_method,primary_sample_size,primary_joint_delta,fourth_moment_factor,minimum_robust_scale_block_size,frozen_replay_performed,new_matvec_queries,allocator_modified,scope
+Phase 2B,PROVED BUT BUDGET-VACUOUS,independent_pair_robust_mom,16,0.05,6561.0,13125,False,0,False,Two explicit data-only independent-pair theorem routes; not an impossibility theorem for all certificates.

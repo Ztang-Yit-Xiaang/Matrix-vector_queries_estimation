@@ -1,0 +1,2 @@
+verdict,proved_theorem,proved_theorem_status,sharper_route_status,primary_joint_delta,s_gate,online_allocator_implemented,new_matvec_queries,interpretation
+THEOREM ONLY / BUDGET-VACUOUS,81-hypercontractive Chebyshev,PROVED BUT BUDGET-VACUOUS,INCOMPLETE,0.05,,False,0,"The finite-sample theorem is valid, but no multiplicative lower confidence bound exists on s<=32; the sharper Hoeffding route is not numerically closed."

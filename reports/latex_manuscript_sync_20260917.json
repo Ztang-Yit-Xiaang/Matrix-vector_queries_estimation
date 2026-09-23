@@ -1,0 +1,275 @@
+{
+  "archive": "/Users/chenyixin/Documents/Obsidian_Vault/Swati_Summer_Research/latex_manuscript_archive_20260917",
+  "files": [
+    {
+      "destination": "UROP_TRACKER.md",
+      "old_sha256": "7e92efdb3d11ff1d6bc6379328a3d87b4c27e6056878a91be41d8869cca73e35",
+      "sha256": "fedec3d9c757812ae53fb6c830d0552c8dafc5a791522a02c1a6dd96698bae89"
+    },
+    {
+      "destination": "memory.md",
+      "old_sha256": "a8c5ceb4d005c4b0244f2c5f636fdf18d7fd59c3225369a75023bb4211412309",
+      "sha256": "39b3a4be429d51997f781ca38391a5607265a06e3c5692f9bd5734e29a12704a"
+    },
+    {
+      "destination": "UROP_Research_Memory.md",
+      "old_sha256": "a8c5ceb4d005c4b0244f2c5f636fdf18d7fd59c3225369a75023bb4211412309",
+      "sha256": "39b3a4be429d51997f781ca38391a5607265a06e3c5692f9bd5734e29a12704a"
+    },
+    {
+      "destination": "CURRENT_STATE.md",
+      "old_sha256": "9187d543b1dbb9484889c6a6107a1879ec8517fd65fa193f1107129e0790218b",
+      "sha256": "0710159be4f92176bf38f075ac1f998c0dce033cd2b8aad97bafb68297f32af6"
+    },
+    {
+      "destination": "adaptive_hutchpp_latex_20260917.zip",
+      "old_sha256": null,
+      "sha256": "9e7bd5d1ac0a7f44e28c673dbefec0d9a279381ecc5ddb5455824180f45690d3"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/assembly_manifest.json",
+      "old_sha256": null,
+      "sha256": "cd562ad8ad2438073158fc5215869867064295d7e7c9a3138cf49fcd537376ce"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/references.bib",
+      "old_sha256": null,
+      "sha256": "f9686249c94a8597cd27297b4ee91d4565acb0a54f5a36cd5800b91307ed5f8c"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/main.tex",
+      "old_sha256": null,
+      "sha256": "466eb97fab8b74563e7e3d98cdb37e7e08589b5d24994a291b9093897bbc254d"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/README.md",
+      "old_sha256": null,
+      "sha256": "89e267e8815300daf872ec9978438ebd5e8ccb1ff2ca0e6067926eba6421cfd9"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/validation_manifest.json",
+      "old_sha256": null,
+      "sha256": "5b0480199c7f56dab3371bc2c50235dd778894cd8945787a73bf9f6fd4e4bf99"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/SOURCE_MAP.md",
+      "old_sha256": null,
+      "sha256": "6a0617e1f7d97eb3154aab52d53a5f4011418c4984c8dc384a8ca834d6a091f6"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/discussion.tex",
+      "old_sha256": null,
+      "sha256": "980dc5f1619f86bcd94aa2927997b90fd935f7b0701c9cff60c41b23c695bf19"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/confidence.tex",
+      "old_sha256": null,
+      "sha256": "a1baca599598e2b184a82f43e8bff059d9f16f12da40257286cf7a29063a4827"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/technical.tex",
+      "old_sha256": null,
+      "sha256": "ff21841cacc74a9ed1e9d16c3db7a05aea3953dcf8105f3ef10be0ceb1b7b49d"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/record.tex",
+      "old_sha256": null,
+      "sha256": "227910b1ec93ef888f366499cc7e44740d0ebc329690cb208f7d3b012c7b9dd7"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/introduction.tex",
+      "old_sha256": null,
+      "sha256": "17dde3e53a81f3581c29f84e871ee6d41bee743bc70e7c76861d82a657435316"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/capture.tex",
+      "old_sha256": null,
+      "sha256": "a64d4be14964b3a69f4c6e5047d9499f558d67db07d427042ec6bf2d90c3081e"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/certification.tex",
+      "old_sha256": null,
+      "sha256": "36d72b7872fca208f9cf26ebe067988920e1ebe53d23122b95e9e501ee4f1694"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/experiments.tex",
+      "old_sha256": null,
+      "sha256": "bc468de062949e788ef2be0fbde397af339db934e7c5d4d9e72f34d5ba6d781c"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/allocation.tex",
+      "old_sha256": null,
+      "sha256": "efad9a9a24c21e939e6d4d2c1ba723904c6cb12a228000f42c867b72299bfa9f"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/sections/preliminaries.tex",
+      "old_sha256": null,
+      "sha256": "4e65388d6a8551d730db41d8330b0eb73b6a44022b64b4e45d2df431fcc92c97"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/urop_research_report_20260916.md",
+      "old_sha256": null,
+      "sha256": "266e3394c35e738c797f87e8872375555fa0cff50b3852f2e97593f9003673f1"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_notation.md",
+      "old_sha256": null,
+      "sha256": "feb396d1c0cedd5bb59b925103e59829eb5b986c44dc18e33d29877fafc77d32"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/direct_rademacher_risk_certification_phase1b_budget.md",
+      "old_sha256": null,
+      "sha256": "a7ec12932cba1144c540b64df29be756ddef24623cc4eaae07486ccabf563dad"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/recovery_audit_20260914.md",
+      "old_sha256": null,
+      "sha256": "13fb7c935b3dc728033200095ead7bd01748610cf6bf1e5c25264e23c87f02bd"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/theorem_report_audit_20260917.md",
+      "old_sha256": null,
+      "sha256": "ea5a327698e99856b1f6db524db11937d4e5640b88995510308e96f5e7c185b7"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/paired_rademacher_risk_difference_phase2a.md",
+      "old_sha256": null,
+      "sha256": "af99d35efb650120cdad085c3e2491d5c98319c9f39ab1126f5d43407f8f7539"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/gating_diagnostics_predictability_map.md",
+      "old_sha256": null,
+      "sha256": "949fa9daa05a01653de3f752fd30667a22167746b181ce0ef46e03e54860a420"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/urop_claims_register_20260916.md",
+      "old_sha256": null,
+      "sha256": "9052cd5a5951dcfb1cd3c3898a0531e2eacd1947a119bc2135ca027b2c7fa742"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/rademacher_linear_projection_no_go_phase1d.md",
+      "old_sha256": null,
+      "sha256": "0931e956578a154bac127ffdcde05986cf9125d5091ee2c31902789b3737c784"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/coordinate_gate_failure_audit_20260916.md",
+      "old_sha256": null,
+      "sha256": "a118453bca8733c81b9f994e73c8ed94511289cf41a54c5a36e01b71e16ef085"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_structural_paired_difference_confidence.md",
+      "old_sha256": null,
+      "sha256": "977ba5f73c32ef6f317f25f94c57c8dfd08671262a5893744a9e959ed90f1c2b"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_sequential_unbiasedness.md",
+      "old_sha256": null,
+      "sha256": "d255cae469783952760046b090ab32ef8f817ad7d3bf7113346211f973f23c1e"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/prompts_and_contract.md",
+      "old_sha256": null,
+      "sha256": "9773b3c9ab718ee74a3bcf2ad2474ded378e8ec1e2eba98f51654b6c895918e5"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_rank_aware_risk.md",
+      "old_sha256": null,
+      "sha256": "927c9550fc9db6df830b364f48bddece408036234d8d51a995891f295065605e"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/urop_research_progress_report_aug2026.md",
+      "old_sha256": null,
+      "sha256": "dfae0be953e12eaeab349a3c17b486c56dd54d34131046bcaf0c24c239ef71b6"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/q_rank_vs_realized_risk_mechanism.md",
+      "old_sha256": null,
+      "sha256": "19a068fdeacef0138bbbd8f9296969c9183e417f2fdb00d7b9eee053d12899bd"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/pytorch_hessian_benchmark.md",
+      "old_sha256": null,
+      "sha256": "7b2152c9c34b14f432ba7aaea87c9c895c302410580bbb7f8632d92ef68dfef8"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/structural_paired_difference_confidence_phase2c.md",
+      "old_sha256": null,
+      "sha256": "6da7b8670a4dc27c3aced134f0dfa5e63a8e64ab61e066803d6f2f47b90fe2cb"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/paired_rademacher_difference_confidence_phase2b.md",
+      "old_sha256": null,
+      "sha256": "d11d4bdecb3062d7f2950b229bb59031247d306a54af0f7715526f8c97279546"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/rademacher_sample_variance_confidence_phase1c.md",
+      "old_sha256": null,
+      "sha256": "47ef158b7d99fab0fb18332aa3201c05ae521d6af394e068355d0f6a23a8c65d"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/direct_rademacher_risk_certification_phase1a.md",
+      "old_sha256": null,
+      "sha256": "2c915e03ffcb2eb295798fab549aa50142b80e5de2aac8a766d7c9f58b3a069f"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_rademacher_sample_variance_confidence.md",
+      "old_sha256": null,
+      "sha256": "32bec55a895c64a703dd84501806523e1dbe9f6b9c1c7e3e9635d5cb285b819b"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_budget_aware_certification.md",
+      "old_sha256": null,
+      "sha256": "7a21de2cbc226614bb4c39622c298860415383fb06e405194bdcae75a2e2ce02"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/source_report.md",
+      "old_sha256": null,
+      "sha256": "89172e2c94efc0e64d8f9764bfc5972f8d20f17c1717ddac6c944f4c56d10773"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/urop_gpt_polished_figures_20260916.md",
+      "old_sha256": null,
+      "sha256": "0087fa061e837052fd908fa8faad1803c0a3864d04e0c58c336ab69db78790a4"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/urop_figure_guide_20260916.md",
+      "old_sha256": null,
+      "sha256": "83b9f4caa6b47cd44c3645c414743a7d8f3483a7b9655907fcaf4a04f73ba568"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/provenance/proof_near_oracle_regret.md",
+      "old_sha256": null,
+      "sha256": "10e81564d755a36c57df1b176f61bf285ea5b65e4c65a604550aba888d8f994a"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/figures/figure2_empirical_signal.png",
+      "old_sha256": null,
+      "sha256": "3f33ddc2bcac446114e01a0172d955218c60883d4c2299417ae41bffea35484f"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/figures/models.png",
+      "old_sha256": null,
+      "sha256": "0fc2665aacc422606907ff75e3e93fd45c15bff148ed6d6f175e70f4f9dcc6c6"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/figures/figure1_capture_failure.png",
+      "old_sha256": null,
+      "sha256": "6b616979df0d453329a7c439ac2965bb510cceabe1027700895f1ffdfd5ce2f9"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/figures/figure3_certification_cost.png",
+      "old_sha256": null,
+      "sha256": "8886e787d694ba83dcd343a1f8eff9023573ff49247fb992137b94a144a8d150"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/figures/dependencies.png",
+      "old_sha256": null,
+      "sha256": "3ec31c2f0b764aa89a837100a3aeedabff4ac5ee0f4b1ddb95dd8f26dcaa876f"
+    },
+    {
+      "destination": "latex/adaptive_hutchpp_20260917/figures/workflow.png",
+      "old_sha256": null,
+      "sha256": "7d39c802e5cc8288b23d3c2bc9dec3ec79a841d83b6f9485675adec43babe8d4"
+    }
+  ]
+}

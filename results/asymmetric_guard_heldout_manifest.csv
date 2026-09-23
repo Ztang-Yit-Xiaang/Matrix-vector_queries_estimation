@@ -1,0 +1,25 @@
+setup_index,spectrum_family,setup_name,matrix_seed,spectral_parameters,c,alpha,r_star,eta,variant
+0,power,power_c_0.3,42000,"{""c"": 0.3}",0.3,,,,
+1,power,power_c_0.7,42001,"{""c"": 0.7}",0.7,,,,
+2,power,power_c_1.2,42002,"{""c"": 1.2}",1.2,,,,
+3,power,power_c_1.7,42003,"{""c"": 1.7}",1.7,,,,
+4,power,power_c_2.5,42004,"{""c"": 2.5}",2.5,,,,
+5,exponential,exponential_alpha_0.02,42005,"{""alpha"": 0.02}",,0.02,,,
+6,exponential,exponential_alpha_0.08,42006,"{""alpha"": 0.08}",,0.08,,,
+7,exponential,exponential_alpha_0.10,42007,"{""alpha"": 0.1}",,0.1,,,
+8,exponential,exponential_alpha_0.15,42008,"{""alpha"": 0.15}",,0.15,,,
+9,step,step_r_5_eta_0.001,42009,"{""eta"": 0.001, ""r_star"": 5}",,,5.0,0.001,
+10,step,step_r_5_eta_0.05,42010,"{""eta"": 0.05, ""r_star"": 5}",,,5.0,0.05,
+11,step,step_r_5_eta_0.1,42011,"{""eta"": 0.1, ""r_star"": 5}",,,5.0,0.1,
+12,step,step_r_15_eta_0.001,42012,"{""eta"": 0.001, ""r_star"": 15}",,,15.0,0.001,
+13,step,step_r_15_eta_0.05,42013,"{""eta"": 0.05, ""r_star"": 15}",,,15.0,0.05,
+14,step,step_r_15_eta_0.1,42014,"{""eta"": 0.1, ""r_star"": 15}",,,15.0,0.1,
+15,step,step_r_25_eta_0.001,42015,"{""eta"": 0.001, ""r_star"": 25}",,,25.0,0.001,
+16,step,step_r_25_eta_0.05,42016,"{""eta"": 0.05, ""r_star"": 25}",,,25.0,0.05,
+17,step,step_r_25_eta_0.1,42017,"{""eta"": 0.1, ""r_star"": 25}",,,25.0,0.1,
+18,step,step_r_30_eta_0.001,42018,"{""eta"": 0.001, ""r_star"": 30}",,,30.0,0.001,
+19,step,step_r_30_eta_0.05,42019,"{""eta"": 0.05, ""r_star"": 30}",,,30.0,0.05,
+20,step,step_r_30_eta_0.1,42020,"{""eta"": 0.1, ""r_star"": 30}",,,30.0,0.1,
+21,misspecified,smooth_elbow,42021,"{""variant"": ""smooth_elbow""}",,,,,smooth_elbow
+22,misspecified,power_exponential_mixture,42022,"{""variant"": ""mixture""}",,,,,mixture
+23,misspecified,lognormal_shaped_decay,42023,"{""variant"": ""lognormal""}",,,,,lognormal

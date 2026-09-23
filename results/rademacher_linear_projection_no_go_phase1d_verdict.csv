@@ -1,0 +1,2 @@
+phase,title,verdict,theorem_status,analytic_probability_floor_max_s32,max_declared_component_delta,new_matvec_queries,implication
+Phase 1D,Rademacher Linear Projection Lower-Tail Analytic No-Go,STRONG LINEAR NO-GO,PROVED,0.8187307530779818,0.05,0,Linear Hoeffding component cannot close small-sample certification under truncation-Bernstein; route is budget-vacuous for s <= 32.

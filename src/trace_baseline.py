@@ -72,6 +72,47 @@ def _rank_aware_qr(W, reference_scale=None, rtol=1e-12, atol=0.0):
 
     return Q_full[:, :rank], rank
 
+
+def marginal_risk_quantity(eigenvalues, m, q):
+    """Return the exact full-rank marginal quantity M(q) on its feasible domain."""
+    eigenvalues = np.asarray(eigenvalues, dtype=np.float64)
+    if eigenvalues.ndim != 1 or eigenvalues.size == 0:
+        raise ValueError("eigenvalues must be a nonempty one-dimensional array.")
+    if not np.all(np.isfinite(eigenvalues)) or np.any(eigenvalues < 0.0):
+        raise ValueError("eigenvalues must be finite and nonnegative.")
+    if np.any(np.diff(eigenvalues) > 1e-14):
+        raise ValueError("eigenvalues must be nonincreasing.")
+    if isinstance(m, (bool, np.bool_)) or not isinstance(m, (int, np.integer)):
+        raise ValueError("m must be an integer.")
+    if isinstance(q, (bool, np.bool_)) or not isinstance(q, (int, np.integer)):
+        raise ValueError("q must be an integer.")
+    m = int(m)
+    q = int(q)
+    if q < 0 or q >= eigenvalues.size or m - 2 * q - 2 <= 0:
+        raise ValueError("q and q+1 must both be feasible full-rank allocations.")
+    tail_energy = float(np.sum(eigenvalues[q:] ** 2))
+    return float((m - 2 * q) * eigenvalues[q] ** 2 - 2.0 * tail_energy)
+
+
+def marginal_certificate_decision(marginal_hat, radius):
+    """Apply the deterministic three-state marginal certificate decision."""
+    if isinstance(marginal_hat, (bool, np.bool_)) or isinstance(radius, (bool, np.bool_)):
+        raise ValueError("marginal_hat and radius must be finite real numbers.")
+    try:
+        marginal_hat = float(marginal_hat)
+        radius = float(radius)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("marginal_hat and radius must be finite real numbers.") from exc
+    if not np.isfinite(marginal_hat) or not np.isfinite(radius):
+        raise ValueError("marginal_hat and radius must be finite real numbers.")
+    if radius < 0.0:
+        raise ValueError("radius must be nonnegative.")
+    if marginal_hat - radius > 0.0:
+        return "increase"
+    if marginal_hat + radius < 0.0:
+        return "stop"
+    return "learn_more"
+
 def Hutchinson(oracle, m, d, rng=None):
     """
     Classical Hutchinson trace estimator.
@@ -79,12 +120,11 @@ def Hutchinson(oracle, m, d, rng=None):
     """
     if rng is None:
         rng = np.random.default_rng()
-    
     G = rng.choice([-1.0, 1.0], size=(d, m))
     AG = oracle(G)
     return float(np.sum(G * AG)) / m
 
-def Hutch_pplus(oracle, m, d, rng=None):
+def Hutch_pplus(oracle, m, d, rng=None, return_diagnostics=False):
     """
     Corrected Hutch++ estimator with rank-aware QR and double residual projection.
     Queries: m
@@ -112,7 +152,15 @@ def Hutch_pplus(oracle, m, d, rng=None):
     trace_low_rank = float(np.sum(Q * AQ)) if k > 0 else 0.0
     trace_residual = float(np.sum(B_G * ABG)) / m3_eff
     
-    return trace_low_rank + trace_residual
+    estimate = trace_low_rank + trace_residual
+    if return_diagnostics:
+        diagnostics = {
+            "q_target": m1,
+            "r_actual": k,
+            "ell_eff": m3_eff,
+        }
+        return estimate, diagnostics
+    return estimate
 
 def Gaussian_Hutch_pplus(oracle, m, d, rng=None):
     """
@@ -856,7 +904,10 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     max_extrapolation_dist=40,
     probe_mode='rademacher',
     rng=None,
-    return_diagnostics=False
+    return_diagnostics=False,
+    max_q_shift=None,
+    q_shift_bounds=None,
+    preserve_baseline_feasibility=False
 ):
     """
     Direction 1: Sequential / Adaptive Pilot Stopping Hutch++ Estimator (Upgraded).
@@ -867,24 +918,82 @@ def Adaptive_Hutch_pplus_SequentialPilot(
        - Condition A (Allocation Stable): |q_curr - q_prev| <= 1.
        - Condition B (Horizon Resolution / Knee Detectability):
          Computes log gaps g_j = log(theta_j / theta_{j+1}).
-         If peak gap g_{r_gap} >= tau_gap and post-gap count b - r_gap >= p_min,
+         ``tau_gap`` is the log threshold gamma_gap, so its corresponding Ritz
+         ratio threshold is tau_R = exp(tau_gap). If the peak gap satisfies
+         g_{r_gap} >= tau_gap and post-gap count b - r_gap >= p_min,
          the knee is already resolved with p >= p_min directions.
        - Condition C (Extrapolation Distance Safe): q_curr - b_curr <= max_extrapolation_dist.
     4. Exact budget accounting identity: q_target + r_actual + ell_eff == m.
     """
     if rng is None:
         rng = np.random.default_rng()
+    if not np.isfinite(tau_gap) or tau_gap <= 0.0:
+        raise ValueError("tau_gap is gamma_gap=log(tau_R) and must be positive.")
+    if max_q_shift is not None:
+        if isinstance(max_q_shift, (bool, np.bool_)) or not isinstance(max_q_shift, (int, np.integer)):
+            raise ValueError("max_q_shift must be None or a nonnegative integer.")
+        if max_q_shift < 0:
+            raise ValueError("max_q_shift must be None or a nonnegative integer.")
+        max_q_shift = int(max_q_shift)
+    if max_q_shift is not None and q_shift_bounds is not None:
+        raise ValueError("Specify at most one of max_q_shift and q_shift_bounds.")
+    if q_shift_bounds is not None:
+        if not isinstance(q_shift_bounds, tuple) or len(q_shift_bounds) != 2:
+            raise ValueError("q_shift_bounds must be a length-two tuple of integers.")
+        if any(
+            isinstance(value, (bool, np.bool_))
+            or not isinstance(value, (int, np.integer))
+            for value in q_shift_bounds
+        ):
+            raise ValueError("q_shift_bounds must be a length-two tuple of integers.")
+        q_shift_bounds = tuple(int(value) for value in q_shift_bounds)
+        if q_shift_bounds[0] > q_shift_bounds[1]:
+            raise ValueError("q_shift_bounds must satisfy lower <= upper.")
+    if not isinstance(preserve_baseline_feasibility, (bool, np.bool_)):
+        raise ValueError("preserve_baseline_feasibility must be Boolean.")
+    preserve_baseline_feasibility = bool(preserve_baseline_feasibility)
+
+    if q_shift_bounds is not None:
+        shift_bounds_effective = q_shift_bounds
+    elif max_q_shift is not None:
+        shift_bounds_effective = (-max_q_shift, max_q_shift)
+    else:
+        shift_bounds_effective = None
 
     queries_before = oracle.query_count
     q_max = min(d, (m - 2) // 2)
-    q_0 = min(q_max, max(b_0, m // 3)) if q_max >= b_0 else b_0
+    if b_0 > q_max:
+        raise ValueError(f"b_0={b_0} exceeds the feasible sketch-query limit q_max={q_max}.")
+    if preserve_baseline_feasibility:
+        q_0 = min(q_max, m // 3)
+        if b_0 > q_0:
+            raise ValueError(
+                f"b_0={b_0} exceeds the feasible Standard-Hutch++ anchor q_0={q_0}."
+            )
+    else:
+        q_0 = min(q_max, max(b_0, m // 3))
 
     if b_max is None:
-        b_max = min(q_max // 2, max(b_0, (m - 10) // 4))
+        b_max = max(b_0, min(q_max // 2, max(b_0, (m - 10) // 4)))
+    if isinstance(b_max, (bool, np.bool_)) or not isinstance(b_max, (int, np.integer)):
+        raise ValueError("b_max must be an integer.")
+    b_max_requested = int(b_max)
+    if b_max_requested < b_0:
+        raise ValueError(f"b_max must satisfy b_max >= b_0; got {b_max_requested}.")
+    if preserve_baseline_feasibility:
+        b_max_effective = min(b_max_requested, q_0)
+    else:
+        if b_max_requested > q_max:
+            raise ValueError(
+                f"b_max must satisfy b_0 <= b_max <= q_max; got {b_max_requested}."
+            )
+        b_max_effective = b_max_requested
+    pilot_cap_applied = b_max_effective != b_max_requested
 
     b_curr = b_0
     Q_pilot = None
     Z_pilot = None
+    pilot_query_count = 0
     q_prev = None
     stopped_early = False
     stop_reason = "max_pilot_reached"
@@ -893,16 +1002,18 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     post_gap_obs = 0
 
     # Sequential Pilot Acquisition Loop
-    while b_curr <= b_max:
+    while b_curr <= b_max_effective:
         if Q_pilot is None:
             S_chunk = rng.choice([-1.0, 1.0], size=(d, b_0))
             W_chunk = oracle(S_chunk)
+            pilot_query_count += S_chunk.shape[1]
             scale_chunk = float(la.norm(W_chunk, ord='fro'))
             Q_pilot, r_pilot = _rank_aware_qr(W_chunk, reference_scale=scale_chunk)
             Z_pilot = oracle(Q_pilot) if r_pilot > 0 else np.empty((d, 0), dtype=W_chunk.dtype)
         else:
             S_chunk = rng.choice([-1.0, 1.0], size=(d, delta_b))
             W_chunk = oracle(S_chunk)
+            pilot_query_count += S_chunk.shape[1]
             scale_chunk = float(la.norm(W_chunk, ord='fro'))
             
             W_tilde = W_chunk - Q_pilot @ (Q_pilot.T @ W_chunk)
@@ -976,9 +1087,30 @@ def Adaptive_Hutch_pplus_SequentialPilot(
 
         b_curr += delta_b
 
-    b_final = Q_pilot.shape[1] if Q_pilot is not None else b_0
-    q_target = q_prev if q_prev is not None else q_0
-    q_target = int(np.clip(q_target, b_final, q_max))
+    b_final = pilot_query_count
+    r_pilot_actual = Q_pilot.shape[1]
+    q_adapt_raw = q_prev if q_prev is not None else q_0
+    q_adapt_raw = int(np.clip(q_adapt_raw, b_final, q_max))
+    q_target = q_adapt_raw
+    guard_applied = False
+    guard_relaxed_for_pilot_floor = False
+    guard_lower_effective = None
+    guard_upper_effective = None
+
+    if shift_bounds_effective is not None:
+        shift_lower, shift_upper = shift_bounds_effective
+        guard_lower_effective = max(b_final, q_0 + shift_lower)
+        guard_upper_effective = min(q_max, q_0 + shift_upper)
+        if guard_lower_effective <= guard_upper_effective:
+            q_target = int(
+                np.clip(q_adapt_raw, guard_lower_effective, guard_upper_effective)
+            )
+        else:
+            # Feasibility takes priority if an unusual parameter combination
+            # places the acquired pilot above the nominal trust region.
+            q_target = int(min(q_max, b_final))
+            guard_relaxed_for_pilot_floor = True
+        guard_applied = q_target != q_adapt_raw
 
     # Phase 3: Basis Extension to q_target
     k_extra = q_target - b_final
@@ -1029,12 +1161,29 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     if return_diagnostics:
         diag = {
             "b_final": b_final,
+            "r_pilot_actual": r_pilot_actual,
             "stopped_early": stopped_early,
             "stop_reason": stop_reason,
+            "q_0": q_0,
+            "q_adapt_raw": q_adapt_raw,
             "q_target": q_target,
             "r_actual": r_actual,
             "ell_eff": ell_eff,
+            "max_q_shift": max_q_shift,
+            "q_shift_bounds_requested": q_shift_bounds,
+            "guard_lower_effective": guard_lower_effective,
+            "guard_upper_effective": guard_upper_effective,
+            "delta_q_raw": q_adapt_raw - q_0,
+            "delta_q_safe": q_target - q_0,
+            "b_max_requested": b_max_requested,
+            "b_max_effective": b_max_effective,
+            "pilot_cap_applied": pilot_cap_applied,
+            "preserve_baseline_feasibility": preserve_baseline_feasibility,
+            "guard_applied": guard_applied,
+            "guard_relaxed_for_pilot_floor": guard_relaxed_for_pilot_floor,
             "max_adjacent_log_gap": max_adjacent_log_gap,
+            "gamma_gap_threshold": float(tau_gap),
+            "tau_ratio_threshold": float(np.exp(tau_gap)),
             "gap_location": gap_location,
             "post_gap_observations": post_gap_obs,
             "extrapolation_distance": q_target - b_final
@@ -1044,5 +1193,424 @@ def Adaptive_Hutch_pplus_SequentialPilot(
     return tr_est
 
 
+def Adaptive_Hutch_pplus_MarginalRisk(
+    oracle,
+    m,
+    d,
+    b_0=8,
+    delta_b=4,
+    b_max=None,
+    tau_gap=1.5,
+    p_min=1,
+    probe_mode='rademacher',
+    rng=None,
+    return_diagnostics=False,
+    preserve_baseline_feasibility=False
+):
+    """
+    Heuristic Ritz-model marginal-risk sequential allocator.
+
+    This prototype is not the confidence-certified three-state policy: it fits a
+    power-law tail and uses a point-estimated marginal quantity.  A resolved
+    Ritz knee or a nonpositive marginal estimate at the current pilot floor
+    stops pilot expansion at the already committed sketch width.  Every range
+    sketch column is counted separately from the realized numerical rank.
+    """
+    if rng is None:
+        rng = np.random.default_rng()
+    for name, value in (("m", m), ("d", d), ("b_0", b_0), ("delta_b", delta_b), ("p_min", p_min)):
+        if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)):
+            raise ValueError(f"{name} must be an integer.")
+    m = int(m)
+    d = int(d)
+    b_0 = int(b_0)
+    delta_b = int(delta_b)
+    p_min = int(p_min)
+    if m <= 0 or d <= 0:
+        raise ValueError("m and d must be positive.")
+    if b_0 <= 0 or delta_b <= 0:
+        raise ValueError("b_0 and delta_b must be positive.")
+    if p_min <= 0:
+        raise ValueError("p_min must be positive.")
+    if not np.isfinite(tau_gap) or tau_gap <= 0.0:
+        raise ValueError("tau_gap is gamma_gap=log(tau_R) and must be positive.")
+    if not isinstance(probe_mode, str):
+        raise ValueError("probe_mode must be 'gaussian' or 'rademacher'.")
+    probe_mode = probe_mode.lower()
+    if probe_mode not in {'gaussian', 'rademacher'}:
+        raise ValueError("probe_mode must be 'gaussian' or 'rademacher'.")
+    if not isinstance(preserve_baseline_feasibility, (bool, np.bool_)):
+        raise ValueError("preserve_baseline_feasibility must be Boolean.")
+    preserve_baseline_feasibility = bool(preserve_baseline_feasibility)
+
+    queries_before = oracle.query_count
+    q_max = min(d, (m - 2) // 2)
+    if b_0 > q_max:
+        raise ValueError(f"b_0={b_0} exceeds the feasible sketch-query limit q_max={q_max}.")
+    if preserve_baseline_feasibility:
+        q_0 = min(q_max, m // 3)
+        if b_0 > q_0:
+            raise ValueError(
+                f"b_0={b_0} exceeds the feasible Standard-Hutch++ anchor q_0={q_0}."
+            )
+    else:
+        q_0 = min(q_max, max(b_0, m // 3))
+
+    if b_max is None:
+        b_max = max(b_0, min(q_max // 2, max(b_0, (m - 10) // 4)))
+    if isinstance(b_max, (bool, np.bool_)) or not isinstance(b_max, (int, np.integer)):
+        raise ValueError("b_max must be an integer.")
+    b_max_requested = int(b_max)
+    if b_max_requested < b_0:
+        raise ValueError(f"b_max must satisfy b_max >= b_0; got {b_max_requested}.")
+    if preserve_baseline_feasibility:
+        b_max_effective = min(b_max_requested, q_0)
+    else:
+        if b_max_requested > q_max:
+            raise ValueError(
+                f"b_max must satisfy b_0 <= b_max <= q_max; got {b_max_requested}."
+            )
+        b_max_effective = b_max_requested
+    pilot_cap_applied = b_max_effective != b_max_requested
+
+    b_curr = b_0
+    Q_pilot = None
+    Z_pilot = None
+    pilot_query_count = 0
+    stopped_early = False
+    stop_reason = "max_pilot_reached"
+    max_adjacent_log_gap = 0.0
+    gap_location = 0
+    post_gap_obs = 0
+    q_heuristic_proposal = b_0
+    q_target_preclip = b_0
+    marginal_hat_at_floor = np.nan
+    c_hat_final = np.nan
+    intervention_reason = "none"
+
+    # Sequential Pilot Acquisition Loop (Pilot Commitment Control)
+    while b_curr <= b_max_effective:
+        if Q_pilot is None:
+            S_chunk = rng.choice([-1.0, 1.0], size=(d, b_0))
+            W_chunk = oracle(S_chunk)
+            pilot_query_count += S_chunk.shape[1]
+            scale_chunk = float(la.norm(W_chunk, ord='fro'))
+            Q_pilot, r_pilot = _rank_aware_qr(W_chunk, reference_scale=scale_chunk)
+            Z_pilot = oracle(Q_pilot) if r_pilot > 0 else np.empty((d, 0), dtype=W_chunk.dtype)
+        else:
+            S_chunk = rng.choice([-1.0, 1.0], size=(d, delta_b))
+            W_chunk = oracle(S_chunk)
+            pilot_query_count += S_chunk.shape[1]
+            scale_chunk = float(la.norm(W_chunk, ord='fro'))
+
+            W_tilde = W_chunk - Q_pilot @ (Q_pilot.T @ W_chunk)
+            W_tilde = W_tilde - Q_pilot @ (Q_pilot.T @ W_tilde)
+
+            Q_delta, r_delta = _rank_aware_qr(W_tilde, reference_scale=scale_chunk)
+            if r_delta > 0:
+                Q_delta = Q_delta - Q_pilot @ (Q_pilot.T @ Q_delta)
+                Q_delta, r_delta = _rank_aware_qr(Q_delta, reference_scale=1.0)
+                Z_delta = oracle(Q_delta)
+
+                Q_pilot = np.column_stack([Q_pilot, Q_delta])
+                Z_pilot = np.column_stack([Z_pilot, Z_delta])
+
+        r_curr = Q_pilot.shape[1]
+        if r_curr >= 4:
+            M_curr = 0.5 * (Q_pilot.T @ Z_pilot + Z_pilot.T @ Q_pilot)
+            ritz_vals = la.eigvalsh(M_curr)[::-1]
+            theta_max = float(ritz_vals[0]) if len(ritz_vals) > 0 else 0.0
+
+            if theta_max > 0.0:
+                pos_ritz = ritz_vals[ritz_vals > 1e-12 * theta_max]
+                if len(pos_ritz) >= 4:
+                    log_gaps = np.log(pos_ritz[:-1]) - np.log(pos_ritz[1:])
+                    max_adjacent_log_gap = float(np.max(log_gaps)) if len(log_gaps) > 0 else 0.0
+                    gap_location = int(np.argmax(log_gaps) + 1) if len(log_gaps) > 0 else 0
+                    post_gap_obs = len(pos_ritz) - gap_location
+
+                    # Incremental Marginal Risk Allocation M(q) = (m - 2q) * lambda_{q+1}^2 - 2 * T(q)
+                    j_indices = np.arange(1, len(pos_ritz) + 1, dtype=np.float64)
+                    log_j = np.log(j_indices)
+                    log_theta = np.log(pos_ritz)
+                    slope_p, _ = np.polyfit(log_j, log_theta, 1)
+                    c_hat = float(max(0.0, -slope_p))
+                    c_hat_final = c_hat
+                    i_vals = np.arange(1, d + 1, dtype=np.float64)
+                    w_pow = i_vals ** (-2.0 * c_hat)
+                    T_cum = np.cumsum(w_pow[::-1])[::-1]
+
+                    q_heuristic_proposal = b_curr
+                    for q_cand in range(b_curr, q_max):
+                        lambda_sq_next = w_pow[q_cand]  # lambda_{q+1}^2
+                        T_q = T_cum[q_cand]
+                        M_q = (m - 2 * q_cand) * lambda_sq_next - 2.0 * T_q
+                        if q_cand == b_curr:
+                            marginal_hat_at_floor = float(M_q)
+                        if M_q > 0:
+                            q_heuristic_proposal = q_cand + 1
+                        else:
+                            break
+
+                    has_resolved_knee = (max_adjacent_log_gap >= tau_gap and post_gap_obs >= p_min)
+                    if has_resolved_knee:
+                        stopped_early = True
+                        stop_reason = f"knee_resolved_stop_pilot_at_b={b_curr}"
+                        q_target_preclip = b_curr
+                        intervention_reason = "resolved_knee"
+                        break
+                    if np.isfinite(marginal_hat_at_floor) and marginal_hat_at_floor <= 0.0:
+                        stopped_early = True
+                        stop_reason = f"nonpositive_marginal_stop_pilot_at_b={b_curr}"
+                        q_target_preclip = b_curr
+                        intervention_reason = "nonpositive_marginal_at_pilot_floor"
+                        break
+
+                    q_target_preclip = q_heuristic_proposal
+
+        b_curr += delta_b
+
+    b_final = pilot_query_count
+    r_pilot_actual = Q_pilot.shape[1]
+    q_adapt_raw = int(q_heuristic_proposal)
+    if intervention_reason == "none":
+        q_target_preclip = q_adapt_raw
+    q_target = int(np.clip(q_target_preclip, b_final, q_max))
+
+    # Phase 3: Basis Extension to q_target
+    k_extra = q_target - b_final
+    if k_extra > 0:
+        S_ext = rng.choice([-1.0, 1.0], size=(d, k_extra))
+        W_ext = oracle(S_ext)
+        scale_ext = float(la.norm(W_ext, ord='fro'))
+
+        W_ext_tilde = W_ext - Q_pilot @ (Q_pilot.T @ W_ext)
+        W_ext_tilde = W_ext_tilde - Q_pilot @ (Q_pilot.T @ W_ext_tilde)
+
+        Q_ext, r_ext = _rank_aware_qr(W_ext_tilde, reference_scale=scale_ext)
+        if r_ext > 0:
+            Q_ext = Q_ext - Q_pilot @ (Q_pilot.T @ Q_ext)
+            Q_ext, r_ext = _rank_aware_qr(Q_ext, reference_scale=1.0)
+            Z_ext = oracle(Q_ext)
+            Q = np.column_stack([Q_pilot, Q_ext])
+            Z = np.column_stack([Z_pilot, Z_ext])
+        else:
+            Q, Z = Q_pilot, Z_pilot
+    else:
+        Q, Z = Q_pilot, Z_pilot
+
+    r_actual = Q.shape[1]
+
+    # Phase 4 & 5: Residual Estimation & Exact Budget Accounting Identity
+    ell_eff = m - q_target - r_actual
+    if ell_eff < 2:
+        raise RuntimeError("Internal marginal-risk allocation left fewer than two residual probes.")
+
+    if probe_mode == 'gaussian':
+        G = rng.normal(loc=0.0, scale=1.0, size=(d, ell_eff))
+    else:
+        G = rng.choice([-1.0, 1.0], size=(d, ell_eff))
+
+    RG = G - Q @ (Q.T @ G) if r_actual > 0 else G
+    ARG = oracle(RG)
+
+    queries_used = oracle.query_count - queries_before
+    if queries_used != m:
+        raise RuntimeError(f"Marginal risk query budget mismatch: expected {m}, got {queries_used}")
+
+    tr_low = float(np.sum(Q * Z)) if r_actual > 0 else 0.0
+    tr_res = float(np.sum(RG * ARG)) / ell_eff
+    tr_est = tr_low + tr_res
+
+    if return_diagnostics:
+        diag = {
+            "b_final": b_final,
+            "r_pilot_actual": r_pilot_actual,
+            "stopped_early": stopped_early,
+            "stop_reason": stop_reason,
+            "q_0": q_0,
+            "q_adapt_raw": q_adapt_raw,
+            "q_target": q_target,
+            "r_actual": r_actual,
+            "ell_eff": ell_eff,
+            "b_max_requested": b_max_requested,
+            "b_max_effective": b_max_effective,
+            "pilot_cap_applied": pilot_cap_applied,
+            "preserve_baseline_feasibility": preserve_baseline_feasibility,
+            "marginal_hat_at_pilot_floor": marginal_hat_at_floor,
+            "fitted_power_exponent": c_hat_final,
+            "heuristic_proposal_before_intervention": q_adapt_raw,
+            "heuristic_intervention_reason": intervention_reason,
+            "max_adjacent_log_gap": max_adjacent_log_gap,
+            "gamma_gap_threshold": float(tau_gap),
+            "tau_ratio_threshold": float(np.exp(tau_gap)),
+            "gap_location": gap_location,
+            "post_gap_observations": post_gap_obs,
+            "extrapolation_distance": q_target - b_final
+        }
+        return tr_est, diag
+
+    return tr_est
 
 
+def Adaptive_Hutch_pplus_TwoStageGated(
+    oracle,
+    m,
+    d,
+    b_0=8,
+    tau_gap=1.5,
+    p_oversample=1,
+    probe_mode='rademacher',
+    tau_contrast=None,
+    rng=None,
+    return_diagnostics=False
+):
+    """
+    Online 2-Stage Gated Adaptive Trace Estimator.
+
+    Solves the Phase 1B "certification tax" dilemma by introducing a zero-cost
+    screening trigger in Stage 1:
+    - Stage 1 (Zero-Cost Pilot Screening): Evaluates Ritz gap on initial b_0 queries.
+      If no sharp knee is detected, seamlessly falls back to Standard Hutch++ baseline
+      (q = q_0 = m // 3) with ZERO query penalty (allocating all remaining queries to residual probes).
+    - Stage 2 (Gated Adaptive Subspace): If a knee is detected at r_knee, dynamically sets
+      q_target = r_knee + p_oversample (supplying tail-risk insurance against square sketch fragility).
+
+    Strictly satisfies the 3-way budget conservation law: q + r_actual + ell_eff == m.
+    """
+    if rng is None:
+        rng = np.random.default_rng()
+    for name, value in (("m", m), ("d", d), ("b_0", b_0), ("p_oversample", p_oversample)):
+        if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)):
+            raise ValueError(f"{name} must be an integer.")
+    m = int(m)
+    d = int(d)
+    b_0 = int(b_0)
+    p_oversample = int(p_oversample)
+    if m <= 0 or d <= 0 or b_0 <= 0 or p_oversample < 0:
+        raise ValueError("m, d, and b_0 must be positive; p_oversample must be nonnegative.")
+    if not np.isfinite(tau_gap) or tau_gap <= 0.0:
+        raise ValueError("tau_gap must be positive.")
+    if tau_contrast is not None:
+        if not np.isfinite(tau_contrast) or tau_contrast <= 0.0:
+            raise ValueError("tau_contrast must be positive when specified.")
+    if not isinstance(probe_mode, str):
+        raise ValueError("probe_mode must be 'gaussian' or 'rademacher'.")
+    probe_mode = probe_mode.lower()
+    if probe_mode not in {'gaussian', 'rademacher'}:
+        raise ValueError("probe_mode must be 'gaussian' or 'rademacher'.")
+
+    queries_before = oracle.query_count
+    q_max = min(d, (m - 2) // 2)
+    q_0 = min(q_max, m // 3)
+    if b_0 > q_0:
+        raise ValueError(f"b_0={b_0} exceeds the Standard-Hutch++ anchor q_0={q_0}.")
+
+    # Stage 1: Zero-Cost Pilot Screening
+    S_pilot = rng.choice([-1.0, 1.0], size=(d, b_0))
+    W_pilot = oracle(S_pilot)
+    scale_pilot = float(la.norm(W_pilot, ord='fro'))
+    Q_pilot, r_pilot = _rank_aware_qr(W_pilot, reference_scale=scale_pilot)
+    Z_pilot = oracle(Q_pilot) if r_pilot > 0 else np.empty((d, 0), dtype=W_pilot.dtype)
+
+    max_adjacent_log_gap = 0.0
+    gap_location = 0
+    contrast = 1.0
+    is_gated_trigger = False
+    decision_reason = "benign_fallback_to_standard"
+
+    if r_pilot >= 4:
+        M_pilot = 0.5 * (Q_pilot.T @ Z_pilot + Z_pilot.T @ Q_pilot)
+        ritz_vals = la.eigvalsh(M_pilot)[::-1]
+        theta_max = float(ritz_vals[0]) if len(ritz_vals) > 0 else 0.0
+
+        if theta_max > 0.0:
+            pos_ritz = ritz_vals[ritz_vals > 1e-12 * theta_max]
+            if len(pos_ritz) >= 4:
+                log_gaps = np.log(pos_ritz[:-1]) - np.log(pos_ritz[1:])
+                idx_max = int(np.argmax(log_gaps))
+                max_adjacent_log_gap = float(log_gaps[idx_max]) if len(log_gaps) > 0 else 0.0
+                gap_location = idx_max + 1
+
+                other_gaps = np.delete(log_gaps, idx_max)
+                med_other = float(np.median(other_gaps)) if len(other_gaps) > 0 else 1e-4
+                contrast = float(max_adjacent_log_gap / max(med_other, 1e-4))
+
+                contrast_pass = (contrast >= tau_contrast) if tau_contrast is not None else True
+
+                if max_adjacent_log_gap >= tau_gap and contrast_pass and gap_location < len(pos_ritz):
+                    is_gated_trigger = True
+                    decision_reason = f"knee_detected_at_r={gap_location}"
+
+    if is_gated_trigger:
+        # Step/Knee detected: adaptively set subspace dimension with tail-insurance oversampling
+        q_target = min(q_max, max(b_0, gap_location + p_oversample))
+    else:
+        # Benign smooth spectrum: seamlessly fall back to standard Hutch++ baseline q_0
+        q_target = q_0
+
+    # Stage 2: Basis Extension to q_target
+    k_extra = q_target - b_0
+    if k_extra > 0:
+        S_ext = rng.choice([-1.0, 1.0], size=(d, k_extra))
+        W_ext = oracle(S_ext)
+        scale_ext = float(la.norm(W_ext, ord='fro'))
+
+        W_ext_tilde = W_ext - Q_pilot @ (Q_pilot.T @ W_ext)
+        W_ext_tilde = W_ext_tilde - Q_pilot @ (Q_pilot.T @ W_ext_tilde)
+
+        Q_ext, r_ext = _rank_aware_qr(W_ext_tilde, reference_scale=scale_ext)
+        if r_ext > 0:
+            Q_ext = Q_ext - Q_pilot @ (Q_pilot.T @ Q_ext)
+            Q_ext, r_ext = _rank_aware_qr(Q_ext, reference_scale=1.0)
+            Z_ext = oracle(Q_ext)
+            Q = np.column_stack([Q_pilot, Q_ext])
+            Z = np.column_stack([Z_pilot, Z_ext])
+        else:
+            Q, Z = Q_pilot, Z_pilot
+    else:
+        Q, Z = Q_pilot, Z_pilot
+
+    r_actual = Q.shape[1]
+
+    # Residual Estimation: Exact Budget Conservation Identity (q_target + r_actual + ell_eff == m)
+    ell_eff = m - q_target - r_actual
+    if ell_eff < 2:
+        raise RuntimeError(f"TwoStageGated left fewer than two residual probes (ell_eff={ell_eff}).")
+
+    if probe_mode == 'gaussian':
+        G = rng.normal(loc=0.0, scale=1.0, size=(d, ell_eff))
+    else:
+        G = rng.choice([-1.0, 1.0], size=(d, ell_eff))
+
+    RG = G - Q @ (Q.T @ G) if r_actual > 0 else G
+    ARG = oracle(RG)
+
+    queries_used = oracle.query_count - queries_before
+    if queries_used != m:
+        raise RuntimeError(f"TwoStageGated query budget mismatch: expected {m}, got {queries_used}")
+
+    tr_low = float(np.sum(Q * Z)) if r_actual > 0 else 0.0
+    tr_res = float(np.sum(RG * ARG)) / ell_eff
+    tr_est = tr_low + tr_res
+
+    if return_diagnostics:
+        diag = {
+            "b_0": b_0,
+            "q_0": q_0,
+            "q_target": q_target,
+            "r_actual": r_actual,
+            "ell_eff": ell_eff,
+            "is_gated_trigger": is_gated_trigger,
+            "decision_reason": decision_reason,
+            "max_adjacent_log_gap": max_adjacent_log_gap,
+            "gamma_gap_threshold": float(tau_gap),
+            "tau_ratio_threshold": float(np.exp(tau_gap)),
+            "gap_location": gap_location,
+            "contrast": contrast,
+            "tau_contrast_threshold": float(tau_contrast) if tau_contrast is not None else None,
+            "p_oversample": p_oversample,
+        }
+        return tr_est, diag
+
+    return tr_est

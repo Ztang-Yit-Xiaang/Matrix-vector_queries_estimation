@@ -1,0 +1,88 @@
+\section{Introduction}\label{sec:introduction}
+We consider trace estimation when a matrix can be accessed only through
+matrix--vector products. Under a fixed query budget, low-rank variance
+reduction creates an allocation problem: a query used to learn a basis is
+no longer available to sample the residual. The relevant question is not
+simply whether a matrix has a rapidly decaying spectrum. It is whether the
+realized basis reduces the residual estimator risk enough to compensate for
+the queries spent constructing it.
+
+\subsection{Background and problem formulation}
+\hutchpp\ combines a randomized low-rank trace contribution with stochastic
+estimation of the complementary trace. Meyer et al.~\cite{meyer2021}
+establish improved matrix--vector query complexity for positive semidefinite
+matrices. Our starting point is this decomposition, rather than a competing
+claim of improved worst-case query complexity.
+
+In a basic implementation, $q$ queries form a range sketch, $r$ queries
+evaluate the accepted rank-$r$ basis, and $\ell$ queries estimate the residual.
+Thus $q+r+\ell=m$. The familiar denominator $m-2q$ is a full-rank special
+case, not the general ledger. Moreover, the equalities $r=q$ and
+$q=r_\star$, where $r_\star$ is a dominant spectral rank, do not imply that the
+randomized basis accurately captures that dominant eigenspace.
+
+This distinction leads to two related questions. First, what exact
+conditional-risk reduction justifies another low-rank direction? Second,
+can this reduction be certified from a small number of additional queries?
+The second question includes an economic constraint: confidence information
+uses queries, and an abstaining procedure cannot recover those queries by
+returning to a baseline basis.
+
+\subsection{Results and scope}
+We organize the analysis around four contributions.
+\begin{enumerate}
+\item \textbf{Exact allocation and marginal-risk identities.}
+We state the conditions under which random, sequentially chosen allocations
+remain unbiased. We distinguish Gaussian and Rademacher conditional risk and
+show that an accepted direction is beneficial precisely when its fractional
+residual-energy reduction exceeds the fractional loss of residual capacity
+(Proposition~\ref{thm:T4}).
+\item \textbf{Capture mechanisms beyond numerical rank.}
+For step spectra, a nonnegative residual-energy decomposition separates tail
+energy from signal leakage. A graph representation explains the effect of a
+poorly conditioned square signal sketch. A separate exact construction shows
+that a leading eigendirection can be absent from an otherwise full-rank pilot
+(Proposition~\ref{thm:T6}).
+\item \textbf{Certification targets and cost.}
+We derive the moments and Hoeffding decomposition of sample variance,
+formulate paired risk differences, and give safe-acceptance implications
+under simultaneous confidence events. We distinguish those implications
+from complete-policy safety after construction and certification costs
+(Propositions~\ref{thm:T9} and~\ref{thm:T10}).
+\item \textbf{Explicit limitations supported by frozen experiments.}
+Two audited confidence constructions are analytically vacuous on the
+small-budget grid. Empirical studies nevertheless find useful risk
+information, substantial common-probe covariance reduction, and rare-path
+protection. We report the accompanying failures and limitations rather than
+interpreting these observations as a universal guarantee.
+\end{enumerate}
+
+Many underlying identities are elementary or classical. We do not claim
+them individually as new mathematical discoveries. Their role is to make the
+allocation decision, the probe-specific risk target, and the cost of
+certification explicit in a common framework. The contribution of the
+experimental analysis is a controlled separation of failure mechanisms,
+including hypotheses that the recorded results did not support.
+
+\subsection{Relation to prior work}
+\paragraph{Randomized range finding.}
+Halko, Martinsson, and Tropp~\cite{halko2011} develop a general framework for
+randomized low-rank approximation. We use a self-contained step-spectrum
+calculation to study capture, rather than importing a Gaussian sketch
+theorem for a rotated coordinate-Rademacher block.
+
+\paragraph{Quadratic-form concentration.}
+Cortinovis and Kressner~\cite{cortinovis2022} provide the quadratic-chaos tail
+bound used in our truncation calculation. Hypercontractivity supplies
+degree-dependent moment control~\cite{odonnell2007}. Neither ingredient,
+without the additional steps analyzed below, is a useful small-budget
+certificate for the realized risk comparison.
+
+\paragraph{Organization and boundary.}
+We follow a theory-first exposition: preliminaries, allocation analysis,
+capture mechanisms, certification, and experimental validation, with
+supporting calculations and provenance in appendices. The detailed
+experimental records are unpublished project artifacts~\cite{project2026}.
+All empirical claims are conditional on their stated finite populations.
+We do not claim a universal one-column oversampling rule, a new minimax lower
+bound, or a completed confidence-certified online allocator.

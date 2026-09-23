@@ -1,0 +1,92 @@
+% Editorially assembled from the preserved September 17 report.
+\section{Subspace capture beyond numerical rank}\label{sec:capture}
+\begin{lemma}[Structured residual energy]\label{thm:T5}
+Let $A=\eta I+(1-\eta)U_1U_1^\top$, where $U_1$ has $k$ orthonormal columns and $0\le\eta<1$. Complete it to an orthogonal basis $[U_1,U_2]$. Define $Z_Q=R_QU_1$.
+
+
+For any orthonormal $Q$,
+
+
+\begin{equation}
+H_Q=\eta R_Q+(1-\eta)Z_QZ_Q^\top,
+\end{equation}
+
+
+\begin{equation}
+\boxed{E_G(Q)=\eta^2(d-r)
++2\eta(1-\eta)\|Z_Q\|_F^2
++(1-\eta)^2\|Z_Q^\top Z_Q\|_F^2.}
+\end{equation}
+
+
+\end{lemma}
+\begin{proof}
+Insert the structured $A$ into $R_QAR_Q$. In the squared Frobenius norm, $\|R_Q\|_F^2=d-r$, $R_QZ_Q=Z_Q$, and $\|Z_QZ_Q^\top\|_F^2=\|Z_Q^\top Z_Q\|_F^2$. Expanding yields the formula. Each term is nonnegative.
+
+\end{proof}
+
+
+\textbf{Why this matters.} The formula exhibits leakage directly and avoids subtracting several order-one numbers to recover a tiny residual energy. Tiny positive tails are not canonicalized to exact zero. The $\eta=0$ zero-risk treatment in the frozen implementation also requires its stated capture/backward-residual checks.
+
+
+\begin{lemma}[Square-sketch graph and principal angles]\label{thm:T5b}
+Let $A=\eta I+(1-\eta)U_1U_1^\top$, where $U_1$ has $k$ orthonormal columns and $0\le\eta<1$. Complete it to an orthogonal basis $[U_1,U_2]$. Define $Z_Q=R_QU_1$.
+
+
+Let $S_1=U_1^\top S$, $S_2=U_2^\top S$. If $q=k$ and $S_1$ is invertible, set $F=\eta S_2S_1^{-1}$. For $Q$ spanning $AS$,
+
+
+\begin{equation}
+\boxed{\|R_QU_1\|_2=\frac{\|F\|_2}{\sqrt{1+\|F\|_2^2}}.}
+\end{equation}
+
+
+\end{lemma}
+\begin{proof}
+In the eigenbasis, $AS$ is represented by $[S_1^\top,\eta S_2^\top]^\top$. Multiplication on the right by $S_1^{-1}$ does not change its range, which is therefore the graph of $F$, spanned by $[I,F^\top]^\top$. An orthonormal basis is
+
+
+\begin{equation}
+\begin{bmatrix}I\\F\end{bmatrix}(I+F^\top F)^{-1/2}.
+\end{equation}
+
+
+Its overlap with the signal coordinate space has singular values $(1+\sigma_i(F)^2)^{-1/2}$. These are the cosines of the principal angles, so the largest sine is exactly the displayed expression.
+
+\end{proof}
+
+
+\textbf{Interpretation.} Full rank of $S_1$ does not imply a small inverse. Poor conditioning can amplify a nonzero tail and create leakage, which Statement A converts to residual energy. A large inverse alone is not sufficient evidence: the product $S_2S_1^{-1}$, not $S_1^{-1}$ in isolation, determines this graph error.
+
+
+For $q>k$ and full row rank $S_1$, the range contains the graph with factor $\eta S_2S_1^\dagger$. It may contain additional useful directions, so the square-case equality becomes a capture bound, not generally an equality for the whole range. On a nested path, appending a signal column $v$ changes the Gram matrix to $S_1S_1^\top+vv^\top$. The minimum eigenvalue cannot decrease; thus the full-row-rank pseudoinverse norm cannot increase. Neither strict improvement nor good conditioning is guaranteed. Coordinate-Rademacher $S$ also does not make the rotated block $U_1^\top S$ iid Gaussian or iid Rademacher.
+
+\begin{proposition}[A missing signal direction can be invisible to the pilot]\label{thm:T6}
+$A$ is symmetric, $w$ is a unit vector with $Aw=w$, and $S^\top w=0$. Let $Q$ span $AS$. For the PSD step model, $w$ is one of its unit-eigenvalue directions and $0\le\eta<1$.
+
+
+In exact arithmetic,
+
+
+\begin{equation}
+Q^\top w=0,\quad R_Qw=w,\quad H_Qw=w.
+\end{equation}
+
+
+Moreover, $A'=A-(1-\eta)ww^\top$ replaces this eigenvalue by $\eta$ and has the same observed products:
+
+
+\begin{equation}
+A'S=AS,\qquad A'Q=AQ.
+\end{equation}
+
+
+\end{proposition}
+\begin{proof}
+Symmetry gives $(AS)^\top w=S^\top Aw=S^\top w=0$. Thus $w$ is orthogonal to the sampled range and to $Q$. The first three identities follow by projecting $Aw=w$. In the two product differences, $ww^\top S=0$ and $ww^\top Q=0$, proving transcript equality. In the step model, modifying one eigenvalue in its own orthogonal eigendirection leaves the other eigenvalues unchanged and preserves PSD.
+
+\end{proof}
+
+
+\textbf{Interpretation.} A deterministic pilot decision based only on those products cannot distinguish these two matrices on this transcript. This is a local identifiability limitation, not a distribution-level impossibility theorem: the constructed alternative can depend on the realized sketch. It leaves room for probabilistic assumptions or additional fresh queries. The observed positive-oversampling example in Section~\ref{sec:experiments} is different from the full-row-rank conditioning mechanism of Lemma~\ref{thm:T5}.
+

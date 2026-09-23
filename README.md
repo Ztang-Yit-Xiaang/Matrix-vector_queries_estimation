@@ -1,205 +1,107 @@
-# Matrix-Vector Queries Trace Estimation
+# Adaptive Hutch++ trace estimation research
 
-This project implements **three variants of the Hutch++ algorithm** to estimate the trace of a matrix using only **matrix-vector multiplication queries**. The algorithms are applied to a real-world dataset (**Wiki-Vote network**) to estimate the number of **triangles in a graph**.
+This repository contains the Hutch++ research track from the UROP Summer 2026 project with Swati Padmanabhan. It studies adaptive matrix-vector query allocation, realized Gaussian/Rademacher residual risk, and the limits of finite-sample risk certification.
 
-The project demonstrates how **randomized numerical linear algebra** can be used to compute expensive quantities efficiently when the matrix is too large to form explicitly.
+The main scientific conclusion is deliberately conservative: the exploratory adaptive gates are useful research prototypes, but this repository does not claim a universally safe or confidence-certified online allocator.
 
----
+## Research status
 
-# 1. Problem Statement
+- The fixed Hutch++ baselines, query accounting, rank-aware risk identities, and several certification limits are documented and tested.
+- The zero-oversampling audit explains why a sharp pilot Ritz gap does not certify complete dominant-subspace capture.
+- Phase 1A--1D and Phase 2A--2C records distinguish empirical evidence, proved identities, route-specific no-go results, and unresolved confidence questions.
+- `Adaptive_Hutch_pplus_TwoStageGated` is exploratory. Its development benchmarks are not held-out validation and should not be read as a safety guarantee.
+- The current teaching deck, manuscript packages, reports, figures, and provenance records are under `reports/`, `figures/`, and `results/`.
 
-Many problems in numerical linear algebra require computing the **trace of a matrix**
-$\text{tr}(A)$.
+For the current project narrative and open questions, see the workspace-level [`UROP_TRACKER.md`](../../../UROP_TRACKER.md) and [`CURRENT_STATE.md`](CURRENT_STATE.md).
 
-However, in large-scale applications the matrix $A$ is often **not explicitly available**.  
-Instead, we can only compute **matrix-vector products**
-$Av$
+## Repository layout
 
-through a function or oracle.
-
-The challenge is therefore:
-
-> Estimate $\text{tr}(A)$ using as few matrix-vector multiplications as possible.
-
-This problem appears in many applications such as:
-
-- log-determinant estimation
-- spectral density estimation
-- graph analytics
-- triangle counting in networks
-
----
-
-# 2. Triangle Counting Example
-
-In this project we apply trace estimation to the **Wiki-Vote network dataset**.
-
-The dataset represents a voting network where:
-
-- **nodes** represent Wikipedia users
-- **edges** represent votes between users
-
-We analyze the **triangle structure** of the network.
-
-Triangles represent **mutual support groups**, which are an important indicator of community structure in social networks.
-
----
-
-### Graph formulation
-
-Let $B$
-
-be the adjacency matrix of the graph.
-
-A classical identity from graph theory states:
-
-$$
-\text{Number of triangles} = \frac{1}{6}\text{tr}(B^3)
-$$
-
-where:
-
-- $B^3$ counts the number of **3-step paths**
-- the trace extracts **closed walks**
-
-Each triangle contributes **6 closed walks**, hence the division by 6.
-
-Therefore the problem reduces to:
-
-> Estimate $\text{tr}(B^3)$
-
-without explicitly computing $B^3$.
-
----
-
-# 3. Trace Estimation Algorithms
-
-## 3.1 Hutchinson's Estimator
-
-The classical estimator uses random vectors $g$:
-
-$$
-\text{tr}(A) \approx \frac{1}{m}\sum_{i=1}^{m} g_i^T A g_i
-$$
-
-This estimator requires
-
-$$
-O(1/\epsilon^2)
-$$
-
-matrix-vector queries to achieve a \((1\pm \epsilon)\) approximation.
-
----
-
-## 3.2 Hutch++
-
-Hutch++ improves Hutchinson’s estimator by combining:
-
-- a **low-rank approximation**
-- a **stochastic trace estimator**
-
-The estimator is
-
-$$
-\text{Hutch++}(A) =
-\text{tr}(Q^T A Q) +
-\frac{3}{m}
-\text{tr}(G^T(I - QQ^T)A(I - QQ^T)G)
-$$
-
-This reduces the query complexity to
-
-$O(1/\epsilon)$
-
-which is a **quadratic improvement** over Hutchinson's estimator.
-
----
-
-# 4. Implemented Algorithms
-
-This project implements three variants:
-
-### 1️⃣ Hutch++
-
-Adaptive trace estimator with variance reduction.
-
-### 2️⃣ NA-Hutch++
-
-Non-adaptive variant where all matrix-vector queries are generated beforehand.
-
-### 3️⃣ Gaussian-Hutch++
-
-Variant using Gaussian random vectors that allows tighter variance analysis.
-
----
-
-# 5. Matrix-Vector Oracle
-
-Instead of forming \(B^3\), we define a **matrix-vector oracle**
-
-$$
-A = B^3
-$$
-
-so that
-$$Av = B(B(Bv))$$
-
-
-This avoids constructing the dense matrix \(B^3\) and allows efficient computation using sparse matrix operations.
-
----
-
-# 6. Pipeline
-
-The full workflow of the project is:
-
-```
-Wiki-Vote dataset
-↓
-Construct adjacency matrix $B$
-↓
-Define matrix-vector oracle $A = B^3$
-↓
-Run Hutch++ estimators
-↓
-Estimate $\text{tr}(A)$
-↓
-Triangle count = $\text{tr}(A) / 6$
+```text
+src/          Estimators, matrix-vector oracles, and mathematical helper modules
+experiments/  Reproducible experiment runners and report/figure builders
+tests/        Unit, query-accounting, numerical, and artifact regression tests
+docs/         Specifications, notation ledgers, and proof notes
+reports/      Research reports, manuscript source/packages, audits, and decks
+figures/      Validated figures, editable SVGs, source CSVs, and manifests
+results/      Frozen experiment outputs, checksums, and recovery records
 ```
 
----
+The primary implementation is [`src/trace_baseline.py`](src/trace_baseline.py). All estimator matrix-vector products should pass through `MatVecOracle` so query budgets remain auditable.
 
-# 7. Running the Code
+## Core estimators
 
-Example usage:
+| Estimator | Function | Role |
+| --- | --- | --- |
+| Hutchinson | `Hutchinson` | Uniform stochastic trace baseline |
+| Standard Hutch++ | `Hutch_pplus` | Fixed-budget Hutch++ baseline |
+| Non-adaptive Hutch++ | `NA_Hutch_pplus` | Single-batch non-adaptive comparison |
+| Gaussian Hutch++ | `Gaussian_Hutch_pplus` | Gaussian-sketch comparison |
+| Sequential pilot | `Adaptive_Hutch_pplus_SequentialPilot` | Guarded adaptive prototype |
+| Marginal-risk pilot | `Adaptive_Hutch_pplus_MarginalRisk` | Marginal energy-drop prototype |
+| Two-stage gated | `Adaptive_Hutch_pplus_TwoStageGated` | Exploratory reused-pilot gate |
 
-```python
-vote_matrix = load_wiki_Vote_as_graph()
+The standard accounting identity is
 
-d = vote_matrix.shape[0]
-
-vote_A = count_triangles(vote_matrix)
-
-m = 5000
-
-hutch_pp_estimate = Hutch_pplus(vote_A, m, d)
-na_hutch_pp_estimate = NA_Hutch_pplus(vote_A, m, d)
-gaussian_hutch_pp_estimate = Gaussian_Hutch_pplus(vote_A, m, d)
-
-print("Hutch++ estimate:", hutch_pp_estimate / 6)
+```text
+q + r_actual + ell = m
 ```
 
-# 8. Expected Output
+where `q` is construction work, `r_actual` is the accepted basis rank, and `ell` is the residual-probe count. Implementations must preserve this identity and must not allocate an explicit dense residual projector when a matrix-free application is available.
 
-The Wiki-Vote dataset contains roughly
+## Setup
 
-≈ 608,000 triangles
+Use Python 3.10--3.12 with NumPy, SciPy, Matplotlib, pandas, and pytest. A virtual environment is recommended:
 
-The randomized estimators should approximate this value with small relative error.
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install numpy scipy matplotlib pandas pytest
+```
 
-# 9. References
+If the project environment already provides these packages, no installation is needed.
 
-Raphael A. Meyer, Cameron Musco, Christopher Musco, and David P. Woodruff.
-**Hutch++: Optimal Stochastic Trace Estimation.**
-NeurIPS / arXiv:2010.09649
+## Verification
+
+Run the maintained tests from the repository root:
+
+```bash
+python -m pytest -q
+```
+
+Focused checks can be run individually, for example:
+
+```bash
+python -m pytest -q tests/test_twostage_gated_estimator.py
+python -m pytest -q tests/test_coordinate_gate_failure.py
+python -m pytest -q tests/test_structural_paired_difference_confidence_phase2c.py
+```
+
+Some benchmark and artifact tests depend on compiled numerical libraries or optional scientific packages. If a local environment terminates during collection, record that as an environment failure rather than interpreting it as a passing or failing scientific result.
+
+## Reproducibility and provenance
+
+Experiment runners are in `experiments/`; validated outputs and manifests are in `results/`. Research figures retain source CSVs or editable SVGs when applicable. Reports state whether a result is proved, empirically established on frozen paths, exploratory, or still open.
+
+The current deliverables include:
+
+- the source-backed UROP report and claims register;
+- theorem--proof and LaTeX manuscript packages;
+- coordinate-gate, orientation, certification, and paired-confidence audits;
+- validated figure packages with source data;
+- the September 2026 supervisor and teaching presentations under `reports/swati_meeting_20260922/output/`.
+
+Generated build directories and temporary PowerPoint lock files are intentionally ignored. Final artifacts should be committed only when they are useful to reproduce, inspect, or cite the project.
+
+The GitHub synchronization snapshot retains source code, summaries, manifests, reports, figures, and final presentations. A few multi-hundred-megabyte raw trial dumps remain local rather than being uploaded to ordinary Git storage; their producing scripts and compact summaries are retained so the experiments can be regenerated.
+
+## Important interpretation rules
+
+1. A numerical rank or visible Ritz knee is not a proof of complete signal capture.
+2. Mean-risk improvement does not imply pathwise improvement; rare catastrophic paths can dominate the mean.
+3. Conditional residual-risk estimates and paid-policy safety use different denominators and must not be conflated.
+4. Bootstrap intervals over frozen orientations and paths are empirical summaries, not universal confidence theorems.
+5. The exploratory gates remain separate from the frozen baseline and should not be presented as certified replacements.
+
+## License
+
+This research code is released under the MIT License. See the repository history and the report provenance records for authorship, source attribution, and validation details.

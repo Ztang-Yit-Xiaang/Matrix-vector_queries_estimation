@@ -1,0 +1,37 @@
+[
+  {
+    "name": "UROP_TRACKER.md",
+    "previous_sha256": "983de4eab12908bf4974d3f74c73ac29ff28c0c137832f121b85a5628dbeebfb",
+    "current_sha256": "135369052ae514ca8bc30218e538eab50a5275656b56a5c37c6b48de6cbb68de"
+  },
+  {
+    "name": "memory.md",
+    "previous_sha256": "f493555b58ac5d16da49fa4cc62422892d69485111b1fe320e98e8f0dd28a3d4",
+    "current_sha256": "262905249bdfecce2c19bf426543d00ef9511f8064e9549b98fb1a59d264e19b"
+  },
+  {
+    "name": "UROP_Research_Memory.md",
+    "previous_sha256": "f493555b58ac5d16da49fa4cc62422892d69485111b1fe320e98e8f0dd28a3d4",
+    "current_sha256": "262905249bdfecce2c19bf426543d00ef9511f8064e9549b98fb1a59d264e19b"
+  },
+  {
+    "name": "CURRENT_STATE.md",
+    "previous_sha256": "7d3dad79c6dd4d0df8659e558b883a4090f2e69790abfd6e0acad1f4571daa11",
+    "current_sha256": "ee8dc50bbf846258078e4070f76cc3fd739f5fefc4652498a51e9a0819e56fc6"
+  },
+  {
+    "name": "urop_research_report_20260916.md",
+    "previous_sha256": null,
+    "current_sha256": "52c050ba8adf01cdcf3af79f7f1d43fb0b5ac321d1a2183b908ac2b86a9ca657"
+  },
+  {
+    "name": "urop_claims_register_20260916.md",
+    "previous_sha256": null,
+    "current_sha256": "9052cd5a5951dcfb1cd3c3898a0531e2eacd1947a119bc2135ca027b2c7fa742"
+  },
+  {
+    "name": "urop_research_progress_report_aug2026.md",
+    "previous_sha256": "d8a7be391bb8e3c8057215d83dbd5c1db357c32d70aee19ede2c508f8808c3d9",
+    "current_sha256": "dfae0be953e12eaeab349a3c17b486c56dd54d34131046bcaf0c24c239ef71b6"
+  }
+]

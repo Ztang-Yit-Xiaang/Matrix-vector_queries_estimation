@@ -1,0 +1,190 @@
+% Editorially assembled from the preserved September 17 report.
+\section{Confidence bounds and their budget limits}\label{sec:confidence}
+For a multilinear polynomial of degree at most $h$ in independent uniform signs, hypercontractivity gives $\|P\|_4\le3^{h/2}\|P\|_2$. Taking $h=2$ yields the retained quadratic-chaos fourth-moment bound $\mu_4\le81\sigma^4$. Taking $h=4$ instead gives the fourth-moment factor $9^4=6561$. These degree-dependent constants cannot be interchanged. The imported inequality is stated in O'Donnell's hypercontractivity lecture, Corollary 1.3~\cite{odonnell2007}; the substitutions and applications below are the report's calculations.
+
+\begin{proposition}[The frozen 81-plus-Chebyshev certificate is budget-vacuous]\label{thm:T11}
+Use Lemma~\ref{thm:T7} with $\mu_4\le81\sigma^4$, and require simultaneous two-action control with total failure probability $\delta_{\rm joint}$. Allocate $\delta_{\rm joint}/2$ to each action. Handle zero variance directly as in Lemma~\ref{thm:T7}.
+
+
+A valid common relative-deviation radius is
+
+
+\begin{equation}
+\varepsilon_{\rm Ch}(s,\delta_{\rm joint})
+=\sqrt{\frac{2[80+2/(s-1)]}{s\delta_{\rm joint}}}.
+\end{equation}
+
+
+At $\delta_{\rm joint}=0.05$, it exceeds one for every $2\le s\le32$.
+
+
+\end{proposition}
+\begin{proof}
+Lemma~\ref{thm:T7} gives
+
+
+\begin{equation}
+\frac{\operatorname{Var}(\widehat\sigma_s^{\,2})}{\sigma^4}
+\le\frac{80+2/(s-1)}s.
+\end{equation}
+
+
+Chebyshev at relative deviation $\varepsilon$ bounds the one-action failure probability by this quantity divided by $\varepsilon^2$. Equating it to $\delta_{\rm joint}/2$ yields the radius; the union bound supplies simultaneity without requiring action independence. Both $80/s$ and $2/[s(s-1)]$ decrease for $s\ge2$. Thus the smallest radius on the grid is at 32, where
+
+
+\begin{equation}
+\varepsilon_{\rm Ch}(32,0.05)
+=\sqrt{\frac{2(80+2/31)}{1.6}}\approx10.00403>1.
+\end{equation}
+
+
+All smaller sample sizes are also vacuous for a positive denominator $1-\varepsilon$.
+
+\end{proof}
+
+
+The event is valid, but division by $1-\varepsilon$ cannot provide a finite multiplicative variance upper bound. This failure concerns the specified construction, not every possible certificate. Throughout, $\delta_{\rm joint}$ denotes total simultaneous failure probability rather than a per-action budget.
+
+\subsection{Truncation of the nondegenerate projection}
+\textbf{Assumptions and imported theorem.} Let $C=H-\operatorname{diag}(H)$ be nonzero, symmetric, and zero diagonal. Then $Z=g^\top Cg$, $\sigma^2=2\|C\|_F^2$, and $\kappa=\|C\|_2/\|C\|_F\le1$. Cortinovis--Kressner, Theorem 2, equation (8)~\cite{cortinovis2022} bounds its tail by
+
+
+\begin{equation}
+\Pr(|Z|\ge t)\le2\exp\!\left[-\frac{t^2}{8\|C\|_F^2+8t\|C\|_2}\right].
+\end{equation}
+
+
+Substitute $t=u\sigma$ and define $V=Z^2/\sigma^2$. Then $\mathbb EV=1$ and
+
+
+\begin{equation}
+\Pr(V\ge v)\le p_\kappa(v)
+=\min\left\{1,2\exp\!\left[-\frac{v}{4+4\sqrt{2v}\,\kappa}\right]\right\}.
+\end{equation}
+
+
+The zero-variance branch is deterministic and needs no normalization. The normalized nondegenerate Hoeffding component is exactly $s^{-1}\sum_i(V_i-1)$, since $2h_1/\sigma^2=V-1$.
+
+
+\textbf{Truncation calculation.} For $T>0$, define $V^{(T)}=\min(V,T)$ and
+
+
+\begin{equation}
+a_T=(4\sqrt2\kappa+4/\sqrt T)^{-1},\qquad
+\beta_\kappa(T)=4e^{-a_T\sqrt T}
+\left(\frac{\sqrt T}{a_T}+\frac1{a_T^2}\right).
+\end{equation}
+
+
+For $v\ge T$, the tail exponent is at least $a_T\sqrt v$. Therefore
+
+
+\begin{equation}
+\mathbb E(V-V^{(T)})=\int_T^\infty\Pr(V>v)\,dv
+\le\int_T^\infty2e^{-a_T\sqrt v}\,dv=\beta_\kappa(T).
+\end{equation}
+
+
+The last equality follows by substituting $z=\sqrt v$ and integrating $4ze^{-a_Tz}$. Hence $\mathbb EV^{(T)}\ge\max(0,1-\beta_\kappa(T))$. The retained fourth-moment and bounded-range controls give the capped variance envelope
+
+
+\begin{equation}
+\nu_\kappa(T)=\min\left\{81,\frac{T^2}{4},
+81-\max(0,1-\beta_\kappa(T))^2\right\}.
+\end{equation}
+
+
+The third term subtracts a lower bound on the squared mean from an upper bound on the second moment. For the lower-tail Bernstein bound, $\mathbb EV^{(T)}-V^{(T)}\le\mathbb EV^{(T)}\le1$, so its one-sided boundedness constant is one, not $T$.
+
+
+\begin{proposition}[Truncation--Bernstein lower-tail vacuity]\label{thm:T12}
+In the frozen family $T\ge64$, whenever $0<\varepsilon<1$ and $x=\varepsilon-\beta_\kappa(T)>0$, the proposed lower-tail probability upper bound
+
+
+\begin{equation}
+D_{s,\kappa}(\varepsilon,T)
+=\exp\!\left[-\frac{sx^2}{2(\nu_\kappa(T)+x/3)}\right]
+\end{equation}
+
+
+satisfies
+
+
+\begin{equation}
+\boxed{D_{s,\kappa}(\varepsilon,T)>e^{-s/160}
+\ge e^{-0.2}\approx0.81873\quad(s\le32).}
+\end{equation}
+
+
+\end{proposition}
+\begin{proof}
+Since $T^2/4\ge1024$ and $0\le\max(0,1-\beta)\le1$, the minimum defining $\nu$ lies in $[80,81]$. Also $0<x<1$. The exponent's positive magnitude is strictly below $s/160$, because its numerator is below $s$ and its denominator exceeds 160. Exponentiating gives the strict floor. For $s\le32$, $e^{-s/160}\ge e^{-0.2}$. If $\beta\ge\varepsilon$, the cap provides no admissible positive deviation and cannot rescue the bound. Even the most permissive declared allocation is $0.10/2=0.05$, far below the floor.
+
+\end{proof}
+
+
+This is a floor on the proposed probability upper bound, not on the actual failure probability. Thus this truncation family is vacuous uniformly over the stated parameter grid. The conclusion neither excludes a better small-ball argument nor permits the canonical $h_2$ term to replace control of the full sample variance.
+
+
+The constant 81 specifies the two bound families just analyzed. Appendix~\ref{sec:technical} also establishes the sharper quadratic-chaos factor 15. Replacing 81 by 15 in the joint Chebyshev calculation gives $\sqrt{2[14+2/31]/1.6}\approx4.192928>1$ at $s=32$. It therefore remains vacuous on the same smaller-sample grid. This calculation does not extend the 81-based truncation proposition to every sharper concentration construction.
+
+\subsection{Paired differences and structural prior information}
+For disjoint pairs of common probes, write
+
+
+\begin{equation}
+D_j=\frac{(X_{a,2j-1}-X_{a,2j})^2}{2\ell_a}
+-\frac{(X_{0,2j-1}-X_{0,2j})^2}{2\ell_0}.
+\end{equation}
+
+
+These variables are conditionally iid across pairs, with $\mathbb ED_j=\Delta$, while retaining dependence between actions within each pair. Their centered versions have degree at most four in the signs. The general hypercontractive fourth-moment factor is therefore 6561, not the degree-two factors 81 or 15. The audited data-only scale constructions remain budget-vacuous for $s\le32$~\cite{project2026}.
+
+\begin{theorem}[A valid norm prior supplies a finite paired radius]\label{thm:T13}
+Condition on the pre-certification information $\mathcal F$, which fixes both actions, their positive denominators, and a finite bound $0\le M_0<\infty$ satisfying $\|H_0\|_F\le M_0$. The bases are nested: $R_aR_0=R_a$. There are integer $n\ge1$ disjoint pairs of fresh common Rademacher probes, conditionally iid and independent of $\mathcal F$. All probabilities and moments below are conditional on $\mathcal F$. Use the quadratic-chaos fourth-moment bound 81.
+
+
+For $\bar D=n^{-1}\sum_jD_j$, define
+
+
+\begin{equation}
+\bar v=164M_0^4\left(\frac1{\ell_a}+\frac1{\ell_0}\right)^2.
+\end{equation}
+
+
+Then for $0<\delta<1$,
+
+
+\begin{equation}
+\Pr\left(\Delta\le\bar D+
+\sqrt{\frac{\bar v}{n}\frac{1-\delta}{\delta}}\right)\ge1-\delta.
+\end{equation}
+
+
+\end{theorem}
+\begin{proof}
+Nesting gives $H_a=R_aH_0R_a$, hence $\|H_a\|_F\le M_0$ and $\sigma_x^2\le2M_0^2$ for both actions. For $W=(X_1-X_2)^2/2$, centered iid expansion yields
+
+
+\begin{equation}
+\operatorname{Var}(W)=\frac{\mu_4+\sigma^4}{2}\le41\sigma^4.
+\end{equation}
+
+
+Indeed $\mathbb E(Z_1-Z_2)^4=2\mu_4+6\sigma^4$; divide by four and subtract $\sigma^4$. The triangle inequality for centered $L^2$ norms now gives
+
+
+\begin{equation}
+\operatorname{Var}(D_j)\le41
+\left(\frac{\sigma_a^2}{\ell_a}+\frac{\sigma_0^2}{\ell_0}\right)^2\le\bar v.
+\end{equation}
+
+
+Independence across pairs gives $\operatorname{Var}(\bar D)\le\bar v/n$. Cantelli's one-sided inequality yields the displayed radius. To see its constant directly, for a centered variable $Y$ of variance $v$, Markov's inequality on $(Y+b)^2$ gives $\Pr(Y\ge t)\le(v+b^2)/(t+b)^2$. Minimizing over $b\ge0$ at $b=v/t$ gives $v/(v+t^2)$. Apply this to $Y=\Delta-\bar D$ and solve for failure probability $\delta$.
+
+\end{proof}
+
+
+If $M_0=0$, both residuals vanish and the radius-zero conclusion is deterministic. This avoids division by zero in the auxiliary Cantelli calculation. If the norm prior is only probabilistically valid, its failure probability enters the total confidence budget. A finite radius alone does not establish useful acceptance, affordable prior estimation, or safe fallback relative to the original baseline.
+
+\paragraph{Supporting moment calculations.} Appendix~\ref{sec:technical} gives the corrected quadratic-chaos fourth moment and the exact scale-estimation boundary. These refinements do not turn a degree-two bound into a degree-four one.

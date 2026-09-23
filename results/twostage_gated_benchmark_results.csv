@@ -1,0 +1,751 @@
+setup,trial,algorithm,rel_err,gated_triggered
+PowerLaw (c=0.5 - Flat),0,Hutchinson,0.0064192372549042535,False
+PowerLaw (c=0.5 - Flat),0,Standard Hutch++,0.00831640069943421,False
+PowerLaw (c=0.5 - Flat),0,TwoStageGated (Ours),0.010330184678853015,False
+PowerLaw (c=0.5 - Flat),1,Hutchinson,0.01390627056991159,False
+PowerLaw (c=0.5 - Flat),1,Standard Hutch++,0.022206304293034,False
+PowerLaw (c=0.5 - Flat),1,TwoStageGated (Ours),0.0035402738764707354,False
+PowerLaw (c=0.5 - Flat),2,Hutchinson,0.013740799254112158,False
+PowerLaw (c=0.5 - Flat),2,Standard Hutch++,0.0031954973214060227,False
+PowerLaw (c=0.5 - Flat),2,TwoStageGated (Ours),0.020175152285967776,False
+PowerLaw (c=0.5 - Flat),3,Hutchinson,0.00401719416169022,False
+PowerLaw (c=0.5 - Flat),3,Standard Hutch++,0.007846160672087354,False
+PowerLaw (c=0.5 - Flat),3,TwoStageGated (Ours),0.011751076184804931,False
+PowerLaw (c=0.5 - Flat),4,Hutchinson,7.259817136470438e-05,False
+PowerLaw (c=0.5 - Flat),4,Standard Hutch++,0.005915029444436001,False
+PowerLaw (c=0.5 - Flat),4,TwoStageGated (Ours),0.005258395685827361,False
+PowerLaw (c=0.5 - Flat),5,Hutchinson,0.00925188790828536,False
+PowerLaw (c=0.5 - Flat),5,Standard Hutch++,0.032090435263234185,False
+PowerLaw (c=0.5 - Flat),5,TwoStageGated (Ours),0.003148464280575159,False
+PowerLaw (c=0.5 - Flat),6,Hutchinson,0.01122461079805917,False
+PowerLaw (c=0.5 - Flat),6,Standard Hutch++,0.012497080077059908,False
+PowerLaw (c=0.5 - Flat),6,TwoStageGated (Ours),0.009044661463798039,False
+PowerLaw (c=0.5 - Flat),7,Hutchinson,0.021089877199403282,False
+PowerLaw (c=0.5 - Flat),7,Standard Hutch++,0.0005880619727746263,False
+PowerLaw (c=0.5 - Flat),7,TwoStageGated (Ours),0.0022729869902759735,False
+PowerLaw (c=0.5 - Flat),8,Hutchinson,0.01801948139981949,False
+PowerLaw (c=0.5 - Flat),8,Standard Hutch++,0.0049074896969126,False
+PowerLaw (c=0.5 - Flat),8,TwoStageGated (Ours),0.008786087621632244,False
+PowerLaw (c=0.5 - Flat),9,Hutchinson,0.004324940724830571,False
+PowerLaw (c=0.5 - Flat),9,Standard Hutch++,0.0018402661779238416,False
+PowerLaw (c=0.5 - Flat),9,TwoStageGated (Ours),0.00791435821982668,False
+PowerLaw (c=0.5 - Flat),10,Hutchinson,0.008316593213369696,False
+PowerLaw (c=0.5 - Flat),10,Standard Hutch++,0.02121528154829067,False
+PowerLaw (c=0.5 - Flat),10,TwoStageGated (Ours),0.004555384526305258,False
+PowerLaw (c=0.5 - Flat),11,Hutchinson,0.00032411517122767937,False
+PowerLaw (c=0.5 - Flat),11,Standard Hutch++,0.017187395854588342,False
+PowerLaw (c=0.5 - Flat),11,TwoStageGated (Ours),0.010669104359603419,False
+PowerLaw (c=0.5 - Flat),12,Hutchinson,0.008291107524095932,False
+PowerLaw (c=0.5 - Flat),12,Standard Hutch++,0.02027813600024492,False
+PowerLaw (c=0.5 - Flat),12,TwoStageGated (Ours),0.0020754195963172154,False
+PowerLaw (c=0.5 - Flat),13,Hutchinson,0.0007795044085398737,False
+PowerLaw (c=0.5 - Flat),13,Standard Hutch++,0.015354918171092812,False
+PowerLaw (c=0.5 - Flat),13,TwoStageGated (Ours),0.006462906598981162,False
+PowerLaw (c=0.5 - Flat),14,Hutchinson,0.0057766739713338965,False
+PowerLaw (c=0.5 - Flat),14,Standard Hutch++,0.000511987379315696,False
+PowerLaw (c=0.5 - Flat),14,TwoStageGated (Ours),0.015780930214323148,False
+PowerLaw (c=0.5 - Flat),15,Hutchinson,0.0001576167204218382,False
+PowerLaw (c=0.5 - Flat),15,Standard Hutch++,0.015147498989968398,False
+PowerLaw (c=0.5 - Flat),15,TwoStageGated (Ours),0.005225260070296786,False
+PowerLaw (c=0.5 - Flat),16,Hutchinson,0.004860628863557522,False
+PowerLaw (c=0.5 - Flat),16,Standard Hutch++,0.00042324996034440307,False
+PowerLaw (c=0.5 - Flat),16,TwoStageGated (Ours),0.0032758256507339455,False
+PowerLaw (c=0.5 - Flat),17,Hutchinson,0.009125814700550954,False
+PowerLaw (c=0.5 - Flat),17,Standard Hutch++,0.0155866856278657,False
+PowerLaw (c=0.5 - Flat),17,TwoStageGated (Ours),0.012326780763117709,False
+PowerLaw (c=0.5 - Flat),18,Hutchinson,0.01693877960413162,False
+PowerLaw (c=0.5 - Flat),18,Standard Hutch++,0.02168534212038423,False
+PowerLaw (c=0.5 - Flat),18,TwoStageGated (Ours),0.0015592005803888092,False
+PowerLaw (c=0.5 - Flat),19,Hutchinson,0.00891845200948214,False
+PowerLaw (c=0.5 - Flat),19,Standard Hutch++,0.0008783117243329893,False
+PowerLaw (c=0.5 - Flat),19,TwoStageGated (Ours),0.014352532011322005,False
+PowerLaw (c=0.5 - Flat),20,Hutchinson,0.006433162292067652,False
+PowerLaw (c=0.5 - Flat),20,Standard Hutch++,0.008566153160866816,False
+PowerLaw (c=0.5 - Flat),20,TwoStageGated (Ours),0.015143343624161741,False
+PowerLaw (c=0.5 - Flat),21,Hutchinson,0.012046864926296445,False
+PowerLaw (c=0.5 - Flat),21,Standard Hutch++,0.003873526784097175,False
+PowerLaw (c=0.5 - Flat),21,TwoStageGated (Ours),0.019265062406171127,False
+PowerLaw (c=0.5 - Flat),22,Hutchinson,0.009221675178789072,False
+PowerLaw (c=0.5 - Flat),22,Standard Hutch++,0.0038698930702873438,False
+PowerLaw (c=0.5 - Flat),22,TwoStageGated (Ours),0.013566935300046403,False
+PowerLaw (c=0.5 - Flat),23,Hutchinson,0.007316375970966322,False
+PowerLaw (c=0.5 - Flat),23,Standard Hutch++,0.00989068694380258,False
+PowerLaw (c=0.5 - Flat),23,TwoStageGated (Ours),0.005703842526629301,False
+PowerLaw (c=0.5 - Flat),24,Hutchinson,0.0008204405896446286,False
+PowerLaw (c=0.5 - Flat),24,Standard Hutch++,0.027253490548069078,False
+PowerLaw (c=0.5 - Flat),24,TwoStageGated (Ours),0.016783030951013602,False
+PowerLaw (c=0.5 - Flat),25,Hutchinson,0.0007576321198839047,False
+PowerLaw (c=0.5 - Flat),25,Standard Hutch++,0.02066074794206635,False
+PowerLaw (c=0.5 - Flat),25,TwoStageGated (Ours),0.009023051064787242,False
+PowerLaw (c=0.5 - Flat),26,Hutchinson,0.0018037544554489733,False
+PowerLaw (c=0.5 - Flat),26,Standard Hutch++,0.02280208252615663,False
+PowerLaw (c=0.5 - Flat),26,TwoStageGated (Ours),0.016773268659285284,False
+PowerLaw (c=0.5 - Flat),27,Hutchinson,0.0014318784857761042,False
+PowerLaw (c=0.5 - Flat),27,Standard Hutch++,0.0016602218239266623,False
+PowerLaw (c=0.5 - Flat),27,TwoStageGated (Ours),1.5000987626598657e-05,False
+PowerLaw (c=0.5 - Flat),28,Hutchinson,0.000749959117375326,False
+PowerLaw (c=0.5 - Flat),28,Standard Hutch++,0.024563676608474524,False
+PowerLaw (c=0.5 - Flat),28,TwoStageGated (Ours),0.022855237737693598,False
+PowerLaw (c=0.5 - Flat),29,Hutchinson,0.0069559496596953915,False
+PowerLaw (c=0.5 - Flat),29,Standard Hutch++,0.007449034223077443,False
+PowerLaw (c=0.5 - Flat),29,TwoStageGated (Ours),0.0024307040692020943,False
+PowerLaw (c=0.5 - Flat),30,Hutchinson,0.009216964065246674,False
+PowerLaw (c=0.5 - Flat),30,Standard Hutch++,0.019494226914403348,False
+PowerLaw (c=0.5 - Flat),30,TwoStageGated (Ours),0.01612635284395035,False
+PowerLaw (c=0.5 - Flat),31,Hutchinson,0.012606616361544757,False
+PowerLaw (c=0.5 - Flat),31,Standard Hutch++,0.027963694658114317,False
+PowerLaw (c=0.5 - Flat),31,TwoStageGated (Ours),0.0001524021059897863,False
+PowerLaw (c=0.5 - Flat),32,Hutchinson,0.026525329817936944,False
+PowerLaw (c=0.5 - Flat),32,Standard Hutch++,0.016483490221182895,False
+PowerLaw (c=0.5 - Flat),32,TwoStageGated (Ours),0.023463964402110998,False
+PowerLaw (c=0.5 - Flat),33,Hutchinson,0.005641533416424525,False
+PowerLaw (c=0.5 - Flat),33,Standard Hutch++,0.002343101393419239,False
+PowerLaw (c=0.5 - Flat),33,TwoStageGated (Ours),0.0048401371749453165,False
+PowerLaw (c=0.5 - Flat),34,Hutchinson,0.008430678818030193,False
+PowerLaw (c=0.5 - Flat),34,Standard Hutch++,0.006764036466567507,False
+PowerLaw (c=0.5 - Flat),34,TwoStageGated (Ours),0.03684641949465401,False
+PowerLaw (c=0.5 - Flat),35,Hutchinson,0.00697722991424014,False
+PowerLaw (c=0.5 - Flat),35,Standard Hutch++,0.011564878933862783,False
+PowerLaw (c=0.5 - Flat),35,TwoStageGated (Ours),0.013702615584013067,False
+PowerLaw (c=0.5 - Flat),36,Hutchinson,0.003451001858934725,False
+PowerLaw (c=0.5 - Flat),36,Standard Hutch++,0.00715076654911888,False
+PowerLaw (c=0.5 - Flat),36,TwoStageGated (Ours),0.0010644139638991109,False
+PowerLaw (c=0.5 - Flat),37,Hutchinson,0.009307715222809966,False
+PowerLaw (c=0.5 - Flat),37,Standard Hutch++,0.01755652355449736,False
+PowerLaw (c=0.5 - Flat),37,TwoStageGated (Ours),0.008129254885127805,False
+PowerLaw (c=0.5 - Flat),38,Hutchinson,0.008752467831151916,False
+PowerLaw (c=0.5 - Flat),38,Standard Hutch++,0.013317054017626445,False
+PowerLaw (c=0.5 - Flat),38,TwoStageGated (Ours),0.016825974698399273,False
+PowerLaw (c=0.5 - Flat),39,Hutchinson,0.011439625055237134,False
+PowerLaw (c=0.5 - Flat),39,Standard Hutch++,0.011689000582936903,False
+PowerLaw (c=0.5 - Flat),39,TwoStageGated (Ours),0.009916134905662542,False
+PowerLaw (c=0.5 - Flat),40,Hutchinson,0.018466282714935417,False
+PowerLaw (c=0.5 - Flat),40,Standard Hutch++,0.017424753766204396,False
+PowerLaw (c=0.5 - Flat),40,TwoStageGated (Ours),0.0075383027757199555,False
+PowerLaw (c=0.5 - Flat),41,Hutchinson,0.004332817100033324,False
+PowerLaw (c=0.5 - Flat),41,Standard Hutch++,0.007995666561238372,False
+PowerLaw (c=0.5 - Flat),41,TwoStageGated (Ours),0.010822158911029292,False
+PowerLaw (c=0.5 - Flat),42,Hutchinson,0.013431252733046573,False
+PowerLaw (c=0.5 - Flat),42,Standard Hutch++,0.016213975764551154,False
+PowerLaw (c=0.5 - Flat),42,TwoStageGated (Ours),0.011987898204864341,False
+PowerLaw (c=0.5 - Flat),43,Hutchinson,0.0176675089275965,False
+PowerLaw (c=0.5 - Flat),43,Standard Hutch++,0.010188991262855213,False
+PowerLaw (c=0.5 - Flat),43,TwoStageGated (Ours),0.010206071145506484,False
+PowerLaw (c=0.5 - Flat),44,Hutchinson,0.008018232126754978,False
+PowerLaw (c=0.5 - Flat),44,Standard Hutch++,0.03190641136706437,False
+PowerLaw (c=0.5 - Flat),44,TwoStageGated (Ours),0.018924404658220585,False
+PowerLaw (c=0.5 - Flat),45,Hutchinson,0.006815905498536003,False
+PowerLaw (c=0.5 - Flat),45,Standard Hutch++,0.01189386596603166,False
+PowerLaw (c=0.5 - Flat),45,TwoStageGated (Ours),0.005843463270753602,False
+PowerLaw (c=0.5 - Flat),46,Hutchinson,0.013549895788926096,False
+PowerLaw (c=0.5 - Flat),46,Standard Hutch++,0.008865832774871199,False
+PowerLaw (c=0.5 - Flat),46,TwoStageGated (Ours),0.014649337797761407,False
+PowerLaw (c=0.5 - Flat),47,Hutchinson,0.010155809950814642,False
+PowerLaw (c=0.5 - Flat),47,Standard Hutch++,0.006134473490399178,False
+PowerLaw (c=0.5 - Flat),47,TwoStageGated (Ours),0.023617501575334002,False
+PowerLaw (c=0.5 - Flat),48,Hutchinson,0.00554156316465484,False
+PowerLaw (c=0.5 - Flat),48,Standard Hutch++,0.037845019571875034,False
+PowerLaw (c=0.5 - Flat),48,TwoStageGated (Ours),0.007524520294500612,False
+PowerLaw (c=0.5 - Flat),49,Hutchinson,0.016402329427364092,False
+PowerLaw (c=0.5 - Flat),49,Standard Hutch++,0.011414288015335882,False
+PowerLaw (c=0.5 - Flat),49,TwoStageGated (Ours),0.008705715793304454,False
+PowerLaw (c=1.0 - Moderate),0,Hutchinson,0.004340380794056203,False
+PowerLaw (c=1.0 - Moderate),0,Standard Hutch++,0.007386445925265727,False
+PowerLaw (c=1.0 - Moderate),0,TwoStageGated (Ours),0.011160245190502854,False
+PowerLaw (c=1.0 - Moderate),1,Hutchinson,0.007263646336790804,False
+PowerLaw (c=1.0 - Moderate),1,Standard Hutch++,0.006655455472264664,False
+PowerLaw (c=1.0 - Moderate),1,TwoStageGated (Ours),0.007157448361455104,False
+PowerLaw (c=1.0 - Moderate),2,Hutchinson,0.0024246602538988177,False
+PowerLaw (c=1.0 - Moderate),2,Standard Hutch++,0.003134082988481758,False
+PowerLaw (c=1.0 - Moderate),2,TwoStageGated (Ours),0.0006565678994063353,False
+PowerLaw (c=1.0 - Moderate),3,Hutchinson,0.06811749302923885,False
+PowerLaw (c=1.0 - Moderate),3,Standard Hutch++,0.004624715624979526,False
+PowerLaw (c=1.0 - Moderate),3,TwoStageGated (Ours),0.0009053070950968813,False
+PowerLaw (c=1.0 - Moderate),4,Hutchinson,0.01861689100594561,False
+PowerLaw (c=1.0 - Moderate),4,Standard Hutch++,0.0033894409939346434,False
+PowerLaw (c=1.0 - Moderate),4,TwoStageGated (Ours),0.010189138285421489,False
+PowerLaw (c=1.0 - Moderate),5,Hutchinson,0.03212948818699536,False
+PowerLaw (c=1.0 - Moderate),5,Standard Hutch++,0.002348923569172322,False
+PowerLaw (c=1.0 - Moderate),5,TwoStageGated (Ours),0.006791434168283212,False
+PowerLaw (c=1.0 - Moderate),6,Hutchinson,0.05753074791362635,False
+PowerLaw (c=1.0 - Moderate),6,Standard Hutch++,0.007753535017243045,False
+PowerLaw (c=1.0 - Moderate),6,TwoStageGated (Ours),0.0015169121557754156,False
+PowerLaw (c=1.0 - Moderate),7,Hutchinson,0.012991749188915372,False
+PowerLaw (c=1.0 - Moderate),7,Standard Hutch++,0.006431470255236069,False
+PowerLaw (c=1.0 - Moderate),7,TwoStageGated (Ours),0.0019958704931808376,False
+PowerLaw (c=1.0 - Moderate),8,Hutchinson,0.016601186167172932,False
+PowerLaw (c=1.0 - Moderate),8,Standard Hutch++,0.02637896924926472,False
+PowerLaw (c=1.0 - Moderate),8,TwoStageGated (Ours),0.00013238095386590388,False
+PowerLaw (c=1.0 - Moderate),9,Hutchinson,0.08452481016186629,False
+PowerLaw (c=1.0 - Moderate),9,Standard Hutch++,0.011419694814009293,False
+PowerLaw (c=1.0 - Moderate),9,TwoStageGated (Ours),0.017727212841225814,False
+PowerLaw (c=1.0 - Moderate),10,Hutchinson,0.08901639076527376,False
+PowerLaw (c=1.0 - Moderate),10,Standard Hutch++,0.009291559737350137,False
+PowerLaw (c=1.0 - Moderate),10,TwoStageGated (Ours),0.021129042939536605,False
+PowerLaw (c=1.0 - Moderate),11,Hutchinson,0.06444354867929573,False
+PowerLaw (c=1.0 - Moderate),11,Standard Hutch++,0.0027351801306341583,False
+PowerLaw (c=1.0 - Moderate),11,TwoStageGated (Ours),0.005422595644848143,False
+PowerLaw (c=1.0 - Moderate),12,Hutchinson,0.051065960889690155,False
+PowerLaw (c=1.0 - Moderate),12,Standard Hutch++,0.0019889585100327503,False
+PowerLaw (c=1.0 - Moderate),12,TwoStageGated (Ours),0.008873666477955058,False
+PowerLaw (c=1.0 - Moderate),13,Hutchinson,0.01854579437328663,False
+PowerLaw (c=1.0 - Moderate),13,Standard Hutch++,0.004582429995802304,False
+PowerLaw (c=1.0 - Moderate),13,TwoStageGated (Ours),0.012176430867364437,False
+PowerLaw (c=1.0 - Moderate),14,Hutchinson,0.005356060594820381,False
+PowerLaw (c=1.0 - Moderate),14,Standard Hutch++,0.005039230274677927,False
+PowerLaw (c=1.0 - Moderate),14,TwoStageGated (Ours),0.0032060778189941077,False
+PowerLaw (c=1.0 - Moderate),15,Hutchinson,0.0154074256845741,False
+PowerLaw (c=1.0 - Moderate),15,Standard Hutch++,0.015631025993061907,False
+PowerLaw (c=1.0 - Moderate),15,TwoStageGated (Ours),0.009853681726119667,False
+PowerLaw (c=1.0 - Moderate),16,Hutchinson,0.015578890867403439,False
+PowerLaw (c=1.0 - Moderate),16,Standard Hutch++,0.0014063707919752509,False
+PowerLaw (c=1.0 - Moderate),16,TwoStageGated (Ours),0.006186899778135968,False
+PowerLaw (c=1.0 - Moderate),17,Hutchinson,0.004704545035535039,False
+PowerLaw (c=1.0 - Moderate),17,Standard Hutch++,0.012160793967770143,False
+PowerLaw (c=1.0 - Moderate),17,TwoStageGated (Ours),0.009795060861096492,False
+PowerLaw (c=1.0 - Moderate),18,Hutchinson,0.03973117026943335,False
+PowerLaw (c=1.0 - Moderate),18,Standard Hutch++,0.006432091137477616,False
+PowerLaw (c=1.0 - Moderate),18,TwoStageGated (Ours),0.022368658397166948,False
+PowerLaw (c=1.0 - Moderate),19,Hutchinson,0.07656878932447103,False
+PowerLaw (c=1.0 - Moderate),19,Standard Hutch++,0.005307083533884793,False
+PowerLaw (c=1.0 - Moderate),19,TwoStageGated (Ours),0.014029944247986939,False
+PowerLaw (c=1.0 - Moderate),20,Hutchinson,0.022867209134988253,False
+PowerLaw (c=1.0 - Moderate),20,Standard Hutch++,0.0005465312591794715,False
+PowerLaw (c=1.0 - Moderate),20,TwoStageGated (Ours),0.0044736129188486275,False
+PowerLaw (c=1.0 - Moderate),21,Hutchinson,0.05571274294407019,False
+PowerLaw (c=1.0 - Moderate),21,Standard Hutch++,0.008572228395992554,False
+PowerLaw (c=1.0 - Moderate),21,TwoStageGated (Ours),0.008941609777889799,False
+PowerLaw (c=1.0 - Moderate),22,Hutchinson,0.014760662479418932,False
+PowerLaw (c=1.0 - Moderate),22,Standard Hutch++,0.008106799925011168,False
+PowerLaw (c=1.0 - Moderate),22,TwoStageGated (Ours),0.03668775623522801,False
+PowerLaw (c=1.0 - Moderate),23,Hutchinson,0.03151035287598053,False
+PowerLaw (c=1.0 - Moderate),23,Standard Hutch++,0.001412250081683603,False
+PowerLaw (c=1.0 - Moderate),23,TwoStageGated (Ours),0.008977641235249216,False
+PowerLaw (c=1.0 - Moderate),24,Hutchinson,0.011554548939528508,False
+PowerLaw (c=1.0 - Moderate),24,Standard Hutch++,0.013172984122648057,False
+PowerLaw (c=1.0 - Moderate),24,TwoStageGated (Ours),0.005203378367600243,False
+PowerLaw (c=1.0 - Moderate),25,Hutchinson,0.012017618081694263,False
+PowerLaw (c=1.0 - Moderate),25,Standard Hutch++,0.008826339002616304,False
+PowerLaw (c=1.0 - Moderate),25,TwoStageGated (Ours),0.003222717193639967,False
+PowerLaw (c=1.0 - Moderate),26,Hutchinson,0.046893679618734106,False
+PowerLaw (c=1.0 - Moderate),26,Standard Hutch++,0.004946868244126534,False
+PowerLaw (c=1.0 - Moderate),26,TwoStageGated (Ours),0.005174249895559421,False
+PowerLaw (c=1.0 - Moderate),27,Hutchinson,0.010582752596969213,False
+PowerLaw (c=1.0 - Moderate),27,Standard Hutch++,0.012734368319794303,False
+PowerLaw (c=1.0 - Moderate),27,TwoStageGated (Ours),0.0040943504703508755,False
+PowerLaw (c=1.0 - Moderate),28,Hutchinson,0.024420931322660603,False
+PowerLaw (c=1.0 - Moderate),28,Standard Hutch++,0.011107826658657146,False
+PowerLaw (c=1.0 - Moderate),28,TwoStageGated (Ours),0.002863706427720718,False
+PowerLaw (c=1.0 - Moderate),29,Hutchinson,0.0007846565389634678,False
+PowerLaw (c=1.0 - Moderate),29,Standard Hutch++,0.00953537357251401,False
+PowerLaw (c=1.0 - Moderate),29,TwoStageGated (Ours),0.016860013531769174,False
+PowerLaw (c=1.0 - Moderate),30,Hutchinson,0.010004111618445477,False
+PowerLaw (c=1.0 - Moderate),30,Standard Hutch++,0.01333032937291734,False
+PowerLaw (c=1.0 - Moderate),30,TwoStageGated (Ours),0.003285763032267207,False
+PowerLaw (c=1.0 - Moderate),31,Hutchinson,0.016289380667531855,False
+PowerLaw (c=1.0 - Moderate),31,Standard Hutch++,0.003965419009579118,False
+PowerLaw (c=1.0 - Moderate),31,TwoStageGated (Ours),0.004468921404136507,False
+PowerLaw (c=1.0 - Moderate),32,Hutchinson,0.029026751826638313,False
+PowerLaw (c=1.0 - Moderate),32,Standard Hutch++,0.007721739817577993,False
+PowerLaw (c=1.0 - Moderate),32,TwoStageGated (Ours),0.01792902358623887,False
+PowerLaw (c=1.0 - Moderate),33,Hutchinson,0.08207296199022628,False
+PowerLaw (c=1.0 - Moderate),33,Standard Hutch++,0.029536820311201306,False
+PowerLaw (c=1.0 - Moderate),33,TwoStageGated (Ours),0.005000738343341263,False
+PowerLaw (c=1.0 - Moderate),34,Hutchinson,0.04045399305373733,False
+PowerLaw (c=1.0 - Moderate),34,Standard Hutch++,0.007872150382354086,False
+PowerLaw (c=1.0 - Moderate),34,TwoStageGated (Ours),0.003606802232193089,False
+PowerLaw (c=1.0 - Moderate),35,Hutchinson,0.02604175605995891,False
+PowerLaw (c=1.0 - Moderate),35,Standard Hutch++,0.003083344287153857,False
+PowerLaw (c=1.0 - Moderate),35,TwoStageGated (Ours),0.0006155378880569882,False
+PowerLaw (c=1.0 - Moderate),36,Hutchinson,0.013673818345142141,False
+PowerLaw (c=1.0 - Moderate),36,Standard Hutch++,0.009402230981484665,False
+PowerLaw (c=1.0 - Moderate),36,TwoStageGated (Ours),0.006176148396337864,False
+PowerLaw (c=1.0 - Moderate),37,Hutchinson,0.00925588062794759,False
+PowerLaw (c=1.0 - Moderate),37,Standard Hutch++,0.009445040486645509,False
+PowerLaw (c=1.0 - Moderate),37,TwoStageGated (Ours),0.008628691579431698,False
+PowerLaw (c=1.0 - Moderate),38,Hutchinson,0.005490217385488874,False
+PowerLaw (c=1.0 - Moderate),38,Standard Hutch++,0.014453637232238574,False
+PowerLaw (c=1.0 - Moderate),38,TwoStageGated (Ours),0.009875938144402555,False
+PowerLaw (c=1.0 - Moderate),39,Hutchinson,0.05238741843517635,False
+PowerLaw (c=1.0 - Moderate),39,Standard Hutch++,0.00314845542190568,False
+PowerLaw (c=1.0 - Moderate),39,TwoStageGated (Ours),0.0037901329851872303,False
+PowerLaw (c=1.0 - Moderate),40,Hutchinson,0.02362582245254116,False
+PowerLaw (c=1.0 - Moderate),40,Standard Hutch++,0.008909632180165581,False
+PowerLaw (c=1.0 - Moderate),40,TwoStageGated (Ours),0.011382834333858062,False
+PowerLaw (c=1.0 - Moderate),41,Hutchinson,0.013152526977837423,False
+PowerLaw (c=1.0 - Moderate),41,Standard Hutch++,0.01604299476705915,False
+PowerLaw (c=1.0 - Moderate),41,TwoStageGated (Ours),0.012986309326741734,False
+PowerLaw (c=1.0 - Moderate),42,Hutchinson,0.010138754611564046,False
+PowerLaw (c=1.0 - Moderate),42,Standard Hutch++,0.0016608643710294855,False
+PowerLaw (c=1.0 - Moderate),42,TwoStageGated (Ours),0.037867330808101604,False
+PowerLaw (c=1.0 - Moderate),43,Hutchinson,0.012041968399936888,False
+PowerLaw (c=1.0 - Moderate),43,Standard Hutch++,0.016446321277370595,False
+PowerLaw (c=1.0 - Moderate),43,TwoStageGated (Ours),0.010057587523004457,False
+PowerLaw (c=1.0 - Moderate),44,Hutchinson,0.0026262761638417165,False
+PowerLaw (c=1.0 - Moderate),44,Standard Hutch++,0.005425133576483501,False
+PowerLaw (c=1.0 - Moderate),44,TwoStageGated (Ours),0.007072815318300126,False
+PowerLaw (c=1.0 - Moderate),45,Hutchinson,0.007515500703968477,False
+PowerLaw (c=1.0 - Moderate),45,Standard Hutch++,0.011316536875131261,False
+PowerLaw (c=1.0 - Moderate),45,TwoStageGated (Ours),0.009187312815002931,False
+PowerLaw (c=1.0 - Moderate),46,Hutchinson,0.00721901273072943,False
+PowerLaw (c=1.0 - Moderate),46,Standard Hutch++,0.006204362921378478,False
+PowerLaw (c=1.0 - Moderate),46,TwoStageGated (Ours),0.007546326757551582,False
+PowerLaw (c=1.0 - Moderate),47,Hutchinson,0.01824111790151395,False
+PowerLaw (c=1.0 - Moderate),47,Standard Hutch++,0.012751595116656151,False
+PowerLaw (c=1.0 - Moderate),47,TwoStageGated (Ours),0.008434026434716213,False
+PowerLaw (c=1.0 - Moderate),48,Hutchinson,0.04684860829891853,False
+PowerLaw (c=1.0 - Moderate),48,Standard Hutch++,0.0025826048721551494,False
+PowerLaw (c=1.0 - Moderate),48,TwoStageGated (Ours),0.0008126093448585215,False
+PowerLaw (c=1.0 - Moderate),49,Hutchinson,0.041900389910148994,False
+PowerLaw (c=1.0 - Moderate),49,Standard Hutch++,0.009888701047243464,False
+PowerLaw (c=1.0 - Moderate),49,TwoStageGated (Ours),0.008246677046809927,False
+PowerLaw (c=2.0 - Steep),0,Hutchinson,0.12224585619078317,False
+PowerLaw (c=2.0 - Steep),0,Standard Hutch++,0.0013688676270750524,False
+PowerLaw (c=2.0 - Steep),0,TwoStageGated (Ours),0.0015928402179905567,False
+PowerLaw (c=2.0 - Steep),1,Hutchinson,0.03132078195884431,False
+PowerLaw (c=2.0 - Steep),1,Standard Hutch++,0.00031487461164181574,False
+PowerLaw (c=2.0 - Steep),1,TwoStageGated (Ours),0.0010241129533694402,False
+PowerLaw (c=2.0 - Steep),2,Hutchinson,0.07694936332474935,False
+PowerLaw (c=2.0 - Steep),2,Standard Hutch++,0.000329621509701304,False
+PowerLaw (c=2.0 - Steep),2,TwoStageGated (Ours),0.002101248378090058,False
+PowerLaw (c=2.0 - Steep),3,Hutchinson,0.01838824300486779,False
+PowerLaw (c=2.0 - Steep),3,Standard Hutch++,0.0010326245478756767,False
+PowerLaw (c=2.0 - Steep),3,TwoStageGated (Ours),0.0002969664271589634,False
+PowerLaw (c=2.0 - Steep),4,Hutchinson,0.12989648391506906,False
+PowerLaw (c=2.0 - Steep),4,Standard Hutch++,0.004269747957782582,False
+PowerLaw (c=2.0 - Steep),4,TwoStageGated (Ours),0.0002580115849191731,False
+PowerLaw (c=2.0 - Steep),5,Hutchinson,0.23059223302008636,False
+PowerLaw (c=2.0 - Steep),5,Standard Hutch++,7.395946272916874e-05,False
+PowerLaw (c=2.0 - Steep),5,TwoStageGated (Ours),0.0015279225869961252,False
+PowerLaw (c=2.0 - Steep),6,Hutchinson,0.14392338251912173,False
+PowerLaw (c=2.0 - Steep),6,Standard Hutch++,0.00158015230495895,False
+PowerLaw (c=2.0 - Steep),6,TwoStageGated (Ours),0.0006920851310891348,False
+PowerLaw (c=2.0 - Steep),7,Hutchinson,0.0030713870125875418,False
+PowerLaw (c=2.0 - Steep),7,Standard Hutch++,0.0006592985547300433,False
+PowerLaw (c=2.0 - Steep),7,TwoStageGated (Ours),0.0003365795284849288,False
+PowerLaw (c=2.0 - Steep),8,Hutchinson,0.15732835820688953,False
+PowerLaw (c=2.0 - Steep),8,Standard Hutch++,0.0009195511626085539,False
+PowerLaw (c=2.0 - Steep),8,TwoStageGated (Ours),0.0037159649704875926,False
+PowerLaw (c=2.0 - Steep),9,Hutchinson,0.1283850686466954,False
+PowerLaw (c=2.0 - Steep),9,Standard Hutch++,0.001799874450355348,False
+PowerLaw (c=2.0 - Steep),9,TwoStageGated (Ours),0.0019990443938212197,False
+PowerLaw (c=2.0 - Steep),10,Hutchinson,0.17951465483284074,False
+PowerLaw (c=2.0 - Steep),10,Standard Hutch++,0.00015305959334862307,False
+PowerLaw (c=2.0 - Steep),10,TwoStageGated (Ours),0.0009824952713986925,False
+PowerLaw (c=2.0 - Steep),11,Hutchinson,0.024323879218282902,False
+PowerLaw (c=2.0 - Steep),11,Standard Hutch++,0.0027021368012267247,False
+PowerLaw (c=2.0 - Steep),11,TwoStageGated (Ours),0.0010211997936492156,False
+PowerLaw (c=2.0 - Steep),12,Hutchinson,0.014867246623576472,False
+PowerLaw (c=2.0 - Steep),12,Standard Hutch++,0.000343756125619146,False
+PowerLaw (c=2.0 - Steep),12,TwoStageGated (Ours),0.0005315422344836984,False
+PowerLaw (c=2.0 - Steep),13,Hutchinson,0.01070433029751823,False
+PowerLaw (c=2.0 - Steep),13,Standard Hutch++,0.002424195250332282,False
+PowerLaw (c=2.0 - Steep),13,TwoStageGated (Ours),0.0010380099807473617,False
+PowerLaw (c=2.0 - Steep),14,Hutchinson,0.021289311519861916,False
+PowerLaw (c=2.0 - Steep),14,Standard Hutch++,0.0034732603663267113,False
+PowerLaw (c=2.0 - Steep),14,TwoStageGated (Ours),0.0003633943825668427,False
+PowerLaw (c=2.0 - Steep),15,Hutchinson,0.07961865428696037,False
+PowerLaw (c=2.0 - Steep),15,Standard Hutch++,0.0012505639414616518,False
+PowerLaw (c=2.0 - Steep),15,TwoStageGated (Ours),0.0029015216531082795,False
+PowerLaw (c=2.0 - Steep),16,Hutchinson,0.1595701004235129,False
+PowerLaw (c=2.0 - Steep),16,Standard Hutch++,0.0008299754010254214,False
+PowerLaw (c=2.0 - Steep),16,TwoStageGated (Ours),0.0021899599718956477,False
+PowerLaw (c=2.0 - Steep),17,Hutchinson,0.04052400479837906,False
+PowerLaw (c=2.0 - Steep),17,Standard Hutch++,0.0018637246112647482,False
+PowerLaw (c=2.0 - Steep),17,TwoStageGated (Ours),0.001872791164403679,False
+PowerLaw (c=2.0 - Steep),18,Hutchinson,0.15914865515403628,False
+PowerLaw (c=2.0 - Steep),18,Standard Hutch++,0.0009301032860415734,False
+PowerLaw (c=2.0 - Steep),18,TwoStageGated (Ours),0.0001734164899162338,False
+PowerLaw (c=2.0 - Steep),19,Hutchinson,0.15068161413346914,False
+PowerLaw (c=2.0 - Steep),19,Standard Hutch++,0.0004419910346509434,False
+PowerLaw (c=2.0 - Steep),19,TwoStageGated (Ours),0.0005789415597606336,False
+PowerLaw (c=2.0 - Steep),20,Hutchinson,0.1376262623555623,False
+PowerLaw (c=2.0 - Steep),20,Standard Hutch++,0.0016537761617112909,False
+PowerLaw (c=2.0 - Steep),20,TwoStageGated (Ours),0.0006816017951934651,False
+PowerLaw (c=2.0 - Steep),21,Hutchinson,0.17471655899244157,False
+PowerLaw (c=2.0 - Steep),21,Standard Hutch++,7.602842040308071e-05,False
+PowerLaw (c=2.0 - Steep),21,TwoStageGated (Ours),0.0007760401558025883,False
+PowerLaw (c=2.0 - Steep),22,Hutchinson,0.2515165771418736,False
+PowerLaw (c=2.0 - Steep),22,Standard Hutch++,0.0008052512910577806,False
+PowerLaw (c=2.0 - Steep),22,TwoStageGated (Ours),0.001033125214795209,False
+PowerLaw (c=2.0 - Steep),23,Hutchinson,0.13178957628366147,False
+PowerLaw (c=2.0 - Steep),23,Standard Hutch++,0.0023661474181423344,False
+PowerLaw (c=2.0 - Steep),23,TwoStageGated (Ours),0.0005742311262978492,False
+PowerLaw (c=2.0 - Steep),24,Hutchinson,0.11197046591454203,False
+PowerLaw (c=2.0 - Steep),24,Standard Hutch++,0.0014961203047596035,False
+PowerLaw (c=2.0 - Steep),24,TwoStageGated (Ours),0.0010888990102744217,False
+PowerLaw (c=2.0 - Steep),25,Hutchinson,0.04958320130023165,False
+PowerLaw (c=2.0 - Steep),25,Standard Hutch++,0.0009301135718860291,False
+PowerLaw (c=2.0 - Steep),25,TwoStageGated (Ours),0.00021319889979402943,False
+PowerLaw (c=2.0 - Steep),26,Hutchinson,0.09021412202382834,False
+PowerLaw (c=2.0 - Steep),26,Standard Hutch++,0.004049479189741105,False
+PowerLaw (c=2.0 - Steep),26,TwoStageGated (Ours),0.0012462797032231634,False
+PowerLaw (c=2.0 - Steep),27,Hutchinson,0.1192778763851835,False
+PowerLaw (c=2.0 - Steep),27,Standard Hutch++,0.0007479399340604134,False
+PowerLaw (c=2.0 - Steep),27,TwoStageGated (Ours),0.0019302452608349955,False
+PowerLaw (c=2.0 - Steep),28,Hutchinson,0.08120094553440892,False
+PowerLaw (c=2.0 - Steep),28,Standard Hutch++,0.0003875848711860363,False
+PowerLaw (c=2.0 - Steep),28,TwoStageGated (Ours),0.0003343311002106383,False
+PowerLaw (c=2.0 - Steep),29,Hutchinson,0.003930983995427301,False
+PowerLaw (c=2.0 - Steep),29,Standard Hutch++,0.00105311766923162,False
+PowerLaw (c=2.0 - Steep),29,TwoStageGated (Ours),0.0011006453444565932,False
+PowerLaw (c=2.0 - Steep),30,Hutchinson,0.0014563505615521604,False
+PowerLaw (c=2.0 - Steep),30,Standard Hutch++,0.001336946237356089,False
+PowerLaw (c=2.0 - Steep),30,TwoStageGated (Ours),0.00020192385536469673,False
+PowerLaw (c=2.0 - Steep),31,Hutchinson,0.12027524867222356,False
+PowerLaw (c=2.0 - Steep),31,Standard Hutch++,0.0004003759818622372,False
+PowerLaw (c=2.0 - Steep),31,TwoStageGated (Ours),0.0002471102574831951,False
+PowerLaw (c=2.0 - Steep),32,Hutchinson,0.010727362491794405,False
+PowerLaw (c=2.0 - Steep),32,Standard Hutch++,0.002009720089579411,False
+PowerLaw (c=2.0 - Steep),32,TwoStageGated (Ours),0.001774070495656584,False
+PowerLaw (c=2.0 - Steep),33,Hutchinson,0.2849955272298329,False
+PowerLaw (c=2.0 - Steep),33,Standard Hutch++,0.0017523273488097419,False
+PowerLaw (c=2.0 - Steep),33,TwoStageGated (Ours),0.0005980810584262851,False
+PowerLaw (c=2.0 - Steep),34,Hutchinson,0.04799368143521202,False
+PowerLaw (c=2.0 - Steep),34,Standard Hutch++,0.0014143429141656575,False
+PowerLaw (c=2.0 - Steep),34,TwoStageGated (Ours),0.0032360566311673434,False
+PowerLaw (c=2.0 - Steep),35,Hutchinson,0.11449332457614687,False
+PowerLaw (c=2.0 - Steep),35,Standard Hutch++,0.00045198953221359364,False
+PowerLaw (c=2.0 - Steep),35,TwoStageGated (Ours),0.0010587295214363347,False
+PowerLaw (c=2.0 - Steep),36,Hutchinson,0.008662911871527377,False
+PowerLaw (c=2.0 - Steep),36,Standard Hutch++,0.000306677777758906,False
+PowerLaw (c=2.0 - Steep),36,TwoStageGated (Ours),0.0008341766073553568,False
+PowerLaw (c=2.0 - Steep),37,Hutchinson,0.12202588335684098,False
+PowerLaw (c=2.0 - Steep),37,Standard Hutch++,0.0026297116189446246,False
+PowerLaw (c=2.0 - Steep),37,TwoStageGated (Ours),0.000816707992068212,False
+PowerLaw (c=2.0 - Steep),38,Hutchinson,0.08707364688736967,False
+PowerLaw (c=2.0 - Steep),38,Standard Hutch++,9.390107459649212e-05,False
+PowerLaw (c=2.0 - Steep),38,TwoStageGated (Ours),0.001450296343509476,False
+PowerLaw (c=2.0 - Steep),39,Hutchinson,0.04655570717580232,False
+PowerLaw (c=2.0 - Steep),39,Standard Hutch++,0.0007250668568725019,False
+PowerLaw (c=2.0 - Steep),39,TwoStageGated (Ours),0.0015950534307910384,False
+PowerLaw (c=2.0 - Steep),40,Hutchinson,0.16629897047538675,False
+PowerLaw (c=2.0 - Steep),40,Standard Hutch++,0.0007020044132627043,False
+PowerLaw (c=2.0 - Steep),40,TwoStageGated (Ours),0.0010726451513886903,False
+PowerLaw (c=2.0 - Steep),41,Hutchinson,0.3336182966704625,False
+PowerLaw (c=2.0 - Steep),41,Standard Hutch++,5.838964047702914e-05,False
+PowerLaw (c=2.0 - Steep),41,TwoStageGated (Ours),0.001810237479943653,False
+PowerLaw (c=2.0 - Steep),42,Hutchinson,0.011927647658889956,False
+PowerLaw (c=2.0 - Steep),42,Standard Hutch++,0.0007926809601382861,False
+PowerLaw (c=2.0 - Steep),42,TwoStageGated (Ours),0.0007207006128624887,False
+PowerLaw (c=2.0 - Steep),43,Hutchinson,0.15041952756844967,False
+PowerLaw (c=2.0 - Steep),43,Standard Hutch++,0.00035716260113093253,False
+PowerLaw (c=2.0 - Steep),43,TwoStageGated (Ours),0.0003063248283615256,False
+PowerLaw (c=2.0 - Steep),44,Hutchinson,0.17987428028053498,False
+PowerLaw (c=2.0 - Steep),44,Standard Hutch++,0.0021109118293496393,False
+PowerLaw (c=2.0 - Steep),44,TwoStageGated (Ours),0.002216451084576826,False
+PowerLaw (c=2.0 - Steep),45,Hutchinson,0.09201797382821343,False
+PowerLaw (c=2.0 - Steep),45,Standard Hutch++,0.0019435701031111038,False
+PowerLaw (c=2.0 - Steep),45,TwoStageGated (Ours),0.0003967110225521422,False
+PowerLaw (c=2.0 - Steep),46,Hutchinson,0.13886387035771544,False
+PowerLaw (c=2.0 - Steep),46,Standard Hutch++,0.00030387645744833503,False
+PowerLaw (c=2.0 - Steep),46,TwoStageGated (Ours),0.0009960615264932012,False
+PowerLaw (c=2.0 - Steep),47,Hutchinson,0.021012307086214294,False
+PowerLaw (c=2.0 - Steep),47,Standard Hutch++,0.002249925871056564,False
+PowerLaw (c=2.0 - Steep),47,TwoStageGated (Ours),0.00014309290856490839,False
+PowerLaw (c=2.0 - Steep),48,Hutchinson,0.011160432783768088,False
+PowerLaw (c=2.0 - Steep),48,Standard Hutch++,0.000900778113280401,False
+PowerLaw (c=2.0 - Steep),48,TwoStageGated (Ours),0.0020218890682121423,False
+PowerLaw (c=2.0 - Steep),49,Hutchinson,0.23601720151219535,False
+PowerLaw (c=2.0 - Steep),49,Standard Hutch++,0.0012825607667399591,False
+PowerLaw (c=2.0 - Steep),49,TwoStageGated (Ours),0.0022501566594959332,False
+"StepSpectrum (r*=5, eta=1e-3)",0,Hutchinson,0.1334145968856812,False
+"StepSpectrum (r*=5, eta=1e-3)",0,Standard Hutch++,0.00033205782461186216,False
+"StepSpectrum (r*=5, eta=1e-3)",0,TwoStageGated (Ours),3.5160755363972206e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",1,Hutchinson,0.014905898863661778,False
+"StepSpectrum (r*=5, eta=1e-3)",1,Standard Hutch++,0.0002787698552053905,False
+"StepSpectrum (r*=5, eta=1e-3)",1,TwoStageGated (Ours),3.0985938532317586e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",2,Hutchinson,0.06166924501871778,False
+"StepSpectrum (r*=5, eta=1e-3)",2,Standard Hutch++,9.858310206270428e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",2,TwoStageGated (Ours),8.845117828897931e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",3,Hutchinson,0.041640722664488296,False
+"StepSpectrum (r*=5, eta=1e-3)",3,Standard Hutch++,0.00020888475900276854,False
+"StepSpectrum (r*=5, eta=1e-3)",3,TwoStageGated (Ours),0.00015619334300412494,True
+"StepSpectrum (r*=5, eta=1e-3)",4,Hutchinson,0.008007824808091092,False
+"StepSpectrum (r*=5, eta=1e-3)",4,Standard Hutch++,0.0001926823775024955,False
+"StepSpectrum (r*=5, eta=1e-3)",4,TwoStageGated (Ours),0.00013124990693669738,True
+"StepSpectrum (r*=5, eta=1e-3)",5,Hutchinson,0.08084725758023271,False
+"StepSpectrum (r*=5, eta=1e-3)",5,Standard Hutch++,0.0002976397410505633,False
+"StepSpectrum (r*=5, eta=1e-3)",5,TwoStageGated (Ours),3.707923867621376e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",6,Hutchinson,0.11045874605954992,False
+"StepSpectrum (r*=5, eta=1e-3)",6,Standard Hutch++,8.184119276369894e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",6,TwoStageGated (Ours),6.877597813383578e-06,True
+"StepSpectrum (r*=5, eta=1e-3)",7,Hutchinson,0.08567750263420218,False
+"StepSpectrum (r*=5, eta=1e-3)",7,Standard Hutch++,4.598285557708574e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",7,TwoStageGated (Ours),1.9773362641155862e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",8,Hutchinson,0.12739912814828136,False
+"StepSpectrum (r*=5, eta=1e-3)",8,Standard Hutch++,7.585048868155476e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",8,TwoStageGated (Ours),4.7392246660132325e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",9,Hutchinson,0.13289952601496036,False
+"StepSpectrum (r*=5, eta=1e-3)",9,Standard Hutch++,7.754373163000276e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",9,TwoStageGated (Ours),3.35583502691301e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",10,Hutchinson,0.028583698843320786,False
+"StepSpectrum (r*=5, eta=1e-3)",10,Standard Hutch++,2.8716565319667015e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",10,TwoStageGated (Ours),4.0707582382432185e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",11,Hutchinson,0.012749684934493162,False
+"StepSpectrum (r*=5, eta=1e-3)",11,Standard Hutch++,9.348472200781173e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",11,TwoStageGated (Ours),9.353235666765278e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",12,Hutchinson,0.036795363470281874,False
+"StepSpectrum (r*=5, eta=1e-3)",12,Standard Hutch++,0.0003488974844520586,False
+"StepSpectrum (r*=5, eta=1e-3)",12,TwoStageGated (Ours),2.2936634267345085e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",13,Hutchinson,0.1325620589891893,False
+"StepSpectrum (r*=5, eta=1e-3)",13,Standard Hutch++,0.0001271203991741988,False
+"StepSpectrum (r*=5, eta=1e-3)",13,TwoStageGated (Ours),0.00010357211913550924,True
+"StepSpectrum (r*=5, eta=1e-3)",14,Hutchinson,0.05912881950618606,False
+"StepSpectrum (r*=5, eta=1e-3)",14,Standard Hutch++,0.00029018738996052087,False
+"StepSpectrum (r*=5, eta=1e-3)",14,TwoStageGated (Ours),0.00017549844001976903,True
+"StepSpectrum (r*=5, eta=1e-3)",15,Hutchinson,0.008282700386381063,False
+"StepSpectrum (r*=5, eta=1e-3)",15,Standard Hutch++,2.9545286974307855e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",15,TwoStageGated (Ours),1.5041900635320357e-07,True
+"StepSpectrum (r*=5, eta=1e-3)",16,Hutchinson,0.07817475804687608,False
+"StepSpectrum (r*=5, eta=1e-3)",16,Standard Hutch++,9.581983214520905e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",16,TwoStageGated (Ours),3.3631467548627476e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",17,Hutchinson,0.06367057829908196,False
+"StepSpectrum (r*=5, eta=1e-3)",17,Standard Hutch++,8.01778736465408e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",17,TwoStageGated (Ours),9.958680279757265e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",18,Hutchinson,0.007852802300394684,False
+"StepSpectrum (r*=5, eta=1e-3)",18,Standard Hutch++,7.3348449428158e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",18,TwoStageGated (Ours),6.383504784866298e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",19,Hutchinson,0.1119182338987019,False
+"StepSpectrum (r*=5, eta=1e-3)",19,Standard Hutch++,0.0003141333659449528,False
+"StepSpectrum (r*=5, eta=1e-3)",19,TwoStageGated (Ours),9.244573591523058e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",20,Hutchinson,0.0412281985292819,False
+"StepSpectrum (r*=5, eta=1e-3)",20,Standard Hutch++,6.467876021946322e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",20,TwoStageGated (Ours),0.0001766605863336149,True
+"StepSpectrum (r*=5, eta=1e-3)",21,Hutchinson,0.03360877477274245,False
+"StepSpectrum (r*=5, eta=1e-3)",21,Standard Hutch++,0.00014630193687000694,False
+"StepSpectrum (r*=5, eta=1e-3)",21,TwoStageGated (Ours),0.00011998046836950239,True
+"StepSpectrum (r*=5, eta=1e-3)",22,Hutchinson,0.0490615216634795,False
+"StepSpectrum (r*=5, eta=1e-3)",22,Standard Hutch++,3.233856770269323e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",22,TwoStageGated (Ours),0.00014567984675393852,True
+"StepSpectrum (r*=5, eta=1e-3)",23,Hutchinson,0.06187685901055443,False
+"StepSpectrum (r*=5, eta=1e-3)",23,Standard Hutch++,0.00020881775826515325,False
+"StepSpectrum (r*=5, eta=1e-3)",23,TwoStageGated (Ours),5.7016260616109455e-06,True
+"StepSpectrum (r*=5, eta=1e-3)",24,Hutchinson,0.02485517899006827,False
+"StepSpectrum (r*=5, eta=1e-3)",24,Standard Hutch++,0.0003130782277516701,False
+"StepSpectrum (r*=5, eta=1e-3)",24,TwoStageGated (Ours),2.7308269146716944e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",25,Hutchinson,0.04356617690559978,False
+"StepSpectrum (r*=5, eta=1e-3)",25,Standard Hutch++,3.8052526804487004e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",25,TwoStageGated (Ours),0.00020766609400535012,True
+"StepSpectrum (r*=5, eta=1e-3)",26,Hutchinson,0.014767906860298538,False
+"StepSpectrum (r*=5, eta=1e-3)",26,Standard Hutch++,3.13341250336039e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",26,TwoStageGated (Ours),5.708167655300099e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",27,Hutchinson,0.024299466008796306,False
+"StepSpectrum (r*=5, eta=1e-3)",27,Standard Hutch++,0.0002807061243338931,False
+"StepSpectrum (r*=5, eta=1e-3)",27,TwoStageGated (Ours),7.202953439021681e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",28,Hutchinson,0.15009598153499737,False
+"StepSpectrum (r*=5, eta=1e-3)",28,Standard Hutch++,0.0001733891663278925,False
+"StepSpectrum (r*=5, eta=1e-3)",28,TwoStageGated (Ours),0.00017428952459992158,True
+"StepSpectrum (r*=5, eta=1e-3)",29,Hutchinson,0.06453305081063297,False
+"StepSpectrum (r*=5, eta=1e-3)",29,Standard Hutch++,6.751087560755424e-06,False
+"StepSpectrum (r*=5, eta=1e-3)",29,TwoStageGated (Ours),8.999692688825394e-07,True
+"StepSpectrum (r*=5, eta=1e-3)",30,Hutchinson,0.013704463471380336,False
+"StepSpectrum (r*=5, eta=1e-3)",30,Standard Hutch++,0.00028034800641937494,False
+"StepSpectrum (r*=5, eta=1e-3)",30,TwoStageGated (Ours),0.00012360383982404054,True
+"StepSpectrum (r*=5, eta=1e-3)",31,Hutchinson,0.06894453169368121,False
+"StepSpectrum (r*=5, eta=1e-3)",31,Standard Hutch++,3.8759725629557376e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",31,TwoStageGated (Ours),6.244148079935823e-06,True
+"StepSpectrum (r*=5, eta=1e-3)",32,Hutchinson,0.10808130970934496,False
+"StepSpectrum (r*=5, eta=1e-3)",32,Standard Hutch++,0.0003107780523371008,False
+"StepSpectrum (r*=5, eta=1e-3)",32,TwoStageGated (Ours),5.972669735815154e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",33,Hutchinson,0.20390479845831858,False
+"StepSpectrum (r*=5, eta=1e-3)",33,Standard Hutch++,0.0001855836271200378,False
+"StepSpectrum (r*=5, eta=1e-3)",33,TwoStageGated (Ours),8.71881592516347e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",34,Hutchinson,0.08241959723145673,False
+"StepSpectrum (r*=5, eta=1e-3)",34,Standard Hutch++,3.2863821197475363e-06,False
+"StepSpectrum (r*=5, eta=1e-3)",34,TwoStageGated (Ours),1.543482974683409e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",35,Hutchinson,0.08503905921254212,False
+"StepSpectrum (r*=5, eta=1e-3)",35,Standard Hutch++,8.013656235387037e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",35,TwoStageGated (Ours),0.00014582721575036875,True
+"StepSpectrum (r*=5, eta=1e-3)",36,Hutchinson,0.04696465581782053,False
+"StepSpectrum (r*=5, eta=1e-3)",36,Standard Hutch++,0.00012865065615187977,False
+"StepSpectrum (r*=5, eta=1e-3)",36,TwoStageGated (Ours),6.802705633275899e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",37,Hutchinson,0.05295255820892965,False
+"StepSpectrum (r*=5, eta=1e-3)",37,Standard Hutch++,0.000111449368343768,False
+"StepSpectrum (r*=5, eta=1e-3)",37,TwoStageGated (Ours),0.00017304990919677062,True
+"StepSpectrum (r*=5, eta=1e-3)",38,Hutchinson,0.06481856711094178,False
+"StepSpectrum (r*=5, eta=1e-3)",38,Standard Hutch++,0.00039345136713388195,False
+"StepSpectrum (r*=5, eta=1e-3)",38,TwoStageGated (Ours),0.0001107546770609245,True
+"StepSpectrum (r*=5, eta=1e-3)",39,Hutchinson,0.0010002412115023408,False
+"StepSpectrum (r*=5, eta=1e-3)",39,Standard Hutch++,0.00038260537422346136,False
+"StepSpectrum (r*=5, eta=1e-3)",39,TwoStageGated (Ours),0.00024595038786793947,True
+"StepSpectrum (r*=5, eta=1e-3)",40,Hutchinson,0.033133593387739864,False
+"StepSpectrum (r*=5, eta=1e-3)",40,Standard Hutch++,0.0003235080080322731,False
+"StepSpectrum (r*=5, eta=1e-3)",40,TwoStageGated (Ours),8.914990020219376e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",41,Hutchinson,0.04504672431727626,False
+"StepSpectrum (r*=5, eta=1e-3)",41,Standard Hutch++,0.0001230479259566205,False
+"StepSpectrum (r*=5, eta=1e-3)",41,TwoStageGated (Ours),3.477081210138346e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",42,Hutchinson,0.04353533447978722,False
+"StepSpectrum (r*=5, eta=1e-3)",42,Standard Hutch++,0.00020772327216758777,False
+"StepSpectrum (r*=5, eta=1e-3)",42,TwoStageGated (Ours),0.00024309483360981265,True
+"StepSpectrum (r*=5, eta=1e-3)",43,Hutchinson,0.14523166312459296,False
+"StepSpectrum (r*=5, eta=1e-3)",43,Standard Hutch++,6.219261655299584e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",43,TwoStageGated (Ours),0.00017335761332095098,True
+"StepSpectrum (r*=5, eta=1e-3)",44,Hutchinson,0.038178091554329115,False
+"StepSpectrum (r*=5, eta=1e-3)",44,Standard Hutch++,5.5598105989557346e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",44,TwoStageGated (Ours),6.062551128158223e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",45,Hutchinson,0.05948994106772519,False
+"StepSpectrum (r*=5, eta=1e-3)",45,Standard Hutch++,0.000253426027122531,False
+"StepSpectrum (r*=5, eta=1e-3)",45,TwoStageGated (Ours),5.1828535288220324e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",46,Hutchinson,0.06358862059452247,False
+"StepSpectrum (r*=5, eta=1e-3)",46,Standard Hutch++,0.0003636954568107391,False
+"StepSpectrum (r*=5, eta=1e-3)",46,TwoStageGated (Ours),0.0002380118011631333,True
+"StepSpectrum (r*=5, eta=1e-3)",47,Hutchinson,0.09383132016011649,False
+"StepSpectrum (r*=5, eta=1e-3)",47,Standard Hutch++,6.714168600863153e-05,False
+"StepSpectrum (r*=5, eta=1e-3)",47,TwoStageGated (Ours),2.4181596992688555e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",48,Hutchinson,0.13020100868667567,False
+"StepSpectrum (r*=5, eta=1e-3)",48,Standard Hutch++,0.0003495286889895243,False
+"StepSpectrum (r*=5, eta=1e-3)",48,TwoStageGated (Ours),7.95535391843176e-05,True
+"StepSpectrum (r*=5, eta=1e-3)",49,Hutchinson,0.003791947491291008,False
+"StepSpectrum (r*=5, eta=1e-3)",49,Standard Hutch++,0.00031898045782462463,False
+"StepSpectrum (r*=5, eta=1e-3)",49,TwoStageGated (Ours),8.725242086705085e-06,True
+"StepSpectrum (r*=15, eta=1e-3)",0,Hutchinson,0.04172109758507278,False
+"StepSpectrum (r*=15, eta=1e-3)",0,Standard Hutch++,4.608890951569186e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",0,TwoStageGated (Ours),0.0001753944421287119,False
+"StepSpectrum (r*=15, eta=1e-3)",1,Hutchinson,0.002337367216758535,False
+"StepSpectrum (r*=15, eta=1e-3)",1,Standard Hutch++,0.00011135286555107385,False
+"StepSpectrum (r*=15, eta=1e-3)",1,TwoStageGated (Ours),0.00017179273366444258,False
+"StepSpectrum (r*=15, eta=1e-3)",2,Hutchinson,0.003844486114926493,False
+"StepSpectrum (r*=15, eta=1e-3)",2,Standard Hutch++,2.019680167219765e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",2,TwoStageGated (Ours),8.087820982790696e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",3,Hutchinson,0.05033145464581775,False
+"StepSpectrum (r*=15, eta=1e-3)",3,Standard Hutch++,0.00014978362265919795,False
+"StepSpectrum (r*=15, eta=1e-3)",3,TwoStageGated (Ours),9.772077936292513e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",4,Hutchinson,0.01007442249496196,False
+"StepSpectrum (r*=15, eta=1e-3)",4,Standard Hutch++,1.874383395064624e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",4,TwoStageGated (Ours),0.00011505746481775093,False
+"StepSpectrum (r*=15, eta=1e-3)",5,Hutchinson,0.030759643294388357,False
+"StepSpectrum (r*=15, eta=1e-3)",5,Standard Hutch++,1.198771374774862e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",5,TwoStageGated (Ours),2.3029632267555192e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",6,Hutchinson,0.07097762455844965,False
+"StepSpectrum (r*=15, eta=1e-3)",6,Standard Hutch++,2.2353099438695536e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",6,TwoStageGated (Ours),2.3595036488680967e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",7,Hutchinson,0.02292739654695286,False
+"StepSpectrum (r*=15, eta=1e-3)",7,Standard Hutch++,2.4300226481804205e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",7,TwoStageGated (Ours),0.00011546149534033838,False
+"StepSpectrum (r*=15, eta=1e-3)",8,Hutchinson,0.05675742856940694,False
+"StepSpectrum (r*=15, eta=1e-3)",8,Standard Hutch++,1.1551517907692386e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",8,TwoStageGated (Ours),3.880608925967956e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",9,Hutchinson,0.004008745687446669,False
+"StepSpectrum (r*=15, eta=1e-3)",9,Standard Hutch++,1.8577309038773642e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",9,TwoStageGated (Ours),0.00026174972897686154,False
+"StepSpectrum (r*=15, eta=1e-3)",10,Hutchinson,0.010792547460164238,False
+"StepSpectrum (r*=15, eta=1e-3)",10,Standard Hutch++,5.131235002576774e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",10,TwoStageGated (Ours),5.312345967735274e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",11,Hutchinson,0.05024881257915932,False
+"StepSpectrum (r*=15, eta=1e-3)",11,Standard Hutch++,4.901336994485499e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",11,TwoStageGated (Ours),5.450088800918636e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",12,Hutchinson,0.014316967945488566,False
+"StepSpectrum (r*=15, eta=1e-3)",12,Standard Hutch++,1.025907641162082e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",12,TwoStageGated (Ours),2.8859057469909805e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",13,Hutchinson,0.01432328994015191,False
+"StepSpectrum (r*=15, eta=1e-3)",13,Standard Hutch++,7.316212253765339e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",13,TwoStageGated (Ours),1.5929773764505622e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",14,Hutchinson,0.017606221459977135,False
+"StepSpectrum (r*=15, eta=1e-3)",14,Standard Hutch++,3.7215289395257455e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",14,TwoStageGated (Ours),0.0002084594686768006,False
+"StepSpectrum (r*=15, eta=1e-3)",15,Hutchinson,0.013550123717173675,False
+"StepSpectrum (r*=15, eta=1e-3)",15,Standard Hutch++,2.0129292139949713e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",15,TwoStageGated (Ours),1.5762470584835523e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",16,Hutchinson,0.009427592246990222,False
+"StepSpectrum (r*=15, eta=1e-3)",16,Standard Hutch++,9.26434441482509e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",16,TwoStageGated (Ours),9.961934472062029e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",17,Hutchinson,0.01289974910391277,False
+"StepSpectrum (r*=15, eta=1e-3)",17,Standard Hutch++,0.00012073741628452532,False
+"StepSpectrum (r*=15, eta=1e-3)",17,TwoStageGated (Ours),0.00011150450503680981,False
+"StepSpectrum (r*=15, eta=1e-3)",18,Hutchinson,0.023480236031065888,False
+"StepSpectrum (r*=15, eta=1e-3)",18,Standard Hutch++,3.25913290940355e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",18,TwoStageGated (Ours),0.00013584948103097027,False
+"StepSpectrum (r*=15, eta=1e-3)",19,Hutchinson,0.05079542283732341,False
+"StepSpectrum (r*=15, eta=1e-3)",19,Standard Hutch++,0.0001280944817893552,False
+"StepSpectrum (r*=15, eta=1e-3)",19,TwoStageGated (Ours),5.040329659764669e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",20,Hutchinson,0.02716207107888757,False
+"StepSpectrum (r*=15, eta=1e-3)",20,Standard Hutch++,3.7217996853939265e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",20,TwoStageGated (Ours),5.7190125708181474e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",21,Hutchinson,0.07494757479119635,False
+"StepSpectrum (r*=15, eta=1e-3)",21,Standard Hutch++,0.00014979095599095956,False
+"StepSpectrum (r*=15, eta=1e-3)",21,TwoStageGated (Ours),0.00013032742827364608,False
+"StepSpectrum (r*=15, eta=1e-3)",22,Hutchinson,0.008920536155454845,False
+"StepSpectrum (r*=15, eta=1e-3)",22,Standard Hutch++,3.151741602116319e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",22,TwoStageGated (Ours),1.5987914364504025e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",23,Hutchinson,0.027490995574354884,False
+"StepSpectrum (r*=15, eta=1e-3)",23,Standard Hutch++,8.337491593060887e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",23,TwoStageGated (Ours),5.023119214493781e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",24,Hutchinson,0.030869224859066253,False
+"StepSpectrum (r*=15, eta=1e-3)",24,Standard Hutch++,2.1133648974117137e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",24,TwoStageGated (Ours),1.5846567675192105e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",25,Hutchinson,0.01389843515318783,False
+"StepSpectrum (r*=15, eta=1e-3)",25,Standard Hutch++,0.00013857940711270618,False
+"StepSpectrum (r*=15, eta=1e-3)",25,TwoStageGated (Ours),6.935653171915557e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",26,Hutchinson,0.03716232251307761,False
+"StepSpectrum (r*=15, eta=1e-3)",26,Standard Hutch++,4.9461146882337246e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",26,TwoStageGated (Ours),3.2319143553461415e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",27,Hutchinson,0.015884948158342124,False
+"StepSpectrum (r*=15, eta=1e-3)",27,Standard Hutch++,3.8840929863340604e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",27,TwoStageGated (Ours),9.885285786181047e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",28,Hutchinson,0.055593632316927925,False
+"StepSpectrum (r*=15, eta=1e-3)",28,Standard Hutch++,4.765209736357009e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",28,TwoStageGated (Ours),6.910090553648068e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",29,Hutchinson,0.002449314099251692,False
+"StepSpectrum (r*=15, eta=1e-3)",29,Standard Hutch++,2.951930595399858e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",29,TwoStageGated (Ours),3.796208314352131e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",30,Hutchinson,0.032675021328588585,False
+"StepSpectrum (r*=15, eta=1e-3)",30,Standard Hutch++,1.9688839614173997e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",30,TwoStageGated (Ours),1.384402258561962e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",31,Hutchinson,0.009987654690739372,False
+"StepSpectrum (r*=15, eta=1e-3)",31,Standard Hutch++,0.00010850367961519684,False
+"StepSpectrum (r*=15, eta=1e-3)",31,TwoStageGated (Ours),7.109687833019128e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",32,Hutchinson,0.00955334830267293,False
+"StepSpectrum (r*=15, eta=1e-3)",32,Standard Hutch++,6.133129931999387e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",32,TwoStageGated (Ours),4.0344115747021714e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",33,Hutchinson,0.02480593838706324,False
+"StepSpectrum (r*=15, eta=1e-3)",33,Standard Hutch++,6.565815773888647e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",33,TwoStageGated (Ours),3.100177507433272e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",34,Hutchinson,0.01169905676815393,False
+"StepSpectrum (r*=15, eta=1e-3)",34,Standard Hutch++,0.00014612995701607546,False
+"StepSpectrum (r*=15, eta=1e-3)",34,TwoStageGated (Ours),9.553853612289641e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",35,Hutchinson,0.03672795032217561,False
+"StepSpectrum (r*=15, eta=1e-3)",35,Standard Hutch++,2.4498985706682227e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",35,TwoStageGated (Ours),3.742366608949459e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",36,Hutchinson,0.012492485014138535,False
+"StepSpectrum (r*=15, eta=1e-3)",36,Standard Hutch++,3.40544466371292e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",36,TwoStageGated (Ours),1.532731730185594e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",37,Hutchinson,0.011927164107576892,False
+"StepSpectrum (r*=15, eta=1e-3)",37,Standard Hutch++,5.3592746252378276e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",37,TwoStageGated (Ours),9.114642557368154e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",38,Hutchinson,0.05779146725257617,False
+"StepSpectrum (r*=15, eta=1e-3)",38,Standard Hutch++,3.498792851861786e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",38,TwoStageGated (Ours),9.104497752347072e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",39,Hutchinson,0.07870235057709772,False
+"StepSpectrum (r*=15, eta=1e-3)",39,Standard Hutch++,0.00011743407382334938,False
+"StepSpectrum (r*=15, eta=1e-3)",39,TwoStageGated (Ours),5.451293546922916e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",40,Hutchinson,0.0003934541406279744,False
+"StepSpectrum (r*=15, eta=1e-3)",40,Standard Hutch++,2.3539141163925868e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",40,TwoStageGated (Ours),4.103169256069984e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",41,Hutchinson,0.002284471397934354,False
+"StepSpectrum (r*=15, eta=1e-3)",41,Standard Hutch++,2.4530685409405783e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",41,TwoStageGated (Ours),4.164430116375286e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",42,Hutchinson,0.03861449477225054,False
+"StepSpectrum (r*=15, eta=1e-3)",42,Standard Hutch++,0.00012589692468711634,False
+"StepSpectrum (r*=15, eta=1e-3)",42,TwoStageGated (Ours),2.4379854470903343e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",43,Hutchinson,0.03508292544901386,False
+"StepSpectrum (r*=15, eta=1e-3)",43,Standard Hutch++,0.00013374042837696075,False
+"StepSpectrum (r*=15, eta=1e-3)",43,TwoStageGated (Ours),8.227132170176873e-06,False
+"StepSpectrum (r*=15, eta=1e-3)",44,Hutchinson,0.03158166507455742,False
+"StepSpectrum (r*=15, eta=1e-3)",44,Standard Hutch++,4.855268626706248e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",44,TwoStageGated (Ours),8.244465936039153e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",45,Hutchinson,0.028063923866308446,False
+"StepSpectrum (r*=15, eta=1e-3)",45,Standard Hutch++,3.0181554954556224e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",45,TwoStageGated (Ours),4.6129393520247e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",46,Hutchinson,0.016454031668005686,False
+"StepSpectrum (r*=15, eta=1e-3)",46,Standard Hutch++,1.3086398219547796e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",46,TwoStageGated (Ours),0.0001082736084203094,False
+"StepSpectrum (r*=15, eta=1e-3)",47,Hutchinson,0.020847761055640176,False
+"StepSpectrum (r*=15, eta=1e-3)",47,Standard Hutch++,1.695963355304148e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",47,TwoStageGated (Ours),3.1572119509747776e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",48,Hutchinson,0.005541253340823301,False
+"StepSpectrum (r*=15, eta=1e-3)",48,Standard Hutch++,7.463559429754972e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",48,TwoStageGated (Ours),8.831435586125803e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",49,Hutchinson,0.043713073381297166,False
+"StepSpectrum (r*=15, eta=1e-3)",49,Standard Hutch++,5.463410119328581e-05,False
+"StepSpectrum (r*=15, eta=1e-3)",49,TwoStageGated (Ours),2.065935266171654e-05,False

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "UROP_TRACKER.md",
+    "before": "547c89db77a528b3dd406ef4e6ddd75aab0df348c51ef4f3fa5d46d3459a4d72",
+    "after": "78364db2f2efe11f148a61451187b5f72800872c1e1a232c7b47af2b36c1e5da"
+  },
+  {
+    "name": "memory.md",
+    "before": "d40ff7fb19c4c2c225f4b0f11cbb6de614cbf77f3580ea86fc5755ea3f0a70c3",
+    "after": "77601eef68ff8ff37517f74ea59f730c7a8e8ad0883c761c9931e82c29bf0ea5"
+  },
+  {
+    "name": "UROP_Research_Memory.md",
+    "before": "d40ff7fb19c4c2c225f4b0f11cbb6de614cbf77f3580ea86fc5755ea3f0a70c3",
+    "after": "77601eef68ff8ff37517f74ea59f730c7a8e8ad0883c761c9931e82c29bf0ea5"
+  },
+  {
+    "name": "CURRENT_STATE.md",
+    "before": "119c5b1a9233683941c6914c76be0e94fa1699c2c5ea0ef5217314939ab7cf77",
+    "after": "14eb18b740e2b6ded434d8e33cc95f5d38f2df1d309bd613aede2d15710cc3bb"
+  },
+  {
+    "name": "proof_structural_paired_difference_confidence.md",
+    "before": null,
+    "after": "977ba5f73c32ef6f317f25f94c57c8dfd08671262a5893744a9e959ed90f1c2b"
+  },
+  {
+    "name": "README.md",
+    "before": "fd397af7a50126a190bfa7d0ee30e4ec5cac63e644294fb41e0c456669c4b101",
+    "after": "b9b8ca21b61399bbf46bc237719b575c8102b542fdfa7798fea2449a6d099c92"
+  },
+  {
+    "name": "Hutchpp_Adaptive_Trace_Estimation.md",
+    "before": "8e9f9b7e7c4b8789b99813a0271de6b8e6a78e19a3f0f165161c5f18b0adde01",
+    "after": "796d66aaaa90f5ecfd3b325af51367dd14f393be49bf8fd6ce3cfc6b53a9316f"
+  },
+  {
+    "name": "recovery_audit_20260914.md",
+    "before": null,
+    "after": "13fb7c935b3dc728033200095ead7bd01748610cf6bf1e5c25264e23c87f02bd"
+  },
+  {
+    "name": "structural_paired_difference_confidence_phase2c.md",
+    "before": null,
+    "after": "6da7b8670a4dc27c3aced134f0dfa5e63a8e64ab61e066803d6f2f47b90fe2cb"
+  },
+  {
+    "name": "haar_orientation_audit.md",
+    "before": null,
+    "after": "3f0250e0eebaba49afcc7dc6aac39a00a2616cac653a14523571e35dda150db6"
+  },
+  {
+    "name": "pytorch_hessian_benchmark.md",
+    "before": null,
+    "after": "7b2152c9c34b14f432ba7aaea87c9c895c302410580bbb7f8632d92ef68dfef8"
+  },
+  {
+    "name": "gating_diagnostics_predictability_map.md",
+    "before": null,
+    "after": "949fa9daa05a01653de3f752fd30667a22167746b181ce0ef46e03e54860a420"
+  }
+]

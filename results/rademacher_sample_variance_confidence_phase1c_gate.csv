@@ -1,0 +1,2 @@
+joint_delta,sample_size_grid,s_gate,gate_evaluable,practical_bootstrap_run,analytic_selection_used_empirical_data,smallest_grid_epsilon,frozen_phase1b_selected_original_ratio,frozen_phase1b_ratio_ci_low,frozen_phase1b_ratio_ci_high,frozen_phase1b_top5_detection,verdict,reason
+0.05,"[4, 8, 16, 32]",,False,False,False,10.004031445436901,0.0363291158898732,0.0146276139065298,0.6398300837904347,0.8003333333333332,THEOREM ONLY / BUDGET-VACUOUS,No proved method has epsilon<1 on the preregistered grid; empirical outcomes were not searched to select s.

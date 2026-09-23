@@ -1,0 +1,123 @@
+% Editorially assembled from the preserved September 17 report.
+\section{Rank-aware allocation analysis}\label{sec:allocation}
+For PSD $A$, order its eigenvalues as $\lambda_1\ge\cdots\ge\lambda_d\ge0$ and write $T(j)=\sum_{i>j}\lambda_i^2$. On a common allocation grid with $0\le r_q\le q\le d$ and strictly positive denominators, compare
+
+
+\begin{equation}
+\mathcal R_{\rm full}(q)=\frac{2T(q)}{m-2q},\qquad
+\mathcal R_{\rm rank}(q)=\frac{2T(r_q)}{m-q-r_q},
+\end{equation}
+
+
+\begin{equation}
+\mathcal R_G(q)=\frac{2E_G(Q_q)}{m-q-r_q},\qquad
+\mathcal R_R(q)=\frac{2E_R(Q_q)}{m-q-r_q}.
+\end{equation}
+
+
+The first imagines one perfectly targeted direction per sketch query. The second corrects accepted rank but still assumes ideal targeting. The last two use the actual basis and are exact conditional risks for their respective final-probe laws.
+
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{figures/models.png}
+\caption[Four allocation objectives]{\textbf{Four allocation objectives.} Spectral models assume ideal leading-eigenspace capture; realized models use the computed basis $Q_q$. The right-hand masks highlight variance contributions: all entries of $H_Q$ for Gaussian probes, and off-diagonal entries for Rademacher probes. Diagonal entries still contribute to the trace in both cases. The spectrum is schematic. All denominators are positive; branches distinguish assumptions, not an ordering of the four risks.}
+\label{fig:models}
+\end{figure}
+\begin{proposition}[Realized successful and failed marginal identities]\label{thm:T4}
+Put $D=m-q-r$. A successful extension adds one attempted sketch and one accepted direction, yielding $(q+1,r+1,Q')$, and $D>2$. Use either $E=E_G$ or $E=E_R$ consistently.
+
+
+Writing $E=E(Q)$ and $E'=E(Q')$,
+
+
+\begin{equation}
+\mathcal R'-\mathcal R
+=-\frac{2\{D(E-E')-2E\}}{D(D-2)}.
+\end{equation}
+
+
+If $E>0$, the extension is beneficial exactly when
+
+
+\begin{equation}
+\boxed{\frac{E-E'}E>\frac2D}
+\quad\Longleftrightarrow\quad
+\boxed{\frac{E'}E<\frac{D-2}D.}
+\end{equation}
+
+
+For a failed-rank extension with \textbf{unchanged basis projector} and $D>1$,
+
+
+\begin{equation}
+\mathcal R'-\mathcal R=\frac{2E}{D(D-1)}\ge0.
+\end{equation}
+
+
+\end{proposition}
+\begin{proof}
+For success, subtract $2E/D$ from $2E'/(D-2)$ and collect the numerator. Its denominator is positive, so the sign is the opposite of $D(E-E')-2E$. Division by $DE$ is permissible when $E>0$ and gives the equivalent inequalities. For failure, the unchanged projector keeps the numerator fixed; subtracting $2E/D$ from $2E/(D-1)$ gives the stated expression.
+
+\end{proof}
+
+
+\textbf{Interpretation.} A successful direction costs two final samples: one sketch query and one $AQ$ query. Its fractional energy reduction must exceed $2/D$. A rejected direction costs one sample without changing the residual. If $E=0$, no nonnegative risk can strictly improve it; a failed direction remains at zero rather than being strictly harmful. These cases must not be hidden by adding a numerical floor.
+
+
+For $m=160,q=r=k=15$, $D=130$. A successful extra direction pays for itself if $E'/E<128/130\approx0.984615$, or the energy drops by more than $1.53846\%$. The identity applies to each coupled path. A condition using ratios of empirical mean energies addresses a mean-risk comparison, not the fraction of individually improved paths.
+
+
+\textbf{A useful caution.} Nested subspaces need not make Rademacher residual energy decrease. Let $A=I_2$, initially $Q$ empty. Then $E_R=0$. Adding $u=(1,1)^\top/\sqrt2$ leaves $H=I-uu^\top$ with two off-diagonal entries $-1/2$, so $E_R'=1/2$. Projection reduced total energy but created off-diagonal energy. Thus Proposition~\ref{thm:T4} does not assume an energy decrease; it tests whether one occurred and was large enough.
+
+\begin{corollary}[Ideal spectral marginal and step knee]\label{cor:ideal}
+Consider the ideal Gaussian/Frobenius risk model, in which accepted directions are leading eigenvectors. A successful extension captures $\lambda_{r+1}$. Then $E=T(r)$ and $E'=T(r)-\lambda_{r+1}^2$.
+
+
+The ideal successful extension is beneficial if and only if
+
+
+\begin{equation}
+ (m-q-r)\lambda_{r+1}^2>2T(r). 
+\end{equation}
+
+
+In the full-rank ideal model the marginal numerator is nonincreasing on the
+feasible adjacent grid. For the step spectrum with $0<\eta<1$, the condition
+$2k+2(d-k)\eta^2<m<2d$ makes the feasible knee $k$ the unique minimizer.
+
+\end{corollary}
+\begin{proof}
+Substitution into Proposition~\ref{thm:T4} gives
+
+
+\begin{equation}
+\boxed{(m-q-r)\lambda_{r+1}^2>2T(r).}
+\end{equation}
+
+
+Only when $r=q$ does this reduce to $(m-2q)\lambda_{q+1}^2>2T(q)$. Define $M(q)=(m-2q)\lambda_{q+1}^2-2T(q)$. Direct subtraction gives
+
+
+\begin{equation}
+M(q+1)-M(q)=(m-2q-2)(\lambda_{q+2}^2-\lambda_{q+1}^2)\le0
+\end{equation}
+
+
+on the feasible adjacent full-rank grid. Hence this ideal objective has a single-crossing marginal sign, with ties possible.
+
+
+For the step spectrum $\lambda_{1:k}=1$, $\lambda_{k+1:d}=\eta$, with $0<\eta<1$, the pre-knee marginal numerator is $m-2k-2(d-k)\eta^2$, and the post-knee numerator is $\eta^2(m-2d)$. If
+
+
+\begin{equation}
+2k+2(d-k)\eta^2<m<2d
+\end{equation}
+
+
+and the relevant allocations are feasible, risk decreases up to $k$ and increases after it. The unique ideal full-rank minimizer is $k$. At $\eta=0$, the post-knee risk can instead be identically zero; uniqueness must not be asserted.
+
+\end{proof}
+
+
+The corollary concerns the ideal tail model, not the capture quality of a randomized basis. It also does not identify the Rademacher residual energy with $T(r)$. For example, $A=\operatorname{diag}(2,1)$ and $Q=e_1$ give $T(1)=1$ but $E_R(Q)=0$.

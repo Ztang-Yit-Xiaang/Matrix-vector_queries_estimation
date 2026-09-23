@@ -1,0 +1,27 @@
+[
+  {
+    "name": "UROP_TRACKER.md",
+    "previous_sha256": "78364db2f2efe11f148a61451187b5f72800872c1e1a232c7b47af2b36c1e5da",
+    "current_sha256": "983de4eab12908bf4974d3f74c73ac29ff28c0c137832f121b85a5628dbeebfb"
+  },
+  {
+    "name": "memory.md",
+    "previous_sha256": "77601eef68ff8ff37517f74ea59f730c7a8e8ad0883c761c9931e82c29bf0ea5",
+    "current_sha256": "f493555b58ac5d16da49fa4cc62422892d69485111b1fe320e98e8f0dd28a3d4"
+  },
+  {
+    "name": "UROP_Research_Memory.md",
+    "previous_sha256": "77601eef68ff8ff37517f74ea59f730c7a8e8ad0883c761c9931e82c29bf0ea5",
+    "current_sha256": "f493555b58ac5d16da49fa4cc62422892d69485111b1fe320e98e8f0dd28a3d4"
+  },
+  {
+    "name": "CURRENT_STATE.md",
+    "previous_sha256": "14eb18b740e2b6ded434d8e33cc95f5d38f2df1d309bd613aede2d15710cc3bb",
+    "current_sha256": "7d3dad79c6dd4d0df8659e558b883a4090f2e69790abfd6e0acad1f4571daa11"
+  },
+  {
+    "name": "coordinate_gate_failure_audit_20260916.md",
+    "previous_sha256": null,
+    "current_sha256": "a118453bca8733c81b9f994e73c8ed94511289cf41a54c5a36e01b71e16ef085"
+  }
+]

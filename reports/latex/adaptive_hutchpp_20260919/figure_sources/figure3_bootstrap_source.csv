@@ -1,0 +1,7 @@
+eta,budget,s,pair,estimator,epsilon,metric,point,ci_low,ci_high,bootstrap_samples,bootstrap_seed,bootstrap_stream
+1e-06,160,16,primary,sample_variance,0.3333333333333333,selected_mean_ratio,0.0363291158898732,0.0146276139065298,0.6398300837904347,10000,93000,shared_rank_stratified_multinomial
+1e-06,160,16,primary,sample_variance,0.3333333333333333,paid_oracle_mean_ratio,0.0354107192317368,0.0142568889496991,0.6284040485165037,10000,93000,shared_rank_stratified_multinomial
+1e-06,160,16,primary,sample_variance,0.3333333333333333,paid_baseline_mean_ratio,1.172196705733291,1.17219670573329,1.1721967057332916,10000,93000,shared_rank_stratified_multinomial
+1e-06,160,16,primary,sample_variance,0.3333333333333333,fraction_paths_harmed,0.9583333333333334,0.9416666666666672,0.973333333333334,10000,93000,shared_rank_stratified_multinomial
+1e-06,160,16,primary,sample_variance,0.3333333333333333,accept_probability,0.041925,0.0275656249999999,0.0573420833333333,10000,93000,shared_rank_stratified_multinomial
+1e-06,160,16,primary,sample_variance,0.3333333333333333,abstain_probability,0.941075,0.925858125,0.955175,10000,93000,shared_rank_stratified_multinomial

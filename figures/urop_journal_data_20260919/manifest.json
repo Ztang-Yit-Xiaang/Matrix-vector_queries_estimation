@@ -1,0 +1,45 @@
+{
+  "matrix_vector_queries": 0,
+  "new_bootstrap_replicates": 0,
+  "backend": "Python/matplotlib",
+  "matplotlib": "3.10.7",
+  "numpy": "2.3.4",
+  "pandas": "2.3.3",
+  "source_sha256": {
+    "coordinate_gate_failure_audit_20260916/paths.csv": "49205bc0a14e6d44af11dc07fb243b0202129f97e2d586f4526957740e9b6ed2",
+    "coordinate_gate_failure_audit_20260916/exact_nullspace_witnesses.json": "8f70543b82910fca64f6ae92eb7379288feafbf1e81afb48d0e27305e239be69",
+    "direct_rademacher_certification_phase1a_bootstrap.csv": "387d24bb1294738e2ac4a4346baf21284b38e25da2e96bdeaf729f26f63c482c",
+    "direct_rademacher_certification_phase1a_operating_rates.csv": "f64938db375f3d68de25026cd563fcee4166b6695aa89c2b9b8105326ca0a4bb",
+    "direct_rademacher_certification_phase1a_catastrophic.csv": "f41967bb1eac257c9a5becff60778e46db93266e92c5cdccbdfa31735ea86748",
+    "direct_rademacher_certification_phase1b_budget_bootstrap.csv": "a4ed3221aa320be88c14e00a4f68ac71d0ab89e16846ba9809b38e8acf513423",
+    "direct_rademacher_certification_phase1b_budget_paths.parquet": "df63089b4edaaafe82f38d52163c6b516f23a4ea064434f38e844f1b73021042"
+  },
+  "script_sha256": "6376a93e6ed772fac1356d6c8397baf98f20f889d42da5ecb35f52b27a09aa0f",
+  "figure1_paths": 20,
+  "figure1_failure_trial": 7,
+  "figure1_reference_trial": 2,
+  "figure2_estimators": [
+    "sample_variance",
+    "mom_w1",
+    "mom_w2"
+  ],
+  "figure2_intervals": "Frozen 10000-replicate percentile intervals",
+  "figure3_paths": 600,
+  "fraction_paths_harmed": 0.9583333333333334,
+  "output_sha256": {
+    "figure1_capture_failure.png": "6b616979df0d453329a7c439ac2965bb510cceabe1027700895f1ffdfd5ce2f9",
+    "figure1_capture_failure.svg": "14634c7342f7a28d07abf6343b87f34b34a54e37e758278b3bc31057784e976d",
+    "figure1_path_source.csv": "687229b846b7dd569c9b0c9e5ffb6d589cfd85f70244dd14f5eca2f71df9bc74",
+    "figure1_ritz_source.csv": "629698b4228b33ce4e8f4b0ba13c482b42b0fa05bc65cdbe7252775a21b86cef",
+    "figure1_signal_source.csv": "a221e5937d2e7b6a7ade578b60191b90ea583c7cc0483ee7f0e3b0be303e3e5b",
+    "figure2_bootstrap_source.csv": "f30f19bc0f9849c47153e00772319a2446a1fff25a19b921408cf3a90e6e7e68",
+    "figure2_catastrophic_source.csv": "b8b1ce98c3063c0b959be4412050dec7035b364a4a3abb2e578003065cd5582e",
+    "figure2_eligibility_source.csv": "9986f748537960b236266635e30ae24d4b39d8cd8174dfc01084d96e8a8d34c6",
+    "figure2_empirical_signal.png": "4ee94711a70e415c96d96ea724024d226900bb59a67aca1301cc6f3da0499c4b",
+    "figure2_empirical_signal.svg": "a2bba3f69d0d790a8a3ff14d4fe8cb0d04908fb421689f003ae656ea6c075402",
+    "figure3_bootstrap_source.csv": "4a7864b4e60d7ece61d58ecefbeef645559c88e46086d939ba27afa62982673b",
+    "figure3_certification_cost.png": "74ccbeac810cb22ba1cf943294ed195f1724bd2b347afb3c475939c0d74d9e5b",
+    "figure3_certification_cost.svg": "51938803857c2e3bd1090bdeeb8fe4cc9c4b5959d3be05211d6d61a8d92dbac2",
+    "figure3_path_source.csv": "6f998fbd54f8781076daa75e25fc403aa79969ab5bac9366b480d09da38c94c4"
+  }
+}

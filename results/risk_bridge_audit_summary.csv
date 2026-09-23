@@ -1,0 +1,7 @@
+spectrum_type,label,q_star_oracle,q_star_real,q_star_gauss,q_star_rad
+power_law,Power-Law c=0.5,20,16,24,16
+power_law,Power-Law c=2.0,60,60,52,52
+exponential,Exponential alpha=0.02,56,44,32,52
+exponential,Exponential alpha=0.08,72,72,72,72
+step,"Step r*=10, eta=0.01",12,20,20,20
+step,"Step r*=20, eta=0.01",20,28,28,36

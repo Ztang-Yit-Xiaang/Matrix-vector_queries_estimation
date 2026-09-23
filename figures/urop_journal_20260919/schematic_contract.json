@@ -1,0 +1,10 @@
+{
+  "kind": "original explanatory schematics; no measurements",
+  "backend": "Python matplotlib",
+  "oracle_queries": 0,
+  "editable_text": "SVG text, not paths",
+  "risk_domains": "all displayed denominators strictly positive",
+  "trace_split": "trace identity only; no cross-block deletion from A",
+  "query_bars": "schematic widths, not numerical examples",
+  "probe_masks": "variance functionals; diagonal still contributes to trace"
+}

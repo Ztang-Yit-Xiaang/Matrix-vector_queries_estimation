@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-17",
+  "protected_files": 275,
+  "protected_files_unchanged": true,
+  "new_oracle_queries": 0,
+  "new_bootstrap_samples": 0,
+  "new_pdf": false,
+  "full_algorithm_suite_rerun": false,
+  "focused_math_cases": 20,
+  "existing_figure_tests": 5,
+  "words": 7730,
+  "local_links": 41,
+  "images": [
+    {
+      "file": "workflow.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "7d39c802e5cc8288b23d3c2bc9dec3ec79a841d83b6f9485675adec43babe8d4"
+    },
+    {
+      "file": "dependencies.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "3ec31c2f0b764aa89a837100a3aeedabff4ac5ee0f4b1ddb95dd8f26dcaa876f"
+    },
+    {
+      "file": "models.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "0fc2665aacc422606907ff75e3e93fd45c15bff148ed6d6f175e70f4f9dcc6c6"
+    }
+  ],
+  "files": {
+    "reports/urop_theorem_proof_report_20260917.md": "89172e2c94efc0e64d8f9764bfc5972f8d20f17c1717ddac6c944f4c56d10773",
+    "reports/theorem_report_audit_20260917.md": "ea5a327698e99856b1f6db524db11937d4e5640b88995510308e96f5e7c185b7",
+    "tests/test_theorem_report_identities.py": "9dc31079bb3812d76eb1114ce18501319d439692cc769047f38f2311e40132cc",
+    "figures/urop_structure_20260917/prompts_and_contract.md": "9773b3c9ab718ee74a3bcf2ad2474ded378e8ec1e2eba98f51654b6c895918e5",
+    "experiments/finalize_theorem_report.py": "35406c5fda35e4e1f42f5abf7c95f80f2b944967b64fb2d8d0786250a79a8c17"
+  }
+}

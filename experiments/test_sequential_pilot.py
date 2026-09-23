@@ -16,6 +16,11 @@ from trace_baseline import (
     Adaptive_Hutch_pplus_ModelAveraged,
     Adaptive_Hutch_pplus_SequentialPilot
 )
+from theorem15_certification import log_threshold_from_ratio
+
+
+TAU_RATIO = float(np.exp(1.5))
+GAMMA_GAP = log_threshold_from_ratio(TAU_RATIO)
 
 def generate_powerlaw_psd(d, c, rng):
     Q_orth, _ = la.qr(rng.normal(size=(d, d)))
@@ -59,7 +64,7 @@ def run_sequential_pilot_benchmark():
         "Hutch++ (Standard)": lambda o, m, d, rng: Hutch_pplus(o, m, d, rng=rng),
         "Gaussian-Hutch++": lambda o, m, d, rng: Gaussian_Hutch_pplus(o, m, d, rng=rng),
         "Fixed-Pilot Model-Avg (b=10)": lambda o, m, d, rng: Adaptive_Hutch_pplus_ModelAveraged(o, m, d, b=10, rng=rng),
-        "Sequential Pilot Safe (Ours)": lambda o, m, d, rng: Adaptive_Hutch_pplus_SequentialPilot(o, m, d, b_0=8, delta_b=4, tau_plateau=1.15, rng=rng)
+        "Sequential Pilot Safe (Ours)": lambda o, m, d, rng: Adaptive_Hutch_pplus_SequentialPilot(o, m, d, b_0=8, delta_b=4, tau_gap=GAMMA_GAP, rng=rng)
     }
 
     seq_rows = []
@@ -79,7 +84,7 @@ def run_sequential_pilot_benchmark():
 
                 if "Sequential" in alg_name:
                     est, diag = Adaptive_Hutch_pplus_SequentialPilot(
-                        oracle, m, d, b_0=8, delta_b=4, tau_plateau=1.15, rng=trial_rng, return_diagnostics=True
+                        oracle, m, d, b_0=8, delta_b=4, tau_gap=GAMMA_GAP, rng=trial_rng, return_diagnostics=True
                     )
                     final_b_list.append(diag["b_final"])
                 elif "Fixed-Pilot" in alg_name:

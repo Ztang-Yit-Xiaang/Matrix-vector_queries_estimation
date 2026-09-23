@@ -1,0 +1,59 @@
+% Editorially assembled from the preserved September 17 report.
+\section{Supporting moment and scale calculations}\label{sec:technical}
+\begin{lemma}[A corrected degree-two fourth moment]\label{thm:T14}
+$C$ is real symmetric, nonzero, zero diagonal; $Z=g^\top Cg$ for coordinate Rademacher $g$. Put $\sigma^2=2\|C\|_F^2$ and $\kappa=\|C\|_2/\|C\|_F$.
+
+
+The corrected identity and its consequence are
+
+
+\begin{equation}
+\mathbb EZ^4=3\sigma^4+48\operatorname{tr}(C^4)
+-96\sum_i[(C^2)_{ii}]^2+32\sum_{i,j}C_{ij}^4,
+\end{equation}
+
+
+\begin{equation}
+\boxed{\mathbb EZ^4\le(3+12\kappa^2)\sigma^4\le15\sigma^4.}
+\end{equation}
+
+
+\end{lemma}
+\begin{proof}
+Write $Z=2\sum_{i<j}C_{ij}g_ig_j$. In its fourth-power expansion only edge multisets with even degree at every vertex survive. They consist of one edge repeated four times, two distinct edges each repeated twice, or four distinct edges forming a four-cycle. Their multiplicities in the edge expansion are respectively 1, 6, and 24. Collecting these terms into matrix traces gives the displayed identity; the corrected coefficients 48, $-96$, and 32 retain the repeated-edge adjustments.
+
+
+For more explicit bookkeeping, let $a=\sum_{i<j}C_{ij}^4$, let $b$ sum $C_e^2C_f^2$ over unordered distinct edge pairs, let $b_{\rm adj}$ restrict to pairs sharing a vertex, and let $c$ sum products over undirected four-cycles. The edge expansion is $16a+96b+384c$. Meanwhile $\sigma^4=16a+32b$, $\operatorname{tr}(C^4)=2a+4b_{\rm adj}+8c$, $\sum_i[(C^2)_{ii}]^2=2a+2b_{\rm adj}$, and $\sum_{ij}C_{ij}^4=2a$. Substitution verifies every coefficient.
+
+
+Now $\sum_{ij}C_{ij}^4\le\sum_i(\sum_jC_{ij}^2)^2=\sum_i[(C^2)_{ii}]^2$, so the combined correction after the trace term is nonpositive. Also $\operatorname{tr}(C^4)\le\|C\|_2^2\|C\|_F^2$. Divide by $\sigma^4=4\|C\|_F^4$ to obtain $3+12\kappa^2$, and use $\kappa\le1$.
+
+\end{proof}
+
+
+The same identity gives a lower bound $3-24\kappa^2$ on the normalized fourth moment, since $\sum_i[(C^2)_{ii}]^2\le\|C\|_2^2\|C\|_F^2$. Thus small $\kappa$ squeezes this quadratic-chaos kurtosis toward three. It does not make three a universal lower bound, and it says nothing directly about the kurtosis of the signed degree-four $D_j-\Delta$.
+
+\begin{proposition}[The exact scale-estimation boundary]\label{thm:T15}
+A scalar observation has variance $v>0$ and fourth central moment at most $Kv^2$, with $K\ge1$. Estimate its variance with $n\ge2$ iid observations and use the Lemma~\ref{thm:T7}--Chebyshev relative radius at failure probability $0<\delta_{\rm scale}<1$.
+
+
+That radius is below one exactly when
+
+
+\begin{equation}
+\boxed{\delta_{\rm scale}n(n-1)>(K-1)(n-1)+2.}
+\end{equation}
+
+
+At $K=3$ and $\delta_{\rm scale}=0.05$, the first feasible integer is $n=42$. If each observation uses two probes, this requires $s=84$, not 82.
+
+
+\end{proposition}
+\begin{proof}
+Lemma~\ref{thm:T7} bounds the relative sample-variance variance by $[(K-1)+2/(n-1)]/n$. Chebyshev's relative radius squared divides this by $\delta_{\rm scale}$. Requiring it below one and multiplying by the positive $n(n-1)\delta_{\rm scale}$ gives the inequality. At $n=41$, both sides equal 82; strict feasibility fails. At 42, the left side is 86.1 and the right side 84. The expression decreases with $n$, proving first feasibility at 42.
+
+\end{proof}
+
+
+This boundary neither proves that a norm prior is necessary for every certificate nor licenses assuming $K=3$ for an arbitrary signed-pair observation. It diagnoses one explicit scale-estimation route. Sources for Theorem~\ref{thm:T13}--Proposition~\ref{thm:T15}: structural proof note~\cite{project2026} and the recovery correction~\cite{project2026}.
+

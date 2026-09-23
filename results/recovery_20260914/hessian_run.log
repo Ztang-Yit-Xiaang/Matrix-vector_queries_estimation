@@ -1,0 +1,34 @@
+======================================================================
+STARTING PYTORCH MATRIX-FREE ML HESSIAN TRACE BENCHMARK
+======================================================================
+Instantiated Model: SmallConvNet with d = 4254 trainable parameters.
+Training model for 5 epochs to induce realistic spectral knee curvature...
+PyTorchHessianOracle ready: d = 4254 parameters.
+Computing exact ground truth Hessian trace via 4254 column-wise HVPs...
+Exact Hessian Trace = 31.581270 (computed in 128.41s).
+
+--- Testing Query Budget m = 30 (30 trials per estimator) ---
+
+--- Testing Query Budget m = 60 (30 trials per estimator) ---
+
+--- Testing Query Budget m = 90 (30 trials per estimator) ---
+
+--- Testing Query Budget m = 120 (30 trials per estimator) ---
+{
+  "stage": "hessian",
+  "started": "2026-09-14T18:00:15.350254+00:00",
+  "completed": "2026-09-14T18:24:59.986735+00:00",
+  "python": "3.12.6",
+  "numpy": "2.3.4",
+  "pandas": "2.3.3",
+  "torch": "2.11.0",
+  "torch_threads": 4,
+  "rows": 480,
+  "summary_rows": 16,
+  "seed": 2026,
+  "recovery_type": "deterministic protocol rerun; original CSV hashes unavailable",
+  "files": {
+    "pytorch_hessian_benchmark_summary.csv": "407b4f08ff2845811b1f8feace5b145bb48f4cc1857be8fce9f52dc2354c0685",
+    "pytorch_hessian_benchmark_trials.csv": "02b6a8824388e1b63485607643bf67c57ec2c520535ad1d1a4267c58957565c7"
+  }
+}

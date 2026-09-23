@@ -1,0 +1,81 @@
+% Compile from this directory. Source-only deliverable; no PDF is bundled.
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx,booktabs,longtable,array,float}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\hutchpp}{Hutch\raisebox{.35ex}{\scriptsize++}}
+\newfloat{algorithm}{tbp}{loa}
+\floatname{algorithm}{Algorithm}
+\floatstyle{ruled}
+\restylefloat{algorithm}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{.2em}
+\setcounter{topnumber}{2}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\textfraction}{.08}
+\hypersetup{pdftitle={Adaptive Hutch++: Query Allocation, Subspace Capture, and Risk Certification},
+ pdfsubject={Theory-led UROP research manuscript; source draft}}
+\title{Adaptive \hutchpp: Query Allocation,\\Subspace Capture, and Risk Certification}
+% Deliberately neutral until the author confirms the submission byline.
+\author{UROP research manuscript\\
+ \small Faculty advisor: Prof.\ Swati Padmanabhan}
+\date{September 20, 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Adaptive query allocation in \hutchpp\ requires balancing the improvement in a
+randomized low-rank approximation against the loss of residual trace samples.
+We study this balance through exact rank-aware accounting and realized,
+probe-specific conditional risk. We derive a local criterion for accepting an
+additional basis direction, relate residual energy to dominant-subspace
+capture, and construct a pilot transcript that cannot distinguish a captured
+spectral knee from a missed leading direction. Frozen synthetic experiments
+show that rare range-capture failures can move finite empirical mean-risk
+minimizers beyond the ideal spectral knee, even when the sampled basis has
+full numerical rank. Direct sample-variance estimates provide useful
+empirical discrimination between realized Rademacher risks, but charging for
+this information can worsen most individual paths while improving aggregate
+mean risk. We prove conditional safe-acceptance statements and identify
+small-budget vacuity in two explicit confidence constructions. A paired
+common-probe formulation and a structural-prior bound clarify what remains
+unresolved. These results characterize limitations of adaptive allocation
+and certification; they do not establish a uniformly superior allocator or
+an impossibility theorem for all small-budget certificates.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/preliminaries}
+\input{sections/allocation}
+\input{sections/capture}
+\input{sections/certification}
+\input{sections/confidence}
+\input{sections/experiments}
+\input{sections/discussion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\clearpage
+\appendix
+\input{sections/technical}
+\input{sections/provenance}
+\end{document}

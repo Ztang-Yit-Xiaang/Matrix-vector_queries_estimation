@@ -1,0 +1,45 @@
+# Validated UROP figure package
+
+Updated: 2026-09-16. Scope: presentation of existing reviewed evidence, not a new experiment.
+
+A separate [GPT-polished presentation edition](urop_gpt_polished_figures_20260916.md) is now available for all three figures. Its generated rasters do not replace the exact data-rendered figures and source data below.
+
+The three figures separate capture failure, empirical risk information, and the cost of using that information. They belong to different experiments and must not be read as a single matched trial population. All new exports are PNG and editable-text SVG; no PDF is generated. [Figure contract](../docs/figure_plan_20260916.md) · [Source/checksum manifest](../figures/urop_validated_20260916/manifest.json).
+
+## Figure 1. Coordinate pilot capture and residual risk
+
+![Coordinate pilot capture and residual risk](../figures/urop_validated_20260916/figure1_capture_failure.png)
+
+[Editable SVG](../figures/urop_validated_20260916/figure1_capture_failure.svg) · [Path data](../figures/urop_validated_20260916/figure1_path_source.csv) · [Ritz data](../figures/urop_validated_20260916/figure1_ritz_source.csv) · [Signal sketch](../figures/urop_validated_20260916/figure1_signal_source.csv).
+
+**Caption.** The coordinate-aligned step matrix has dimension $d=100$, five unit eigenvalues, and 95 eigenvalues equal to $0.001$; it is not mathematically rank five. Total estimator budget is $m=60$. **a**, Exact conditional Rademacher risks for all ten original trials, displayed on a logarithmic vertical axis. Standard Hutch++ uses $(q,r,\ell)=(20,20,20)$; the gated heuristic uses $(8,8,44)$ on every displayed path. These are risks averaged over hypothetical fresh residual probes conditional on each realized basis, not observed squared errors or confidence intervals. Trial identifiers are zero-based, and the two methods consume different portions of the original random stream. **b**, Ordered pilot Ritz values for the highest-risk gated path (trial 7) and a descriptive reference (trial 2, the median-risk member of the other nine gated paths). The failure still presents a sharp gap, but only four visible unit-scale modes instead of five. These two selected spectra illustrate the mechanism; panel a supplies the complete coordinate sample. **c**, The exact $5\times8$ signal block $S_1=U_\star^\top S$ of the failing Rademacher sketch. White/+ cells are $+1$; grey/− cells are $-1$. Opposite rows three and four give an exact null direction. The accepted full basis rank is eight, while signal-sketch rank is four.
+
+**Evidence and limit.** The missing direction $w=(e_3+e_4)/\sqrt2$ obeys $S^\top w=0$ and $Aw=w$. Thus $RARw=w$ in exact arithmetic: numerical full rank does not establish signal capture. The failing conditional risk is approximately $0.0227274$ versus $1.31\times10^{-7}$ on ordinary gated paths. This is a verified discrete signal-rank failure with positive oversampling, not the earlier near-square zero-oversampling example. Ten coordinate paths do not estimate a universal failure probability. See the [mechanism audit](coordinate_gate_failure_audit_20260916.md) for exact witnesses and the separate 300-path Haar comparison.
+
+## Figure 2. Empirical selective-risk metrics
+
+![Empirical selective-risk metrics](../figures/urop_validated_20260916/figure2_empirical_signal.png)
+
+[Editable SVG](../figures/urop_validated_20260916/figure2_empirical_signal.svg) · [Intervals](../figures/urop_validated_20260916/figure2_bootstrap_source.csv) · [Operating rates and eligibility](../figures/urop_validated_20260916/figure2_eligibility_source.csv) · [Catastrophic strata](../figures/urop_validated_20260916/figure2_catastrophic_source.csv).
+
+**Caption.** Selected Phase 1A metrics at $d=500$, $m=160$, $\eta=10^{-6}$, $s=16$ external fresh probes, and empirical guard $\varepsilon=1/3$. Candidate $q=r_\star+1$ is compared with adjacent baseline $q=r_\star$ for $r_\star\in\{5,15,30\}$, with 200 frozen paths per rank and 200 certification repetitions per path. **a**, False-safe acceptance conditional on the candidate being truly worse (logarithmic horizontal axis). Eligible counts are 188, 182, and 180 paths for ranks 5, 15, and 30. **b**, Acceptance conditional on a path belonging to the within-rank top 5% of baseline risk and having a truly better candidate: ten eligible paths per rank. Points average repetitions within paths, eligible paths within ranks, then ranks equally. Bars are the original 95% percentile intervals from 10,000 eligible-path, rank-stratified cluster-bootstrap replicates. They are not recomputed here. Dashed lines show only the corresponding point-estimate gate thresholds, 0.5% and 75%; the full gate also includes interval thresholds, false rejection, useful acceptance, control-family safety, and batch stability.
+
+At $s=16$, `mom_w1` takes the median of eight independent-pair observations; `mom_w2` takes the median of four two-pair block means. They are distinct from the paired mean and are not claimed unbiased. Ordinary sample variance is unbiased and was the only family to pass the complete empirical gate. All actions and estimator families reuse common fresh probes; comparisons are paired, not independent experiments. Certification cost is external in Phase 1A and is not subtracted from the residual denominator.
+
+**Evidence and limit.** The sample-variance false-safe point is 0.0134%, and catastrophic detection is 79.67%. These support an empirical signal under the frozen population, not a theorem-level safety certificate or an orientation-universal guarantee. See the [full Phase 1A report](direct_rademacher_risk_certification_phase1a.md).
+
+## Figure 3. Certification cost and pathwise net effects
+
+![Certification cost and pathwise net effects](../figures/urop_validated_20260916/figure3_certification_cost.png)
+
+[Editable SVG](../figures/urop_validated_20260916/figure3_certification_cost.svg) · [Intervals](../figures/urop_validated_20260916/figure3_bootstrap_source.csv) · [All 600 paths](../figures/urop_validated_20260916/figure3_path_source.csv).
+
+**Caption.** Phase 1B budget-aware emulation for sample variance at the same primary family, $s=16$, $m=160$, $\varepsilon=1/3$, and $\eta=10^{-6}$. There are 200 frozen paths per rank, 600 in total. Committed nested shared-prefix construction and certification queries are deducted before computing final residual risk. The reference is the original, unstarted adjacent baseline, not automatically the Standard Hutch++ allocation. **a**, For each rank, the mean paid-policy risk is divided by the mean original-baseline risk; the three ratios are then averaged equally. This is not the mean of individual pathwise ratios. Points and original 95% percentile intervals use the frozen 10,000 shared rank-stratified path-bootstrap replicates. The paid oracle selects the lower-risk action with exact offline truth after paying costs; it is not implementable as an online oracle-free policy. Paid fallback always returns to the baseline basis after spending those costs. Empirical selection averages its risk over the 200 certification repetitions on each path. **b**, The empirical cumulative distribution of all 600 individual selected/original risk ratios, with no confidence band. The logarithmic axis retains the rare extreme improvements and every harmful path. The vertical reference at one means unchanged risk relative to the original baseline.
+
+**Evidence and limit.** The aggregate selection ratio is 0.036329, interval [0.014628, 0.639830], while 575 of 600 paths (95.83%) have larger risk after cost. These facts are compatible: a small number of very costly baseline failures dominate mean risk, whereas most ordinary paths pay more than they gain. The pooled median pathwise ratio is approximately 1.160714; the historical 1.172197 “median path” summary was an equal-rank average of rank-specific medians, not this pooled median. Neither should be substituted for the aggregate ratio in panel a. Paid fallback's aggregate ratio is 1.172197: abstention does not refund queries. See the [Phase 1B report](direct_rademacher_risk_certification_phase1b_budget.md).
+
+## Provenance and QA
+
+`experiments/build_validated_urop_figures.py` reads seven historical artifacts, verifies definitions and aggregate values, and writes only a new explicit output directory. The package contains three 300-dpi PNGs, three editable SVGs, eight source CSVs, and a checksum manifest. Source checksums are compared before and after rendering. No new matrix–vector queries, bootstrap replicates, parameter searches, or estimator changes occur.
+
+Automated checks cover the exact signal witness, full accepted ranks, all query denominators, conditional eligibility, aggregate-versus-pathwise estimands, source/output hashes, editable SVG text, and outer-canvas label clipping. Visual inspection additionally checks panel layout and interpretation. Historical figures and report exports remain untouched. The scientific-figure and visualization skills guided the figure contract, source-data exports, uncertainty labels, and preview checks.
