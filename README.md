@@ -12,7 +12,7 @@ The main scientific conclusion is deliberately conservative: the exploratory ada
 - `Adaptive_Hutch_pplus_TwoStageGated` is exploratory. Its development benchmarks are not held-out validation and should not be read as a safety guarantee.
 - The current teaching deck, manuscript packages, reports, figures, and provenance records are under `reports/`, `figures/`, and `results/`.
 
-For the current project narrative and open questions, see the workspace-level [`UROP_TRACKER.md`](../../../UROP_TRACKER.md) and [`CURRENT_STATE.md`](CURRENT_STATE.md).
+For the current project narrative and open questions, see [`CURRENT_STATE.md`](CURRENT_STATE.md). The broader workspace tracker is maintained alongside this repository.
 
 ## Repository layout
 
