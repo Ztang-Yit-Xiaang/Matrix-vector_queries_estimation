@@ -1,0 +1,133 @@
+{
+  "sources": {
+    "q_finding/results_20261019_v1/main/risk_curves_by_q.csv": "6b1c89ebc9f93e222084142c69a557e2dc6c5e14cb0d224cd5d2d80ba2de9bc2",
+    "q_finding/results_20261019_v1/main/allocation_policy_comparison.csv": "80cb9633c7bcc095a2b8d834848bdc30abff1ccb7b677484d6110c35ef7181c3",
+    "q_finding/results_20261019_v1/main/policy_heldout_summary.csv": "ed5f73f4d5ff86cd68719ca7366b88185a4c0fe3636aa36c494e8a529b6a02ee",
+    "q_finding/results_20261019_v1/main/manifest.json": "f9b695dd50cc73b348159fbac997c0ce3dc2138704ac3a136b0f48b603ada638",
+    "results/spectral_floor_mechanism_20261019_v4/figures/source_data/figure2_actual_and_fixed_basis_risk_curves.csv": "e35cdb3538d27c5aa69e37883ad2e28d34a342e8af6ecad7a90d622004e09a85"
+  },
+  "selection": {
+    "budget": 96,
+    "heldout_matrices": 186,
+    "excluded_families": [
+      "power",
+      "signed_power"
+    ],
+    "eligible_cases": 144,
+    "convention": "User-approved lower-middle observed case",
+    "ascending_rank": 72,
+    "tie_break": "matrix ID ascending",
+    "arithmetic_median_gain": 0.1795861937931968,
+    "selected_case": {
+      "id": "11cfff958145affe",
+      "family": "step",
+      "param": 8.0,
+      "tail_floor": 0.1,
+      "d": 512,
+      "orientation": "haar",
+      "group_id": "step:8:0.1",
+      "sketch_trials": 64,
+      "m": 96,
+      "q_rule": 23,
+      "q_standard": 32,
+      "mse_rule": 0.026855310105186145,
+      "mse_standard": 0.0326537944010966,
+      "gain": 0.17757459438513912
+    },
+    "configuration": {
+      "d": 512,
+      "family": "step",
+      "param": 8,
+      "tail_floor": 0.1,
+      "orientation": "haar",
+      "orientation_rep": 1,
+      "group_id": "step:8:0.1",
+      "split": "test",
+      "matrix_seed": 11825904100787601510,
+      "id": "11cfff958145affe",
+      "rank_bound": 512,
+      "trace": 58.40000000000002,
+      "fro2": 13.039999999999976,
+      "stable_rank": 13.039999999999976,
+      "effective_rank": 261.5460122699393,
+      "dominant_rank": 8,
+      "tail_energy": 0.3865030674846635
+    },
+    "curve_q_star": 23,
+    "curve_mse_min": 0.026855310105186145,
+    "full_curve_points": 48
+  },
+  "distribution_all_744": {
+    "cases": 744,
+    "matrices": 186,
+    "budgets": [
+      60,
+      96,
+      160,
+      256
+    ],
+    "positive_count": 539,
+    "positive_fraction": 0.7244623655913979,
+    "standard_better_count": 205,
+    "standard_better_fraction": 0.27553763440860213,
+    "tie_count": 0,
+    "p10": -0.7794605091015714,
+    "median": 0.2673711084733321,
+    "p90": 0.5014557958742955,
+    "percentile_method": "NumPy linear empirical quantiles; unweighted over cases",
+    "standard_better_by_family": {
+      "exp": {
+        "count": 94,
+        "family_cases": 112,
+        "within_family_fraction": 0.8392857142857143
+      },
+      "graph_hub": {
+        "count": 3,
+        "family_cases": 24,
+        "within_family_fraction": 0.125
+      },
+      "signed_step": {
+        "count": 30,
+        "family_cases": 56,
+        "within_family_fraction": 0.5357142857142857
+      },
+      "step": {
+        "count": 78,
+        "family_cases": 336,
+        "within_family_fraction": 0.23214285714285715
+      }
+    }
+  },
+  "retained_aggregate": {
+    "m": "ALL",
+    "family": "ALL",
+    "orientation": "ALL",
+    "split": "ALL",
+    "method": "offline_tuned_group_holdout",
+    "stratum": "ALL",
+    "matrix_budget_cases": "744",
+    "matrix_configurations": "186",
+    "spectral_groups": "16",
+    "mean_actual_mse": "150.9589921605414",
+    "mean_mse_over_fro2": "0.0061364457192184755",
+    "standard_mean_mse_over_fro2": "0.007650736628115952",
+    "mean_difference_over_fro2": "-0.0015142909088974772",
+    "ratio_of_mean_normalized_mses": "0.8020725346455455",
+    "aggregate_ratio_status": "regular",
+    "saving_vs_standard_pct": "19.79274653544545",
+    "fraction_worse_than_standard_5pct": "0.24596774193548387",
+    "per_case_safe_ratio_count": "744"
+  },
+  "left_panel": {
+    "q_star": 22,
+    "cap_q": 24,
+    "cap_excess_percent": 0,
+    "points": 48
+  },
+  "notes": [
+    "No experiments run; all values read from saved mean-risk curves",
+    "Casewise gain distribution is distinct from aggregate normalized-MSE saving",
+    "Panels have independent logarithmic vertical ranges",
+    "All 744 matrix-budget cases include all held-out families and four repeated budgets"
+  ]
+}

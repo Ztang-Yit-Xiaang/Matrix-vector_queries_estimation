@@ -4,6 +4,15 @@ This repository contains the Hutch++ research track from the UROP Summer 2026 pr
 
 The main scientific conclusion is deliberately conservative: the exploratory adaptive gates are useful research prototypes, but this repository does not claim a universally safe or confidence-certified online allocator.
 
+## Latest presentation — October 20, 2026
+
+The ten-slide Beamer v21 research talk includes the held-out allocation results and the median non-power example on slide 8. These are finite-sample empirical findings; the quarter-budget cap remains an offline existence result.
+
+- [Presentation PDF](reports/adaptive_hutchpp_talk_20261020/output/Adaptive_Hutchpp_Oct20_2026_Beamer_v21.pdf)
+- [Portable source ZIP](reports/adaptive_hutchpp_talk_20261020/output/Adaptive_Hutchpp_Oct20_2026_Beamer_v21_Source.zip)
+- [Slide 8 preview](reports/adaptive_hutchpp_talk_20261020/output/Adaptive_Hutchpp_Oct20_2026_Beamer_v21_Slide08.png)
+- [Editable source and compilation instructions](reports/adaptive_hutchpp_talk_20261020/Beamer_v21_20261020/README.md), [speaker notes](reports/adaptive_hutchpp_talk_20261020/Beamer_v21_20261020/SPEAKER_NOTES.md), and [numerical provenance](reports/adaptive_hutchpp_talk_20261020/Beamer_v21_20261020/SOURCES.md).
+
 ## Research status
 
 - The fixed Hutch++ baselines, query accounting, rank-aware risk identities, and several certification limits are documented and tested.
