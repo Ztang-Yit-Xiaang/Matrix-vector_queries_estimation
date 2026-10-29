@@ -5,21 +5,25 @@ This repository contains the Hutch++ research track from the UROP Summer 2026 pr
 The main scientific conclusion is deliberately conservative: the exploratory adaptive gates are useful research prototypes, but this repository does not claim a universally safe or confidence-certified online allocator.
 
 <!-- BEGIN portfolio-project-animations -->
-## Animated project guide
+## Recorded project interactions
 
-These self-contained SVG animations explain the project workflow. They are illustrative guides, not recorded experiments or new performance results. Static content remains available when reduced motion is requested.
+These previews record interaction with original project figures, saved notebook outputs, source tests, or the actual project interface. They do not represent new experiments, model inference, or benchmark runs. Pointer-driven inspection, saved-result selection, and browser controls are captured below.
 
-### Adaptive Hutch++
+### Inspect the real research figures
 
-![Adaptive Hutch++ — illustrative animation](docs/portfolio-animations/matrix-vector-trace-estimation.svg)
+![Inspect the real research figures - recorded project interaction](docs/portfolio-previews/matrix-vector-trace-estimation.gif)
 
-A symbolic query-budget illustration, not measured allocation proportions or a certified risk guarantee.
+Original figures and talk slides from the repository. Hover to inspect details; switch figures to compare recorded findings. No benchmark was rerun.
 
-### Leverage-score sketching
+[Original project material](https://github.com/Ztang-Yit-Xiaang/Matrix-vector_queries_estimation)
 
-![Leverage-score sketching — illustrative animation](docs/portfolio-animations/randomized-sketching.svg)
+### Explore the saved notebook output
 
-Conceptual row sampling. The original leverage-score notebook is local; this is not a replay of that notebook.
+![Explore the saved notebook output - recorded project interaction](docs/portfolio-previews/randomized-sketching.gif)
+
+Exact saved output from the local leverage-score notebook, cell 10. Filter datasets and inspect algorithm metrics; no experiment was rerun. The public repository is related trace-estimation work.
+
+[Original project material](https://github.com/Ztang-Yit-Xiaang/Matrix-vector_queries_estimation)
 
 <!-- END portfolio-project-animations -->
 
