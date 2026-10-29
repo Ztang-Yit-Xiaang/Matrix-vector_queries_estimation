@@ -4,6 +4,25 @@ This repository contains the Hutch++ research track from the UROP Summer 2026 pr
 
 The main scientific conclusion is deliberately conservative: the exploratory adaptive gates are useful research prototypes, but this repository does not claim a universally safe or confidence-certified online allocator.
 
+<!-- BEGIN portfolio-project-animations -->
+## Animated project guide
+
+These self-contained SVG animations explain the project workflow. They are illustrative guides, not recorded experiments or new performance results. Static content remains available when reduced motion is requested.
+
+### Adaptive Hutch++
+
+![Adaptive Hutch++ — illustrative animation](docs/portfolio-animations/matrix-vector-trace-estimation.svg)
+
+A symbolic query-budget illustration, not measured allocation proportions or a certified risk guarantee.
+
+### Leverage-score sketching
+
+![Leverage-score sketching — illustrative animation](docs/portfolio-animations/randomized-sketching.svg)
+
+Conceptual row sampling. The original leverage-score notebook is local; this is not a replay of that notebook.
+
+<!-- END portfolio-project-animations -->
+
 ## Latest presentation — October 20, 2026
 
 The ten-slide Beamer v21 research talk includes the held-out allocation results and the median non-power example on slide 8. These are finite-sample empirical findings; the quarter-budget cap remains an offline existence result.
